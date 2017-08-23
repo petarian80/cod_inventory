@@ -104,6 +104,10 @@ function count_id(){
   static $count = 1;
   return $count++;
 }
+function count_row_id(){
+  static $count = 1;
+  return $count++;
+}
 /*--------------------------------------------------------------*/
 /* Function for Creting random string
 /*--------------------------------------------------------------*/

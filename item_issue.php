@@ -53,135 +53,57 @@
   </div>
 </div>
   <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-12">
       <div class="panel panel-default">
-        <div class="panel-heading">
+        <div class="panel-heading clearfix">
           <strong>
             <span class="glyphicon glyphicon-th"></span>
             <span>ISSUE ITEM </span>
          </strong>
+         
         </div>
-        <div class="panel-body">
-         <div class="col-md-12">
-          <form method="post" action="item_issue.php" class="clearfix">
-              <div class="form-group">
-                <div class="input-group">
-                  
-                  <input type="text" class="form-control" name="part_no" placeholder="Part Number">
-               </div>
-              </div>
 
-<div class="form-group">
-                <div class="input-group">
-                  
-                  <input type="text" class="form-control" name="item_name" placeholder="Item Name">
-               </div>
-              </div>
-
-<div class="form-group">
-                <div class="input-group">
-                  
-                  <input type="text" class="form-control" name="iv_no" placeholder="IV Number">
-               </div>
-              </div>
-
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-md-6">
-                    <select class="form-control" name="unit_id">
-                      <option value="">Select Producd unit</option>
-                    <?php  foreach ($all_units as $unit): ?>
-                      <option value="<?php echo (int)$unit['id'] ?>">
-                        <?php echo $unit['name'] ?></option>
-                    <?php endforeach; ?>
-                    </select>
-                  </div>
-                  </div>
-                  </div>
-             
-                  
-              <div class="form-group">
-               <div class="row">
-                 <div class="col-md-4">
-                   <div class="input-group">
-                     
-                     <input type="number" class="form-control" name="rate" placeholder="Rate">
-                  </div>
-                 </div>
-                 </div>
-                 </div>
-     <div class="form-group">
-               <div class="row">
-                 <div class="col-md-4">
-                   <div class="input-group">
-                     
-                     <input type="number" class="form-control" name="item_demanded" placeholder="Item Demanded">
-                  </div>
-                 </div>
-                 </div>
-                 </div>
-
-                 <div class="form-group">
-               <div class="row">
-                 <div class="col-md-4">
-                   <div class="input-group">
-                     
-                     <input type="number" class="form-control" name="item_issued" placeholder="Item Issued">
-                  </div>
-                 </div>
-                 </div>
-                 </div>
-
-                  <div class="form-group">
-               <div class="row">
-                 <div class="col-md-4">
-                   <div class="input-group">
-                    
-                     <input type="number" class="form-control" name="to_fol" placeholder="To FOL">
-                  </div>
-                 </div>
-                 </div>
-                 </div>
-
- <div class="form-group">
-               <div class="row">
-                 <div class="col-md-4">
-                   <div class="input-group">
-                     
-                     <input type="number" class="form-control" name="unit" placeholder="Unit">
-                  </div>
-                 </div>
-                 </div>
-                 </div>
-                  
-              
- <div class="form-group">
-               <div class="row">
-                 <div class="col-md-4">
-                   <div class="input-group">
-                     
-                     <input type="number" class="form-control" name="issued_by" placeholder="Issued By">
-                  </div>
-                 </div>
-                 </div>
-                 </div>
-              
-  <div class="form-group">
-               <div class="row">
-                 <div class="col-md-4">
-                   <div class="input-group">
-                     
-                     <input type="number" class="form-control" name="total" placeholder="TotaL Amount">
-                  </div>
-                 </div>
-                 </div>
-                 </div>
-              <button type="submit" name="issue_item" class="btn btn-danger">Issue Item</button>
-          </form>
-         </div>
+        <div class="panel-body table-responsive">
+          <form method="post" name="item-issue-form" id="item-issue-form" action="<?php ?>">
+          <div class="panel-heading clearfix">
+          <strong>
+            <button type="submit" class="btn btn-info pull-right btn-sm"> Publish Items</button>
+         </strong>
+         
         </div>
-      </div>
-    </div>
-  </div>
+          
+          <table id="items-issue-table" class="table table-bordered">
+            <thead>
+              <th class="text-center" style="width: 50px;">#</th>
+              <th> Part No# </th>
+              <th> Item Name </th>
+              <th> IV No# </th>
+              <th> Unit </th>
+              <th> Rate </th>
+              <th> Qty Demanded</th>
+              <th> Qty Issued</th>              
+              <th> Amount</th>
+            </thead>
+              <tbody>              
+              <tr id="item-issue-<?php echo count_row_id();?>">
+                <td class="text-center"><?php echo count_id();?></td>
+                <td id="part_no"><input type="text" class="form-control" name="part_no" placeholder="Part Number"></td>
+                <td id="item_name"><input type="text" class="form-control" name="item_name" placeholder="Item Name"></td>
+                <td id="iv_no"></td>
+                <td id="unit"></td>
+                <td id="rate"></td>
+                <td id="qty_d">                  
+                    <input type="number" class="form-control" name="qty_d" class="form-control input-number" value="1" min="1" max="10">                
+                </td>
+                <td id="qty_i">
+                  <input type="number" class="form-control" name="qty_i" class="form-control input-number" value="1" min="1" max="10">
+                </td>                
+                <td id="amount"></td>                                
+              </tr>                           
+            </tbody>
+          </table>
+          <button name="add_product" id="add_product" class="btn btn-danger">Add product</button>
+        </form>
+        </div>
 
 <?php include_once('layouts/footer.php'); ?>
