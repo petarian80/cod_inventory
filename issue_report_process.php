@@ -1,5 +1,5 @@
 <?php
-$page_title = ' Report';
+$page_title = 'Issue Report';
 $results = '';
   require_once('includes/load.php');
   
@@ -13,7 +13,7 @@ $results = '';
     if(empty($errors)):
       $start_date   = remove_junk($db->escape($_POST['start-date']));
       $end_date     = remove_junk($db->escape($_POST['end-date']));
-      $results      = find_sale_by_dates($start_date,$end_date);
+      $results      = find_issue_by_dates($start_date,$end_date);
     else:
       $session->msg("d", $errors);
       redirect('issue_report.php', false);
@@ -102,11 +102,11 @@ $results = '';
               <td class="desc">
                 <h6><?php echo remove_junk(ucfirst($result['part_no']));?></h6>
               </td>
-              <td class="text-right"><?php echo remove_junk($result['item_name']);?></td>
-              <td class="text-right"><?php echo remove_junk($result['iv_no']);?></td>
-              <td class="text-right"><?php echo remove_junk($result['item_demanded']);?></td>
-              <td class="text-right"><?php echo remove_junk($result['item_issued']);?></td>
-                    <td class="text-right"><?php echo remove_junk($result['rate']);?></td>
+              <td class=""><?php echo remove_junk($result['item_name']);?></td>
+              <td class=""><?php echo remove_junk($result['iv_no']);?></td>
+              <td class=""><?php echo remove_junk($result['item_demanded']);?></td>
+              <td class=""><?php echo remove_junk($result['item_issued']);?></td>
+              <td class=""><?php echo remove_junk($result['rate']);?></td>
           </tr>
         <?php endforeach; ?>
         </tbody>

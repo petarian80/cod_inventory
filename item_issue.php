@@ -1,7 +1,7 @@
 <?php
-  $page_title = 'Product issued';
+  $page_title = 'Issue Product';
   require_once('includes/load.php');
-  // Checkin What level user has permission to view this page
+  
  
   $all_categories = find_all('categories');
   $all_units = find_all('units');

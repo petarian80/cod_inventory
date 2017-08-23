@@ -52,10 +52,8 @@
        <span>Generate Report</span>
       </a>
       <ul class="nav submenu">
-        <li><a href="issue_report.php">Issue Report by Dates </a></li>
-        <li><a href="daily_issue.php">Daily Issue Report</a> </li>
-        <li><a href="recieve_report.php">Recieve Report by Dates</a> </li>
-        <li><a href="daily_recieve.php">Daily Recieve Report</a> </li>
+        <li><a href="issue_report.php">Issue Report </a></li>
+        <li><a href="recieve_report.php">Recieve Report</a> </li>
       </ul>
   </li>
 </ul>

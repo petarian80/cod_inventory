@@ -280,18 +280,33 @@ function find_recent_sale_added($limit){
   return find_by_sql($sql);
 }
 /*--------------------------------------------------------------*/
-/* Function for Generate sales report by two dates
+/* Function for Generate issue report by two dates
 /*--------------------------------------------------------------*/
-function find_sale_by_dates($start_date,$end_date){
+function find_issue_by_dates($start_date,$end_date){
   global $db;
   $start_date  = date("Y-m-d", strtotime($start_date));
-  $end_date    = date("Y-m-d", strtotime($end_date));
+  $end_date    = date("Y-m-d", strtotime($end_date+1));
   $sql  = "SELECT part_no, item_name, iv_no,rate, item_demanded, item_issued,date ";
   $sql .= " FROM issue  ";
   $sql .= " WHERE date BETWEEN '{$start_date}' AND '{$end_date}'";
-  $sql .= " ORDER BY date(date) DESC";
+ $sql .= " ORDER BY date(date) DESC";
   return $db->query($sql);
 }
+
+/*--------------------------------------------------------------*/
+/* Function for Generate recieve report by two dates
+/*--------------------------------------------------------------*/
+function find_recieve_by_dates($start_date,$end_date){
+  global $db;
+  $start_date  = date("Y-m-d", strtotime($start_date));
+  $end_date    = date("Y-m-d", strtotime($end_date+1));
+  $sql  = "SELECT part_no, item_name,quantity,date,rate ";
+  $sql .= " FROM recieved  ";
+  $sql .= " WHERE date BETWEEN '{$start_date}' AND '{$end_date}'";
+ $sql .= " ORDER BY date(date) DESC";
+  return $db->query($sql);
+}
+
 /*--------------------------------------------------------------*/
 /* Function for Generate Daily sales report
 /*--------------------------------------------------------------*/

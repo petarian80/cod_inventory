@@ -1,5 +1,5 @@
 <?php
-$page_title = 'Issue Report';
+$page_title = 'Recieve Report';
   require_once('includes/load.php');
   
   
@@ -17,7 +17,7 @@ $page_title = 'Issue Report';
 
       </div>
       <div class="panel-body">
-          <form class="clearfix" method="post" action="issue_report_process.php">
+          <form class="clearfix" method="post" action="recieve_report_process.php">
             <div class="form-group">
               <label class="form-label">Date Range</label>
                 <div class="input-group">
