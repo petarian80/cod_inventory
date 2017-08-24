@@ -77,7 +77,6 @@
               <th class="text-center" style="width: 50px;">#</th>
               <th> Part No# </th>
               <th> Item Name </th>
-              <th> IV No# </th>
               <th> Unit </th>
               <th> Rate </th>
               <th> Qty Demanded</th>
@@ -85,11 +84,14 @@
               <th> Amount</th>
             </thead>
               <tbody>              
-              <tr id="item-issue-<?php echo count_row_id();?>">
+              <tr id="item-issue" attr-field="<?php echo count_row_id();?>">
                 <td class="text-center"><?php echo count_id();?></td>
-                <td id="part_no"><input type="text" class="form-control" name="part_no" placeholder="Part Number"></td>
-                <td id="item_name"><input type="text" class="form-control" name="item_name" placeholder="Item Name"></td>
-                <td id="iv_no"></td>
+                <td id="part_no"><input type="text" class="form-control" id="issue-part-no-input" name="part_no" placeholder="Part Number">
+                <div id="result" style="position:absolute" class="list-group"></div>
+                </td>
+                <td id="item_name"><input type="text" class="form-control" name="item_name" placeholder="Item Name">
+                <div id="result" style="position:absolute" class="list-group"></div>
+                </td>                
                 <td id="unit"></td>
                 <td id="rate"></td>
                 <td id="qty_d">                  
