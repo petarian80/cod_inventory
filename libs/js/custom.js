@@ -1,3 +1,78 @@
+function listByName(item){
+
+    console.log(item.value);
+
+
+}
+
+function listByPart(item){
+         
+         var box = $(item);
+         var result = $(item).parent().children("#result");
+         var formData = {
+             'product_part_no' : box.val()
+         };
+         
+         if(formData['product_part_no'].length >= 1){           
+           // process the form           
+           $.ajax({
+               type        : 'POST',
+               url         : 'ajax-items.php',
+               data        : formData,
+               dataType    : 'json',
+               encode      : true
+           })
+               .done(function(data) {
+                   result.html(data).fadeIn();                   
+                   result.children('li').click(function() {                     
+                        box.val($(this).text());
+                        fillIssueRecordByPart(item, $(this).text())
+                        result.fadeOut(500);  
+                        box.blur();
+                   })
+               })
+         }
+
+}
+
+function fillIssueRecordByPart(item, text){
+
+    var formData = {
+        'product_by_part_no' : text
+    };
+
+    console.log(formData);
+    if(formData['product_by_part_no'].length >= 1){           
+    // process the form           
+    $.ajax({
+        type        : 'POST',
+        url         : 'ajax-items.php',
+        data        : formData,
+        dataType    : 'json',
+        encode      : true
+    })
+        .done(function(data) {                   
+            
+            console.log(data);
+            // data = data[0];
+            
+            if(data != null){
+                var tr = $(item).parent().parent();
+                tr.children('#item_name').children('input[name="item_name"]').val(data['name']);
+                tr.children('#unit').html(data['unit']);
+
+                
+            }
+            
+
+            
+        })
+    }
+
+}
+
+
+
 $(document).ready(function() {
     
     $.ajaxSetup({
@@ -36,73 +111,7 @@ $(document).ready(function() {
 
     })
 
-    $('#issue-part-no-input').keyup(function(e) {
-         
-         var box = $(this);
-         var formData = {
-             'product_part_no' : $(this).val()
-         };
-
-         console.log(formData);
-         if(formData['product_part_no'].length >= 1){           
-           // process the form
-           console.log("ss");
-           $.ajax({
-               type        : 'POST',
-               url         : 'http://localhost:8080/cod/ajax-items.php',
-               data        : formData,
-               dataType    : 'json',
-               encode      : true
-           })
-               .done(function(data) {
-                   console.log("p");
-                   console.log(data);
-                   //$(this).after(data);
-                   $('#result').html(data).fadeIn();
-                   $('#result li').click(function() {
-                     
-                    box.val($(this).text());
-                    // $.ajax({
-                    //     type        : 'POST',
-                    //     url         : 'ajax-items.php',
-                    //     data        : formData,
-                    //     dataType    : 'json',
-                    //     encode      : true
-                    // })
-                    //     .done(function(data) {
-                    //         console.log("p");
-                    //         console.log(data);
-                    //         //$(this).after(data);
-                    //         $('#result').html(data).fadeIn();
-                    //         $('#result li').click(function() {
-
-                    //             box.val($(this).text());
-                    //             $('#result').fadeOut(500);
-
-                    //         });
-
-                    //         box.blur(function(){
-                    //             $("#result").fadeOut(500);
-                    //         });
-
-                    //     });
-                     $('#result').fadeOut(500);
-
-                   });
-
-                   box.blur(function(){
-                     $("#result").fadeOut(500);
-                   });
-
-               });
-
-         } else {
-           //$("#result").hide();
-
-         };
-
-         e.preventDefault();
-     });
+    
 
 
 

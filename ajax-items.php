@@ -25,6 +25,21 @@
       echo json_encode($html);
    }
 
+   if(isset($_POST['product_by_part_no']) && strlen($_POST['product_by_part_no']))
+   {     
+     $product = get_product_by_part($_POST['product_by_part_no']);
+     $product = $product[0];
+     $product_unit = get_product_unit_by_id($product['unit_id']);
+     $product_unit = $product_unit[0]['name'];
+     
+     $returnArr = array(
+       'name' => $product['name'],
+       'unit' => $product_unit,
+     );
+     //print_r($product);     
+     echo json_encode($returnArr);
+   }
+
    if(isset($_POST['product_name']) && strlen($_POST['product_name']))
    {     
      $products = find_product_by_title($_POST['product_part_no']);

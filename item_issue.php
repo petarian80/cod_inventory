@@ -86,13 +86,13 @@
               <tbody>              
               <tr id="item-issue" attr-field="<?php echo count_row_id();?>">
                 <td class="text-center"><?php echo count_id();?></td>
-                <td id="part_no"><input type="text" class="form-control" id="issue-part-no-input" name="part_no" placeholder="Part Number">
+                <td id="part_no"><input type="text" class="form-control" name="part_no" onkeyup="listByPart(this)" placeholder="Part Number">
                 <div id="result" style="position:absolute" class="list-group"></div>
                 </td>
-                <td id="item_name"><input type="text" class="form-control" name="item_name" placeholder="Item Name">
+                <td id="item_name"><input type="text" class="form-control" name="item_name" onkeyup="listByName(this)" placeholder="Item Name">
                 <div id="result" style="position:absolute" class="list-group"></div>
                 </td>                
-                <td id="unit"></td>
+                <td id="unit" class="text-center"></td>
                 <td id="rate"></td>
                 <td id="qty_d">                  
                     <input type="number" class="form-control" name="qty_d" class="form-control input-number" value="1" min="1" max="10">                
