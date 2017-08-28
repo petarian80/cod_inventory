@@ -80,8 +80,12 @@
               <th class="text-center" style="width: 50px;">#</th>
               <th> Part Number </th>
               <th> Item Name </th>
+<<<<<<< HEAD
                <th> TO FOL </th>
               <th> Mission </th>
+=======
+              <th> Unit </th>
+>>>>>>> refs/remotes/origin/shoaib
               <th> Rate </th>
               <th> Qty Demanded</th>
               <th> Qty Issued</th>
@@ -89,8 +93,9 @@
               <th> Amount</th>
             </thead>
               <tbody>              
-              <tr id="item-issue-<?php echo count_row_id();?>">
+              <tr id="item-issue" attr-field="<?php echo count_row_id();?>">
                 <td class="text-center"><?php echo count_id();?></td>
+<<<<<<< HEAD
                 <td id="part_no"><input type="text" class="form-control" name="part_no" ></td>
                 <td id="item_name"><input type="text" class="form-control" name="item_name" ></td>
                 <td id="to_fol"><input type="text" class="form-control" name="to_fol" ></td>
@@ -98,6 +103,18 @@
                  <td id="rate"><input type="number" class="form-control" name="rate" ></td>
                 <td id="item_demanded">                  
                     <input type="number" class="form-control" name="item_demanded" class="form-control input-number">                
+=======
+                <td id="part_no"><input type="text" class="form-control" name="part_no" onkeyup="listByPart(this)" placeholder="Part Number">
+                <div id="result" style="position:absolute" class="list-group"></div>
+                </td>
+                <td id="item_name"><input type="text" class="form-control" name="item_name" onkeyup="listByName(this)" placeholder="Item Name">
+                <div id="result" style="position:absolute" class="list-group"></div>
+                </td>                
+                <td id="unit" class="text-center"></td>
+                <td id="rate"></td>
+                <td id="qty_d">                  
+                    <input type="number" class="form-control" name="qty_d" class="form-control input-number" value="1" min="1" max="10">                
+>>>>>>> refs/remotes/origin/shoaib
                 </td>
                 <td id="item_issued">
                   <input type="number" class="form-control" name="item_issued" class="form-control input-number">

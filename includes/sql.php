@@ -209,6 +209,30 @@ function tableExists($table){
      return $result;
    }
 
+   function find_product_by_part($product_part_name){
+     global $db;
+     $p_name = remove_junk($db->escape($product_part_name));
+     $sql = "SELECT part_no FROM products WHERE part_no like '%$p_name%' LIMIT 5";
+     $result = find_by_sql($sql);
+     return $result;
+   }
+
+   function get_product_by_part($product_part_name){
+     global $db;
+     $p_name = remove_junk($db->escape($product_part_name));
+     $sql = "SELECT * FROM products WHERE part_no like '%$p_name%' LIMIT 1";
+     $result = find_by_sql($sql);
+     return $result;
+   }
+
+   function get_product_unit_by_id($unit_id){
+     global $db;
+     $p_name = remove_junk($db->escape($unit_id));
+     $sql = "SELECT name FROM units WHERE id like '%$p_name%' LIMIT 1";
+     $result = find_by_sql($sql);
+     return $result;
+   }
+
   /*--------------------------------------------------------------*/
   /* Function for Finding all product info by product title
   /* Request coming from ajax.php
