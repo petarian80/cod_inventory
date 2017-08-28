@@ -7,28 +7,27 @@
   $all_units = find_all('units');
 ?>
 <?php
- if(isset($_POST['issue_item'])){
-  $req_fields = array('part_no','item_name','iv_no','unit_id','rate','item_demanded','item_issued','to_fol','unit','issued_by', 'total' );
+ if(isset($_POST['item_issue'])){
+  $req_fields = array('part_no','item_name','iv_no','unit_id','rate','item_demanded','item_issued','to_fol','mission','issued_by', 'total' );
    validate_fields($req_fields);
    if(empty($errors)){
-     $i_number  = remove_junk($db->escape($_POST['part_no']));
-     $i_name   = remove_junk($db->escape($_POST['item_name']));
-     $i_v   = remove_junk($db->escape($_POST['iv_no']));
-     $i_unit   = remove_junk($db->escape($_POST['unit_id'])); 
-     $i_rate   = remove_junk($db->escape($_POST['rate']));  
-     $i_demand   = remove_junk($db->escape($_POST['item_demanded']));
-     $i_ssue   = remove_junk($db->escape($_POST['item_issued']));
-     $i_fol   = remove_junk($db->escape($_POST['to_fol']));
-     $i_ut   = remove_junk($db->escape($_POST['unit']));
-     $i_by   = remove_junk($db->escape($_POST['issued_by']));
-     $i_total   = remove_junk($db->escape($_POST['total']));
+     $number  = remove_junk($db->escape($_POST['part_no']));
+     $name   = remove_junk($db->escape($_POST['item_name']));
+     $invoice   = remove_junk($db->escape($_POST['iv_no']));
+     $unit   = remove_junk($db->escape($_POST['unit_id'])); 
+     $rate   = remove_junk($db->escape($_POST['rate']));  
+     $demand   = remove_junk($db->escape($_POST['item_demanded']));
+     $issue   = remove_junk($db->escape($_POST['item_issued']));
+     $fol   = remove_junk($db->escape($_POST['to_fol']));
+     $mission   = remove_junk($db->escape($_POST['mission']));
+     $by   = remove_junk($db->escape($_POST['issued_by']));
+     $total   = remove_junk($db->escape($_POST['total']));
 
      $date    = make_date();
-     $query  = "INSERT INTO issue (";
-     $query .="part_no, item_name, iv_no, unit_id, rate, item_demanded, item_issued, to_fol, unit, issued_by,date,total";
-     $query .=") VALUES (";
-     $query .=" '{$i_number}', '{$i_name}','{$i_v}', '{$i_unit}', '{$i_rate}','{$i_demand}','{$i_ssue}','{$i_fol}','{$i_ut}','{$i_by}', '{$date}' ,'{$i_total}' ";
-     $query .=")";
+     $query  = " INSERT INTO issue (part_no, item_name, iv_no, unit_id, rate, item_demanded, item_issued, to_fol, mission, issued_by,date,total)  values  ( '{$number}', '{$name}','{$invoice}', '{$unit}', '{$rate}','{$demand}','{$issue}','{$fol}','{$mission}','{$by}', '{$date}' ,'{$total}'),
+      ( '{$number}', '{$name}','{$invoice}', '{$unit}', '{$rate}','{$demand}','{$issue}','{$fol}','{$mission}','{$by}', '{$date}' ,'{$total}'),
+       ( '{$number}', '{$name}','{$invoice}', '{$unit}', '{$rate}','{$demand}','{$issue}','{$fol}','{$mission}','{$by}', '{$date}' ,'{$total}')
+      ";
      
      if($db->query($query)){
        $session->msg('s',"Product issued ");
@@ -66,39 +65,45 @@
         <div class="panel-body table-responsive">
           <form method="post" name="item-issue-form" id="item-issue-form" action="<?php ?>">
           <div class="panel-heading clearfix">
-          <strong>
-            <button type="submit" class="btn btn-info pull-right btn-sm"> Publish Items</button>
-         </strong>
-         
-        </div>
+          <table>
+          <td id="iv_no"><input type="text" class="form-control" name="iv_no" placeholder="Invoice Number" ></td>
+          <td id="issued_by"><input type="text" class="form-control" name="issued_by" placeholder="Issued By" ></td>
           
+          <strong>
+            <button type="submit" name= "item_issue" class="btn btn-info pull-right btn-sm"> Issue</button>
+         </strong>
+        
+        </div>
+           </table>
           <table id="items-issue-table" class="table table-bordered">
             <thead>
               <th class="text-center" style="width: 50px;">#</th>
-              <th> Part No# </th>
+              <th> Part Number </th>
               <th> Item Name </th>
-              <th> IV No# </th>
-              <th> Unit </th>
+               <th> TO FOL </th>
+              <th> Mission </th>
               <th> Rate </th>
               <th> Qty Demanded</th>
-              <th> Qty Issued</th>              
+              <th> Qty Issued</th>
+               <th>Unit </th>                     
               <th> Amount</th>
             </thead>
               <tbody>              
               <tr id="item-issue-<?php echo count_row_id();?>">
                 <td class="text-center"><?php echo count_id();?></td>
-                <td id="part_no"><input type="text" class="form-control" name="part_no" placeholder="Part Number"></td>
-                <td id="item_name"><input type="text" class="form-control" name="item_name" placeholder="Item Name"></td>
-                <td id="iv_no"></td>
-                <td id="unit"></td>
-                <td id="rate"></td>
-                <td id="qty_d">                  
-                    <input type="number" class="form-control" name="qty_d" class="form-control input-number" value="1" min="1" max="10">                
+                <td id="part_no"><input type="text" class="form-control" name="part_no" ></td>
+                <td id="item_name"><input type="text" class="form-control" name="item_name" ></td>
+                <td id="to_fol"><input type="text" class="form-control" name="to_fol" ></td>
+                 <td id="mission"><input type="text" class="form-control" name="mission" ></td>
+                 <td id="rate"><input type="number" class="form-control" name="rate" ></td>
+                <td id="item_demanded">                  
+                    <input type="number" class="form-control" name="item_demanded" class="form-control input-number">                
                 </td>
-                <td id="qty_i">
-                  <input type="number" class="form-control" name="qty_i" class="form-control input-number" value="1" min="1" max="10">
-                </td>                
-                <td id="amount"></td>                                
+                <td id="item_issued">
+                  <input type="number" class="form-control" name="item_issued" class="form-control input-number">
+                </td>  
+                 <td id="unit_id"><input type="text" class="form-control" name="unit_id" ></td>              
+                 <td id="total"><input type="number" class="form-control" name="total" ></td>                               
               </tr>                           
             </tbody>
           </table>
