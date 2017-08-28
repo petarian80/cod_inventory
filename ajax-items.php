@@ -33,10 +33,11 @@
      $product_unit = $product_unit[0]['name'];
      
      $returnArr = array(
-       'name' => $product['name'],
+       'name' => $product['item_name'],
        'unit' => $product_unit,
      );
-     //print_r($product);     
+
+     //print_r($product_unit);     
      echo json_encode($returnArr);
    }
 

@@ -228,7 +228,7 @@ function tableExists($table){
    function get_product_unit_by_id($unit_id){
      global $db;
      $p_name = remove_junk($db->escape($unit_id));
-     $sql = "SELECT name FROM units WHERE id like '%$p_name%' LIMIT 1";
+     $sql = "SELECT name FROM units WHERE id = $p_name";
      $result = find_by_sql($sql);
      return $result;
    }

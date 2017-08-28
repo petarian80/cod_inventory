@@ -64,7 +64,7 @@
         </div>
 
         <div class="panel-body table-responsive">
-          <form method="post" name="item-issue-form" id="item-issue-form" action="<?php ?>">
+          <form method="post" name="item-issue-form" id="item-issue-form" autocomplete="off" action="<?php ?>">
           <div class="panel-heading clearfix">
           <strong>
             <button type="submit" class="btn btn-info pull-right btn-sm"> Publish Items</button>
