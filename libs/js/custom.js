@@ -22,15 +22,15 @@ function listByPart(item){
                dataType    : 'json',
                encode      : true
            })
-               .done(function(data) {
-                   result.html(data).fadeIn();                   
-                   result.children('li').click(function() {                     
-                        box.val($(this).text());
-                        fillIssueRecordByPart(item, $(this).text())
-                        result.fadeOut(500);  
-                        box.blur();
-                   })
-               })
+            .done(function(data) {
+                result.html(data).fadeIn();                   
+                result.children('li').click(function() {                     
+                    box.val($(this).text());
+                    fillIssueRecordByPart(item, $(this).text())
+                    result.fadeOut(500);  
+                    box.blur();
+                })
+            })
          }
 
 }
@@ -43,14 +43,14 @@ function fillIssueRecordByPart(item, text){
 
     console.log(formData);
     if(formData['product_by_part_no'].length >= 1){           
-    // process the form           
-    $.ajax({
-        type        : 'POST',
-        url         : 'ajax-items.php',
-        data        : formData,
-        dataType    : 'json',
-        encode      : true
-    })
+        // process the form           
+        $.ajax({
+            type        : 'POST',
+            url         : 'ajax-items.php',
+            data        : formData,
+            dataType    : 'json',
+            encode      : true
+        })
         .done(function(data) {                   
             
             console.log(data);
@@ -70,8 +70,6 @@ function fillIssueRecordByPart(item, text){
     }
 
 }
-
-
 
 $(document).ready(function() {
     
@@ -105,34 +103,42 @@ $(document).ready(function() {
         var $tableBody = $('#items-issue-table').find("tbody"),
             $trLast = $tableBody.find("tr:last"),
             $trNew = $trLast.clone();
+            $trNew.find('input').val('');
 
         $trLast.after($trNew);            
 
-
     })
+
+    $('#item-issue-form').submit(function(e){
+        e.preventDefault();
+
+        var issueObjects = [];
+        var trArray = $(this).find('tbody tr');
+
+        trArray.each(function (index, value){
+            var row = {};
+            
+            var part = $(value).find('input[name="part_no"]').val()
+            var name = $(value).find('input[name="item_name"]').val()
+            row["part_no"] = part;
+            row["item_name"] = name;
+
+            console.log(index, value);
+            issueObjects[index] = row;
+        });
+
+        // full array
+        console.log(issueObjects);
+        
+
+    });
+
 
     
 
 
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-function addIssueRowItem(){
-
-        
-
-}
 
 
 

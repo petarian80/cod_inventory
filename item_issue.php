@@ -7,41 +7,42 @@
   $all_units = find_all('units');
 ?>
 <?php
- if(isset($_POST['issue_item'])){
-  $req_fields = array('part_no','item_name','iv_no','unit_id','rate','item_demanded','item_issued','to_fol','unit','issued_by', 'total' );
-   validate_fields($req_fields);
-   if(empty($errors)){
-     $i_number  = remove_junk($db->escape($_POST['part_no']));
-     $i_name   = remove_junk($db->escape($_POST['item_name']));
-     $i_v   = remove_junk($db->escape($_POST['iv_no']));
-     $i_unit   = remove_junk($db->escape($_POST['unit_id'])); 
-     $i_rate   = remove_junk($db->escape($_POST['rate']));  
-     $i_demand   = remove_junk($db->escape($_POST['item_demanded']));
-     $i_ssue   = remove_junk($db->escape($_POST['item_issued']));
-     $i_fol   = remove_junk($db->escape($_POST['to_fol']));
-     $i_ut   = remove_junk($db->escape($_POST['unit']));
-     $i_by   = remove_junk($db->escape($_POST['issued_by']));
-     $i_total   = remove_junk($db->escape($_POST['total']));
+ if(isset($_POST['item-issue-form'])){
+  $session->msg('s',$_POST['part_no']);
+  // $req_fields = array('part_no','item_name','iv_no','unit_id','rate','item_demanded','item_issued','to_fol','unit','issued_by', 'total' );
+  //  validate_fields($req_fields);
+  //  if(empty($errors)){
+  //    $i_number  = remove_junk($db->escape($_POST['part_no']));
+  //    $i_name   = remove_junk($db->escape($_POST['item_name']));
+  //    $i_v   = remove_junk($db->escape($_POST['iv_no']));
+  //    $i_unit   = remove_junk($db->escape($_POST['unit_id'])); 
+  //    $i_rate   = remove_junk($db->escape($_POST['rate']));  
+  //    $i_demand   = remove_junk($db->escape($_POST['item_demanded']));
+  //    $i_ssue   = remove_junk($db->escape($_POST['item_issued']));
+  //    $i_fol   = remove_junk($db->escape($_POST['to_fol']));
+  //    $i_ut   = remove_junk($db->escape($_POST['unit']));
+  //    $i_by   = remove_junk($db->escape($_POST['issued_by']));
+  //    $i_total   = remove_junk($db->escape($_POST['total']));
 
-     $date    = make_date();
-     $query  = "INSERT INTO issue (";
-     $query .="part_no, item_name, iv_no, unit_id, rate, item_demanded, item_issued, to_fol, unit, issued_by,date,total";
-     $query .=") VALUES (";
-     $query .=" '{$i_number}', '{$i_name}','{$i_v}', '{$i_unit}', '{$i_rate}','{$i_demand}','{$i_ssue}','{$i_fol}','{$i_ut}','{$i_by}', '{$date}' ,'{$i_total}' ";
-     $query .=")";
+  //    $date    = make_date();
+  //    $query  = "INSERT INTO issue (";
+  //    $query .="part_no, item_name, iv_no, unit_id, rate, item_demanded, item_issued, to_fol, unit, issued_by,date,total";
+  //    $query .=") VALUES (";
+  //    $query .=" '{$i_number}', '{$i_name}','{$i_v}', '{$i_unit}', '{$i_rate}','{$i_demand}','{$i_ssue}','{$i_fol}','{$i_ut}','{$i_by}', '{$date}' ,'{$i_total}' ";
+  //    $query .=")";
      
-     if($db->query($query)){
-       $session->msg('s',"Product issued ");
-       redirect('item_issue.php', false);
-     } else {
-       $session->msg('d',' Sorry failed to issue!');
-       redirect('product.php', false);
-     }
+  //    if($db->query($query)){
+  //      $session->msg('s',"Product issued ");
+  //      redirect('item_issue.php', false);
+  //    } else {
+  //      $session->msg('d',' Sorry failed to issue!');
+  //      redirect('product.php', false);
+  //    }
 
-   } else{
-     $session->msg("d", $errors);
-     redirect('item_issue.php',false);
-   }
+  //  } else{
+  //    $session->msg("d", $errors);
+  //    redirect('item_issue.php',false);
+  //  }
 
  }
 
@@ -64,10 +65,10 @@
         </div>
 
         <div class="panel-body table-responsive">
-          <form method="post" name="item-issue-form" id="item-issue-form" action="<?php ?>">
+          <form method="post" name="item-issue-form" id="item-issue-form" autocomplete="off" action="item_issue.php">
           <div class="panel-heading clearfix">
           <strong>
-            <button type="submit" class="btn btn-info pull-right btn-sm"> Publish Items</button>
+            <button type="submit"  class="btn btn-info pull-right btn-sm"> Publish Items</button>
          </strong>
          
         </div>
