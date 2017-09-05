@@ -29,19 +29,19 @@
        ( '{$number}', '{$name}','{$invoice}', '{$unit}', '{$rate}','{$demand}','{$issue}','{$fol}','{$mission}','{$by}', '{$date}' ,'{$total}')
       ";
      
-     if($db->query($query)){
-       $session->msg('s',"Product issued ");
-       redirect('item_issue.php', false);
-     } else {
-       $session->msg('d',' Sorry failed to issue!');
-       redirect('product.php', false);
-     }
+  //    if($db->query($query)){
+  //      $session->msg('s',"Product issued ");
+  //      redirect('item_issue.php', false);
+  //    } else {
+  //      $session->msg('d',' Sorry failed to issue!');
+  //      redirect('product.php', false);
+  //    }
 
-   } else{
-     $session->msg("d", $errors);
-     redirect('item_issue.php',false);
+  //  } else{
+  //    $session->msg("d", $errors);
+  //    redirect('item_issue.php',false);
+  //  }
    }
-
  }
 
 ?>
@@ -63,7 +63,7 @@
         </div>
 
         <div class="panel-body table-responsive">
-          <form method="post" name="item-issue-form" id="item-issue-form" action="<?php ?>">
+          <form method="post" name="item-issue-form" id="item-issue-form" autocomplete="off" action="item_issue.php">
           <div class="panel-heading clearfix">
           <table>
           <td id="iv_no"><input type="text" class="form-control" name="iv_no" placeholder="Invoice Number" ></td>
@@ -89,7 +89,7 @@
               <th> Amount</th>
             </thead>
               <tbody>              
-              <tr id="item-issue-<?php echo count_row_id();?>">
+              <tr id="item-issue" attr-field="<?php echo count_row_id();?>">
                 <td class="text-center"><?php echo count_id();?></td>
                 <td id="part_no"><input type="text" class="form-control" name="part_no" ></td>
                 <td id="item_name"><input type="text" class="form-control" name="item_name" ></td>
