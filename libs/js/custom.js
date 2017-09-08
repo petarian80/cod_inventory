@@ -59,7 +59,74 @@ function fillIssueRecordByPart(item, text){
             if(data != null){
                 var tr = $(item).parent().parent();
                 tr.children('#item_name').children('input[name="item_name"]').val(data['name']);
-                tr.children('#unit').html(data['unit']);
+                tr.children('#unit_id').children('input[name="unit_id"]').val(data['unit']);
+
+                
+            }
+            
+
+            
+        })
+    }
+
+}
+
+
+function listByname(item){
+         
+         var box = $(item);
+         var result = $(item).parent().children("#result");
+         var formData = {
+             'product_Name' : box.val()
+         };
+         
+         if(formData['product_Name'].length >= 1){           
+           // process the form           
+           $.ajax({
+               type        : 'POST',
+               url         : 'ajax-items.php',
+               data        : formData,
+               dataType    : 'json',
+               encode      : true
+           })
+            .done(function(data) {
+                result.html(data).fadeIn();                   
+                result.children('li').click(function() {                     
+                    box.val($(this).text());
+                    fillIssueRecordByname(item, $(this).text())
+                    result.fadeOut(500);  
+                    box.blur();
+                })
+            })
+         }
+
+}
+
+function fillIssueRecordByname(item, text){
+
+    var formData = {
+        'product_by_name' : text
+    };
+
+    console.log(formData);
+    if(formData['product_by_name'].length >= 1){           
+        // process the form           
+        $.ajax({
+            type        : 'POST',
+            url         : 'ajax-items.php',
+            data        : formData,
+            //dataType    : 'json',
+            encode      : true
+        })
+        .done(function(data) {                   
+            
+            console.log(data);
+            // data = data[0];
+            
+            if(data != null){
+                var tr = $(item).parent().parent();
+                tr.children('#part_no').children('input[name="part_no"]').val(data['name']);
+                tr.children('#unit_id').children('input[name="unit_id"]').val(data['unit']);
 
                 
             }
@@ -109,11 +176,27 @@ $(document).ready(function() {
 
     })
 
+
+ $('#add_product').click(function(e){
+        e.preventDefault();        
+
+        var $tableBody = $('#items-recieve-table').find("tbody"),
+            $trLast = $tableBody.find("tr:last"),
+            $trNew = $trLast.clone();
+            $trNew.find('input').val('');
+
+        $trLast.after($trNew);            
+
+    })
+
+
+
+
     $('#item-issue-form').submit(function(e){
         e.preventDefault();
 
         var issueObjects = [];
-        var trArray = $(this).find('tbody tr');
+        var trArray = $(this).find('#items-issue-table tbody tr');
 
         trArray.each(function (index, value){
             var row = {};

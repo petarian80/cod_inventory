@@ -91,8 +91,12 @@
               <tbody>              
               <tr id="item-issue" attr-field="<?php echo count_row_id();?>">
                 <td class="text-center"><?php echo count_id();?></td>
-                <td id="part_no"><input type="text" class="form-control" name="part_no" ></td>
-                <td id="item_name"><input type="text" class="form-control" name="item_name" ></td>
+                <td id="part_no"><input type="text" class="form-control" name="part_no" onkeyup="listByPart(this)" >
+                <div id="result" style="position:absolute" class="list-group"></div>
+                </td>
+                <td id="item_name"><input type="text" class="form-control" name="item_name" onkeyup="listByname(this)" >
+                 <div id="result" style="position:absolute" class="list-group"></div>
+                </td>
                 <td id="to_fol"><input type="text" class="form-control" name="to_fol" ></td>
                  <td id="mission"><input type="text" class="form-control" name="mission" ></td>
                  <td id="rate"><input type="number" class="form-control" name="rate" ></td>
@@ -102,7 +106,7 @@
                 <td id="item_issued">
                   <input type="number" class="form-control" name="item_issued" class="form-control input-number">
                 </td>  
-                 <td id="unit_id"><input type="text" class="form-control" name="unit_id" ></td>              
+                 <td id="unit_id"><input type="text" class="form-control" name="unit_id" disabled ></td>              
                  <td id="total"><input type="number" class="form-control" name="total" ></td>                               
               </tr>                           
             </tbody>

@@ -204,7 +204,7 @@ function tableExists($table){
    function find_product_by_title($product_name){
      global $db;
      $p_name = remove_junk($db->escape($product_name));
-     $sql = "SELECT name FROM products WHERE name like '%$p_name%' LIMIT 5";
+     $sql = "SELECT name FROM products WHERE name = '$p_name' ";
      $result = find_by_sql($sql);
      return $result;
    }
@@ -217,10 +217,27 @@ function tableExists($table){
      return $result;
    }
 
+   function find_product_by_name($product_part_name){
+     global $db;
+     $p_name = remove_junk($db->escape($product_part_name));
+     $sql = "SELECT item_name FROM products WHERE item_name like '%$p_name%' LIMIT 5";
+     $result = find_by_sql($sql);
+     return $result;
+   }
+
+
    function get_product_by_part($product_part_name){
      global $db;
      $p_name = remove_junk($db->escape($product_part_name));
-     $sql = "SELECT * FROM products WHERE part_no = '$p_name' LIMIT 1";
+     $sql = "SELECT * FROM products WHERE part_no = '$p_name'";
+     $result = find_by_sql($sql);
+     return $result;
+   }
+
+   function get_product_by_name($product_part_name){
+     global $db;
+     $p_name = remove_junk($db->escape($product_part_name));
+     $sql = "SELECT * FROM products WHERE item_name like '%$p_name%' LIMIT 1";
      $result = find_by_sql($sql);
      return $result;
    }
@@ -240,7 +257,7 @@ function tableExists($table){
   function find_all_product_info_by_title($title){
     global $db;
     $sql  = "SELECT * FROM products ";
-    $sql .= " WHERE name ='{$title}'";
+    $sql .= " WHERE item_name ='{$title}'";
     $sql .=" LIMIT 1";
     return find_by_sql($sql);
   }

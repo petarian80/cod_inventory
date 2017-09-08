@@ -53,158 +53,73 @@
   </div>
 </div>
   <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-12">
       <div class="panel panel-default">
-        <div class="panel-heading">
+        <div class="panel-heading clearfix">
           <strong>
             <span class="glyphicon glyphicon-th"></span>
             <span>RECIEVE ITEM </span>
          </strong>
+         
         </div>
-        <div class="panel-body">
-         <div class="col-md-12">
-          <form method="post" action="item_recieved.php" class="clearfix">
-              <div class="form-group">
-                <div class="input-group">
-                  
-                  <input type="text" class="form-control" name="part_no" placeholder="Part Number">
-               </div>
-              </div>
 
-<div class="form-group">
-                <div class="input-group">
-                  
-                  <input type="text" class="form-control" name="item_name" placeholder="Item Name">
-               </div>
-              </div>
-
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-md-6">
-                    <select class="form-control" name="unit_id">
-                      <option value="">Select Producd unit</option>
-                    <?php  foreach ($all_units as $unit): ?>
-                      <option value="<?php echo (int)$unit['id'] ?>">
-                        <?php echo $unit['name'] ?></option>
-                    <?php endforeach; ?>
-                    </select>
-                  </div>
-                  </div>
-                  </div>
-             
-                  
-              <div class="form-group">
-               <div class="row">
-                 <div class="col-md-4">
-                   <div class="input-group">
-                     
-                     <input type="number" class="form-control" name="quantity" placeholder="Product Quantity">
-                  </div>
-                 </div>
-                 </div>
-                 </div>
-                 <div class="form-group">
-               <div class="row">
-                 <div class="col-md-4">
-                   <div class="input-group">
-                     
-                     <input type="number" class="form-control" name="alp_no" placeholder="ALP Number">
-                  </div>
-                 </div>
-                 </div>
-                 </div>
-                 
-
-                  <div class="form-group">
-                <div class="row">
-                  <div class="col-md-6">
-                    <select class="form-control" name="categorie_id">
-                      <option value="">Select Producd Categorie</option>
-                    <?php  foreach ($all_categories as $cat): ?>
-                      <option value="<?php echo (int)$cat['id'] ?>">
-                        <?php echo $cat['name'] ?></option>
-                    <?php endforeach; ?>
-                    </select>
-                  </div>
-                  </div>
-                  </div>
-
-                   <div class="form-group">
-               <div class="row">
-                 <div class="col-md-4">
-                   <div class="input-group">
-                     
-                     <input type="number" class="form-control" name="po_no" placeholder=" PO Number">
-                  </div>
-                 </div>
-                 </div>
-                 </div>
-
-                  <div class="form-group">
-               <div class="row">
-                 <div class="col-md-4">
-                   <div class="input-group">
-                     
-                     <input type="number" class="form-control" name="drs_no" placeholder=" DRS Number">
-                  </div>
-                 </div>
-                 </div>
-                 </div>
-
-                  <div class="form-group">
-               <div class="row">
-                 <div class="col-md-4">
-                   <div class="input-group">
-                     
-                     <input type="number" class="form-control" name="crv_no" placeholder=" CRV Number">
-                  </div>
-                 </div>
-                 </div>
-                 </div>
-                
-                 <div class="form-group">
-               <div class="row">
-                 <div class="col-md-4">
-                   <div class="input-group">
-                     
-                     <input type="number" class="form-control" name="rate" placeholder=" Rate">
-                  </div>
-                 </div>
-                 </div>
-                 </div>
-
-               <div class="form-group">
-               <div class="row">
-                 <div class="col-md-4">
-                   <div class="input-group">
-                     
-                     <input type="text" class="form-control" name="firm" placeholder=" Firm">
-                  </div>
-                 </div>
-                 </div>
-                 </div>
-
-                  <div class="form-group">
-               <div class="row">
-                 <div class="col-md-4">
-                   <div class="input-group">
-                     
-                     <input type="text" class="form-control" name="remarks" placeholder=" Remarks">
-                  </div>
-                 </div>
-                 </div>
-
-               </div>
-              
-              
-
-              
-              <button type="submit" name="item_recieve" class="btn btn-danger">Recieve Item</button>
-          </form>
-         </div>
+        <div class="panel-body table-responsive">
+          <form method="post" name="item-recieve-form" id="item-recieve-form" autocomplete="off" action="item_recieved.php">
+          <div class="panel-heading clearfix">
+          <table>
+          <td id="iv_no"><input type="text" class="form-control" name="iv_no" placeholder="Invoice Number" ></td>
+          <td id="recieved_by"><input type="text" class="form-control" name="issued_by" placeholder="Recieved By" ></td>
+          
+          <strong>
+            <button type="submit" name= "item_recieve" class="btn btn-info pull-right btn-sm"> Recieve</button>
+         </strong>
+        
         </div>
-      </div>
-    </div>
-  </div>
+           </table>
+          <table id="items-recieve-table" class="table table-bordered">
+            <thead>
+              <th class="text-center" style="width: 50px;">#</th>
+              <th> Part Number </th>
+              <th> Item Name </th>
+               <th> Unit </th>
+              <th> Qty Recieved </th>
+              <th> ALP Number </th>
+              <th> Categorie</th>
+              <th> Rate</th>
+               <th> PO Number </th>                     
+              <th> DRS</th>
+              <th> CRV Number</th>
+              <th>Firm</th>
+              <th> Remarks</th>
+            </thead>
+              <tbody>              
+              <tr id="item-issue" attr-field="<?php echo count_row_id();?>">
+                <td class="text-center"><?php echo count_id();?></td>
+                <td id="part_no"><input type="text" class="form-control" name="part_no" onkeyup="listByPart(this)" >
+                <div id="result" style="position:absolute" class="list-group"></div>
+                </td>
+                <td id="item_name"><input type="text" class="form-control" name="item_name" onkeyup="listByname(this)" >
+                 <div id="result" style="position:absolute" class="list-group"></div>
+                </td>
+                <td id="unit_id"><input type="text" class="form-control" name="unit_id" ></td>
+                 <td id="quantity"><input type="text" class="form-control" name="quantity" ></td>
+                 <td id="alp_no"><input type="text" class="form-control" name="alp_no" ></td>
+                <td id="categorie">                  
+                    <input type="text" class="form-control" name="categorie" class="form-control input-number">                
+                </td>
+                <td id="rate">
+                  <input type="number" class="form-control" name="rate" class="form-control input-number">
+                </td>  
+                 <td id="po_no"><input type="text" class="form-control" name="po_no"  ></td>              
+                 <td id="drs"><input type="text" class="form-control" name="drs" ></td>
+                 <td id="crv_no"><input type="text" class="form-control" name="crv_no" ></td>                               
+                 <td id="firm"><input type="text" class="form-control" name="firm" ></td>
+                 <td id="remarks"><input type="text" class="form-control" name="remarks" ></td>
+              </tr>                           
+            </tbody>
+          </table>
+          <button name="add_product" id="add_product" class="btn btn-danger">Add product</button>
+        </form>
+        </div>
 
 <?php include_once('layouts/footer.php'); ?>
