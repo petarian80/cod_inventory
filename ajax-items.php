@@ -4,6 +4,38 @@
 ?>
 
 <?php
+ // Issue Form Post 
+   if(isset($_POST['issue_form_submit']))
+   {     
+      $temp = $_POST['issue_form_submit'];
+
+      foreach ($temp as $object) {
+        # code...
+        print_r($object["part_no"]."\n");
+        print_r($object["item_name"]."\n");
+        print_r($object["to_fol"]."\n");
+        print_r($object["mission"]."\n");
+        print_r($object["rate"]."\n");
+        print_r($object["item_demanded"]."\n");
+        print_r($object["item_issued"]."\n");
+        print_r($object["unit_id"]."\n");
+        print_r($object["total"]."\n");
+        print_r($object["iv_no"]."\n");
+        print_r($object["issued_by"]."\n");
+      }
+
+
+
+
+
+
+      echo $temp;
+   }
+
+   
+ ?>
+
+<?php
  // Auto suggetion
     $html = '';
    if(isset($_POST['product_part_no']) && strlen($_POST['product_part_no']))
@@ -33,7 +65,7 @@
      $product_unit = $product_unit[0]['name'];
      
      $returnArr = array(
-       'name' => $product['name'],
+       'name' => $product['item_name'],
        'unit' => $product_unit,
      );
      //print_r($product);     
@@ -60,6 +92,77 @@
       echo json_encode($html);
    }
  ?>
+
+
+<?php
+ // Auto suggetion
+    $html = '';
+   if(isset($_POST['product_Name']) && strlen($_POST['product_Name']))
+   {     
+     $products = find_product_by_name($_POST['product_Name']);
+     if($products){
+        foreach ($products as $product):
+           $html .= "<li class=\"list-group-item\">";
+           $html .= $product['item_name'];
+           $html .= "</li>";
+         endforeach;
+      } else {
+
+        $html .= '<li onClick=\"fill(\''.addslashes().'\')\" class=\"list-group-item\">';
+        $html .= 'Not found';
+        $html .= "</li>";
+
+      }
+      echo json_encode($html);
+   }
+
+   if(isset($_POST['product_by_name']) && strlen($_POST['product_by_name']))
+   {     
+     $product = get_product_by_name($_POST['product_by_name']);
+     print_r($product);
+     $product = $product[0];
+     $product_unit = get_product_unit_by_id($product['unit_id']);
+     $product_unit = $product_unit[0]['name'];
+     
+     $returnArr = array(
+       'name' => $product['part_no'],
+       'unit' => $product_unit,
+     );
+     //print_r($product);     
+     echo json_encode($returnArr);
+   }
+
+   if(isset($_POST['product_name']) && strlen($_POST['product_name']))
+   {     
+     $products = find_product_by_title($_POST['product_Name']);
+     if($products){
+        foreach ($products as $product):
+           $html .= "<li class=\"list-group-item\">";
+           $html .= $product['name'];
+           $html .= "</li>";
+         endforeach;
+      } else {
+
+        $html .= '<li onClick=\"fill(\''.addslashes().'\')\" class=\"list-group-item\">';
+        $html .= 'Not found';
+        $html .= "</li>";
+
+      }
+
+      echo json_encode($html);
+   }
+ ?>
+
+
+
+
+
+
+
+
+
+
+
  <?php
  // find all product
   if(isset($_POST['p_name']) && strlen($_POST['p_name']))
