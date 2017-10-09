@@ -65,19 +65,19 @@
         <div class="panel-body table-responsive">
           <form method="post" name="item-issue-form" id="item-issue-form" autocomplete="off" action="item_issue.php">
           <div class="panel-heading clearfix">
-          <table>
+          <table id="header-table" >
           <td id="iv_no"><input type="text" class="form-control" name="iv_no" placeholder="Invoice Number" ></td>
           <td id="issued_by"><input type="text" class="form-control" name="issued_by" placeholder="Issued By" ></td>
           
           <strong>
-            <button type="submit" name= "item_issue" class="btn btn-info pull-right btn-sm"> Issue</button>
+            <button type="submit" name= "item_issue" class="btn btn-info pull-right btn-sm"> Issue Product</button>
          </strong>
         
         </div>
            </table>
           <table id="items-issue-table" class="table table-bordered">
             <thead>
-              <th class="text-center" style="width: 50px;">#</th>
+              <th class="text-center" style="width: 50px;">Action</th>
               <th> Part Number </th>
               <th> Item Name </th>
                <th> TO FOL </th>
@@ -90,24 +90,32 @@
             </thead>
               <tbody>              
               <tr id="item-issue" attr-field="<?php echo count_row_id();?>">
-                <td class="text-center"><?php echo count_id();?></td>
+                
+               <td class="text-center">
+                  <div class="btn-group">
+                    <a href="" class="btn btn-danger btn-xs"  title="Delete" data-toggle="tooltip">
+                      <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                  </div>
+                </td>
+
                 <td id="part_no"><input type="text" class="form-control" name="part_no" onkeyup="listByPart(this)" >
                 <div id="result" style="position:absolute" class="list-group"></div>
                 </td>
                 <td id="item_name"><input type="text" class="form-control" name="item_name" onkeyup="listByname(this)" >
                  <div id="result" style="position:absolute" class="list-group"></div>
                 </td>
-                <td id="to_fol"><input type="text" class="form-control" name="to_fol" ></td>
+                <td id="to_fol"><input type="number" class="form-control" name="to_fol"  disabled   ></td>
                  <td id="mission"><input type="text" class="form-control" name="mission" ></td>
-                 <td id="rate"><input type="number" class="form-control" name="rate" ></td>
+                 <td id="rate"><input type="number" class="form-control" name="rate" disabled onkeyup="total_calculate()" ></td>
                 <td id="item_demanded">                  
-                    <input type="number" class="form-control" name="item_demanded" class="form-control input-number">                
+                    <input type="number" class="form-control" name="item_demanded" class="form-control input-number"  onkeyup="to_fol_calculate()"  >                
                 </td>
                 <td id="item_issued">
-                  <input type="number" class="form-control" name="item_issued" class="form-control input-number">
+                  <input type="number" class="form-control" name="item_issued" class="form-control input-number"  onkeyup="to_fol_calculate();total_calculate()" >
                 </td>  
                  <td id="unit_id"><input type="text" class="form-control" name="unit_id" disabled ></td>              
-                 <td id="total"><input type="number" class="form-control" name="total" ></td>                               
+                 <td id="total"><input type="number" class="form-control" name="total" disabled ></td>                               
               </tr>                           
             </tbody>
           </table>
@@ -116,3 +124,24 @@
         </div>
 
 <?php include_once('layouts/footer.php'); ?>
+
+
+<script>
+function to_fol_calculate()
+  {
+    var elm = document.forms["item-issue-form"];
+
+    if (elm["item_demanded"].value != "" && elm["item_issued"].value != "")
+      {elm["to_fol"].value = parseInt(elm["item_demanded"].value) - parseInt(elm["item_issued"].value);}
+  }
+</script>
+
+<script>
+function total_calculate()
+  {
+    var elm = document.forms["item-issue-form"];
+
+    if (elm["item_issued"].value != "" && elm["rate"].value != "")
+      {elm["total"].value = parseInt(elm["item_issued"].value) * parseInt(elm["rate"].value);}
+  }
+</script>

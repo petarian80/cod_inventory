@@ -67,18 +67,18 @@
           <form method="post" name="item-recieve-form" id="item-recieve-form" autocomplete="off" action="item_recieved.php">
           <div class="panel-heading clearfix">
           <table>
-          <td id="iv_no"><input type="text" class="form-control" name="iv_no" placeholder="Invoice Number" ></td>
-          <td id="recieved_by"><input type="text" class="form-control" name="issued_by" placeholder="Recieved By" ></td>
+          <td id="iv_no"><input type="text" class="form-control" name="iv_no[]" placeholder="Invoice Number" ></td>
+          <td id="recieved_by"><input type="text" class="form-control" name="issued_by[]" placeholder="Recieved By" ></td>
           
           <strong>
-            <button type="submit" name= "item_recieve" class="btn btn-info pull-right btn-sm"> Recieve</button>
+            <button type="submit" name= "item_recieve" class="btn btn-info pull-right btn-sm"> Recieve Product</button>
          </strong>
         
         </div>
            </table>
           <table id="items-recieve-table" class="table table-bordered">
             <thead>
-              <th class="text-center" style="width: 50px;">#</th>
+              <th class="text-center" style="width: 50px;">Action</th>
               <th> Part Number </th>
               <th> Item Name </th>
                <th> Unit </th>
@@ -94,21 +94,27 @@
             </thead>
               <tbody>              
               <tr id="item-issue" attr-field="<?php echo count_row_id();?>">
-                <td class="text-center"><?php echo count_id();?></td>
-                <td id="part_no"><input type="text" class="form-control" name="part_no" onkeyup="listByPart(this)" >
+<td class="text-center">
+                  <div class="btn-group">
+                    <a href="" class="btn btn-danger btn-xs"  title="Delete" data-toggle="tooltip">
+                      <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                  </div>
+                </td>
+                <td id="part_no"><input type="text" class="form-control" name="part_no[]" onkeyup="listByPart_recieve(this)" >
                 <div id="result" style="position:absolute" class="list-group"></div>
                 </td>
-                <td id="item_name"><input type="text" class="form-control" name="item_name" onkeyup="listByname(this)" >
+                <td id="item_name"><input type="text" class="form-control" name="item_name[]" onkeyup="listByname_recieve(this)" >
                  <div id="result" style="position:absolute" class="list-group"></div>
                 </td>
-                <td id="unit_id"><input type="text" class="form-control" name="unit_id" ></td>
+                <td id="unit_id"><input type="text" class="form-control" name="unit_id[]" ></td>
                  <td id="quantity"><input type="text" class="form-control" name="quantity" ></td>
                  <td id="alp_no"><input type="text" class="form-control" name="alp_no" ></td>
                 <td id="categorie">                  
                     <input type="text" class="form-control" name="categorie" class="form-control input-number">                
                 </td>
                 <td id="rate">
-                  <input type="number" class="form-control" name="rate" class="form-control input-number">
+                  <input type="number" class="form-control" name="rate[]" class="form-control input-number">
                 </td>  
                  <td id="po_no"><input type="text" class="form-control" name="po_no"  ></td>              
                  <td id="drs"><input type="text" class="form-control" name="drs" ></td>

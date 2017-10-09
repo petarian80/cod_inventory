@@ -201,14 +201,8 @@ function tableExists($table){
   /* Request coming from ajax.php for auto suggest
   /*--------------------------------------------------------------*/
 
-   function find_product_by_title($product_name){
-     global $db;
-     $p_name = remove_junk($db->escape($product_name));
-     $sql = "SELECT name FROM products WHERE name = '$p_name' ";
-     $result = find_by_sql($sql);
-     return $result;
-   }
-
+   
+// for part number
    function find_product_by_part($product_part_name){
      global $db;
      $p_name = remove_junk($db->escape($product_part_name));
@@ -217,15 +211,8 @@ function tableExists($table){
      return $result;
    }
 
-   function find_product_by_name($product_part_name){
-     global $db;
-     $p_name = remove_junk($db->escape($product_part_name));
-     $sql = "SELECT item_name FROM products WHERE item_name like '%$p_name%' LIMIT 5";
-     $result = find_by_sql($sql);
-     return $result;
-   }
-
-
+   
+// for part numbeer
    function get_product_by_part($product_part_name){
      global $db;
      $p_name = remove_junk($db->escape($product_part_name));
@@ -234,14 +221,30 @@ function tableExists($table){
      return $result;
    }
 
-   function get_product_by_name($product_part_name){
+   // for item name
+   function find_product_by_name($product_name){
      global $db;
-     $p_name = remove_junk($db->escape($product_part_name));
-     $sql = "SELECT * FROM products WHERE item_name like '%$p_name%' LIMIT 1";
+     $p_name = remove_junk($db->escape($product_name));
+     $sql = "SELECT item_name FROM products WHERE item_name like '%$p_name%' LIMIT 5";
      $result = find_by_sql($sql);
      return $result;
    }
 
+   
+// for item name
+   function get_product_by_name($product_by_name){
+     global $db;
+     $p_name = remove_junk($db->escape($product_by_name));
+     $sql = "SELECT * FROM products WHERE item_name = '$p_name'";
+     $result = find_by_sql($sql);
+     return $result;
+   }
+
+  
+
+  
+  
+// for part number & for name
    function get_product_unit_by_id($unit_id){
      global $db;
      $p_name = remove_junk($db->escape($unit_id));
@@ -249,6 +252,40 @@ function tableExists($table){
      $result = find_by_sql($sql);
      return $result;
    }
+
+// insert Issue Object in table
+   function insert_issued_product($ArrayOfProducts, $invoiceNo, $issuedBy){
+
+    $sql = "INSERT INTO issue (part_no, item_name, iv_no, unit_id, rate, item_demanded, item_issued, to_fol, mission, issued_by,total) VALUES ";
+    
+for ($i = 0; $i <count($ArrayOfProducts) ; ++$i)
+{
+    $row = $ArrayOfProducts[$i];
+    if ($i > 0) $sql .= ", ";
+        
+        $part_no = mysql_real_escape_string( $row['part_no'] );
+        $item_name = mysql_real_escape_string( $row['item_name'] );
+        $iv_no = mysql_real_escape_string( $invoiceNo );
+        $unit_id = mysql_real_escape_string( $row['unit_id'] );
+        $rate = (int) $row['rate'];
+        $item_demanded = (int) $row['item_demanded'];
+        $item_issued = (int) $row['item_issued'];
+        $to_fol = (int) $row['to_fol'];
+        $mission = mysql_real_escape_string( $row['mission'] );
+        $issued_by = mysql_real_escape_string( $issuedBy );
+        $total = (int) $row['total'];
+
+        $sql.= "('$part_no', '$item_name', '$iv_no', '$unit_id', '$rate', '$item_demanded', '$item_issued', '$to_fol', '$mission', '$issued_by', '$total') ";
+    }
+
+
+
+
+     global $db;    
+     $db->query($sql);
+     return true;
+   }
+  
 
   /*--------------------------------------------------------------*/
   /* Function for Finding all product info by product title
