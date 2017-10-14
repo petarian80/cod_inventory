@@ -29,6 +29,13 @@
   </li>
 
   <li>
+    <a href="unit.php" >
+      <i class="glyphicon glyphicon-indent-left"></i>
+      <span>Unit</span>
+    </a>
+  </li>
+
+  <li>
     <a href="#" class="submenu-toggle">
       <i class="glyphicon glyphicon-th-large"></i>
       <span>Products</span>

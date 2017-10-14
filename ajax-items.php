@@ -18,12 +18,34 @@
       
 
 }
-
-   
-   
-
  ?>
 
+
+<?php
+ // Auto suggetion for issue form and to fill mission
+    $html = '';
+   if(isset($_POST['mission_list']) && strlen($_POST['mission_list']))
+   {     
+     $mission = find_mission($_POST['mission_list']);
+     if($mission){
+        foreach ($mission as $miss):
+           $html .= "<li class=\"list-group-item\">";
+           $html .= $miss['mission'];
+           $html .= "</li>";
+         endforeach;
+      } else {
+
+        $html .= '<li onClick=\"fill(\''.addslashes().'\')\" class=\"list-group-item\">';
+        $html .= 'Not found';
+        $html .= "</li>";
+
+      }
+      echo json_encode($html);
+
+
+   }
+   
+ ?>
 
 
 
@@ -56,9 +78,7 @@
      $product = $product[0];
      $product_unit = get_product_unit_by_id($product['unit_id']);
      $product_unit = $product_unit[0]['name'];
-    // $product_rate = $product[0]['rate']);
-    // $product_rate = $product_rate[0]['rate'];
-     
+  
      $returnArr = array(
        'name' => $product['item_name'],
        'unit' => $product_unit,

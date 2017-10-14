@@ -19,7 +19,7 @@ if(isset($_POST['edit_mission'])){
   validate_fields($req_field);
   $mission_name = remove_junk($db->escape($_POST['mission-name']));
   if(empty($errors)){
-        $sql = "UPDATE mission SET name='{$mission_name}'";
+        $sql = "UPDATE mission SET mission='{$mission_name}'";
        $sql .= " WHERE id='{$mission['id']}'";
      $result = $db->query($sql);
      if($result && $db->affected_rows() === 1) {
@@ -46,13 +46,13 @@ if(isset($_POST['edit_mission'])){
        <div class="panel-heading">
          <strong>
            <span class="glyphicon glyphicon-th"></span>
-           <span>Editing <?php echo remove_junk(ucfirst($mission['name']));?></span>
+           <span>Editing <?php echo remove_junk(ucfirst($mission['mission']));?></span>
         </strong>
        </div>
        <div class="panel-body">
          <form method="post" action="edit_mission.php?id=<?php echo (int)$mission['id'];?>">
            <div class="form-group">
-               <input type="text" class="form-control" name="mission-name" value="<?php echo remove_junk(ucfirst($mission['name']));?>">
+               <input type="text" class="form-control" name="mission-name" value="<?php echo remove_junk(ucfirst($mission['mission']));?>">
            </div>
            <button type="submit" name="edit_mission" class="btn btn-primary">Update Mission</button>
        </form>

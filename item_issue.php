@@ -80,13 +80,14 @@
               <th class="text-center" style="width: 50px;">Action</th>
               <th> Part Number </th>
               <th> Item Name </th>
-               <th> TO FOL </th>
-              <th> Mission </th>
-              <th> Rate </th>
-              <th> Qty Demanded</th>
+               <th>A/U Unit </th> 
+               <th> Qty Demanded</th>
               <th> Qty Issued</th>
-               <th>Unit </th>                     
+               <th> TO FOL </th>
+              <th> Rate </th>                             
               <th> Amount</th>
+               <th> Mission </th>
+                <th> Unit </th>
             </thead>
               <tbody>              
               <tr id="item-issue" attr-field="<?php echo count_row_id();?>">
@@ -105,17 +106,19 @@
                 <td id="item_name"><input type="text" class="form-control" name="item_name" onkeyup="listByname(this)" >
                  <div id="result" style="position:absolute" class="list-group"></div>
                 </td>
-                <td id="to_fol"><input type="number" class="form-control" name="to_fol"  disabled   ></td>
-                 <td id="mission"><input type="text" class="form-control" name="mission" ></td>
-                 <td id="rate"><input type="number" class="form-control" name="rate" disabled onkeyup="total_calculate()" ></td>
-                <td id="item_demanded">                  
+                 <td id="unit_id"><input type="text" class="form-control" name="unit_id" disabled ></td>
+                  <td id="item_demanded">                  
                     <input type="number" class="form-control" name="item_demanded" class="form-control input-number"  onkeyup="to_fol_calculate()"  >                
                 </td>
                 <td id="item_issued">
                   <input type="number" class="form-control" name="item_issued" class="form-control input-number"  onkeyup="to_fol_calculate();total_calculate()" >
                 </td>  
-                 <td id="unit_id"><input type="text" class="form-control" name="unit_id" disabled ></td>              
-                 <td id="total"><input type="number" class="form-control" name="total" disabled ></td>                               
+                <td id="to_fol"><input type="number" class="form-control" name="to_fol"  disabled   ></td>
+                 <td id="rate"><input type="number" class="form-control" name="rate" disabled onkeyup="total_calculate()" ></td> 
+                 <td id="total"><input type="number" class="form-control" name="total" disabled ></td>                          
+                 <td id="mission"><input type="text" class="form-control" name="mission" onkeyup="mission_list(this)" ></td>
+                 <td id="unit_name"><input type="text" class="form-control" name="unit_name"  ></td>
+     
               </tr>                           
             </tbody>
           </table>

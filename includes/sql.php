@@ -201,6 +201,16 @@ function tableExists($table){
   /* Request coming from ajax.php for auto suggest
   /*--------------------------------------------------------------*/
 
+
+// for mission
+   function find_mission($mission_from_list){
+     global $db;
+     $p_name = remove_junk($db->escape($mission_from_list));
+     $sql = "SELECT mission FROM mission WHERE mission like '%$p_name%' LIMIT 5";
+     $result = find_by_sql($sql);
+     return $result;
+   }
+
    
 // for part number
    function find_product_by_part($product_part_name){
@@ -256,7 +266,7 @@ function tableExists($table){
 // insert Issue Object in table
    function insert_issued_product($ArrayOfProducts, $invoiceNo, $issuedBy){
 
-    $sql = "INSERT INTO issue (part_no, item_name, iv_no, unit_id, rate, item_demanded, item_issued, to_fol, mission, issued_by,total) VALUES ";
+    $sql = "INSERT INTO issue (part_no, item_name, iv_no, unit_id, rate, item_demanded, item_issued, to_fol, mission,unit_name, issued_by,total) VALUES ";
     
 for ($i = 0; $i <count($ArrayOfProducts) ; ++$i)
 {
@@ -272,10 +282,11 @@ for ($i = 0; $i <count($ArrayOfProducts) ; ++$i)
         $item_issued = (int) $row['item_issued'];
         $to_fol = (int) $row['to_fol'];
         $mission = mysql_real_escape_string( $row['mission'] );
+        $unit_name = mysql_real_escape_string( $row['unit_name'] );
         $issued_by = mysql_real_escape_string( $issuedBy );
         $total = (int) $row['total'];
 
-        $sql.= "('$part_no', '$item_name', '$iv_no', '$unit_id', '$rate', '$item_demanded', '$item_issued', '$to_fol', '$mission', '$issued_by', '$total') ";
+        $sql.= "('$part_no', '$item_name', '$iv_no', '$unit_id', '$rate', '$item_demanded', '$item_issued', '$to_fol', '$mission', '$unit_name','$issued_by', '$total') ";
     }
 
 

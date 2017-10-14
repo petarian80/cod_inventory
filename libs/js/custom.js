@@ -1,4 +1,35 @@
 
+// fill mission input field
+function mission_list(item){
+         
+         var box = $(item);
+         var result = $(item).parent().children("#result");
+         var formData = {
+             'mission_list' : box.val()
+         };
+         
+         if(formData['mission_list'].length >= 1){           
+           // process the form           
+           $.ajax({
+               type        : 'POST',
+               url         : 'ajax-items.php',
+               data        : formData,
+               dataType    : 'json',
+               encode      : true
+           })
+            .done(function(data) {
+                result.html(data).fadeIn();                   
+                result.children('li').click(function() {                     
+                    box.val($(this).text());
+                   result.fadeOut(500);  
+                    box.blur();
+                })
+            })
+         }
+
+}
+
+
 function listByPart(item){
          
          var box = $(item);
@@ -209,6 +240,7 @@ $(document).ready(function() {
             var issued = $(value).find('input[name="item_issued"]').val()
             var unit = $(value).find('input[name="unit_id"]').val()
             var total = $(value).find('input[name="total"]').val()
+            var unit_name = $(value).find('input[name="unit_name"]').val()
             
 
             
@@ -221,6 +253,7 @@ $(document).ready(function() {
             row["item_issued"] = issued;
             row["unit_id"] = unit;
             row["total"] = total;
+             row["unit_name"] = unit_name;
          //   row["iv_no"] = invoice;
            // row["issued_by"] = issued_by;
 

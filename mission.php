@@ -12,7 +12,7 @@
    validate_fields($req_field);
    $mission_name = remove_junk($db->escape($_POST['mission-name']));
    if(empty($errors)){
-      $sql  = "INSERT INTO mission (name)";
+      $sql  = "INSERT INTO mission (mission)";
       $sql .= " VALUES ('{$mission_name}')";
       if($db->query($sql)){
         $session->msg("s", "Successfully Added Mission");
@@ -66,7 +66,7 @@
             <thead>
                 <tr>
                     <th class="text-center" style="width: 50px;">#</th>
-                    <th>Missions</th>
+                    <th class="text-center">Missions</th>
                     <th class="text-center" style="width: 100px;">Actions</th>
                 </tr>
             </thead>
@@ -74,7 +74,7 @@
               <?php foreach ($all_mission as $mission):?>
                 <tr>
                     <td class="text-center"><?php echo count_id();?></td>
-                    <td><?php echo remove_junk(ucfirst($mission['name'])); ?></td>
+                    <td><?php echo remove_junk(ucfirst($mission['mission'])); ?></td>
                     <td class="text-center">
                       <div class="btn-group">
                         <a href="edit_mission.php?id=<?php echo (int)$mission['id'];?>"  class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
