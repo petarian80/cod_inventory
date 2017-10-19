@@ -1,4 +1,59 @@
 
+function deleteRow(item){
+
+    var box = $(item);
+    var parent = box.parent().parent().parent()
+   if( $(parent).closest('tr').is('tr:only-child') ) {
+    alert('cannot delete last row');
+}
+else {
+    $(parent).closest('tr').remove();
+}
+
+    
+
+}
+
+function to_fol_calculate(item)
+
+  {
+       var box = $(item);
+         var result = $(item).parent().parent();
+    var item_demanded = $(result).find('#item_demanded').children('input[name="item_demanded"]').val();
+    var rate = $(result).find('#rate').children('input[name="rate"]').val();
+    var item_issued = $(result).find('#item_issued').children('input[name="item_issued"]').val();
+    
+    if (item_demanded != "" && item_issued != "")
+     {
+         var to_fol = parseInt(item_demanded) - parseInt(item_issued);
+         $(result).find('#to_fol').children('input[name="to_fol"]').val(to_fol);
+     
+
+        }
+ if (item_issued != "" && rate != "")
+     {
+         var total = parseInt(item_issued) * parseInt(rate);
+         $(result).find('#total').children('input[name="total"]').val(total);
+  }
+
+
+  }
+
+ // function total_calculate(item)
+  //{
+   //var box = $(item);
+    //     var result = $(item).parent().parent();
+    //var item_issued = $(result).find('#item_issued').children('input[name="item_issued"]').val();
+    //var rate = $(result).find('#rate').children('input[name="rate"]').val();
+
+    //if (item_issued != "" && rate != "")
+    // {
+      //   var total = parseInt(item_issued) * parseInt(rate);
+        // $(result).find('#total').children('input[name="total"]').val(total);
+  //}
+
+
+
 // fill mission input field
 function mission_list(item){
          
@@ -26,8 +81,38 @@ function mission_list(item){
                 })
             })
          }
+        }
+
+
+function unit_list(item){
+         
+         var box = $(item);
+         var result = $(item).parent().children("#result");
+         var formData = {
+             'unit_list' : box.val()
+         };
+         
+         if(formData['unit_list'].length >= 1){           
+           // process the form           
+           $.ajax({
+               type        : 'POST',
+               url         : 'ajax-items.php',
+               data        : formData,
+               dataType    : 'json',
+               encode      : true
+           })
+            .done(function(data) {
+                result.html(data).fadeIn();                   
+                result.children('li').click(function() {                     
+                    box.val($(this).text());
+                   result.fadeOut(500);  
+                    box.blur();
+                })
+            })
+         }
 
 }
+
 
 
 function listByPart(item){
@@ -155,6 +240,144 @@ function fillIssueRecordByname(item, text){
                 var tr = $(item).parent().parent();
                 tr.children('#part_no').children('input[name="part_no"]').val(data['part']);
                 tr.children('#rate').children('input[name="rate"]').val(data['rate']);
+                tr.children('#unit_id').children('input[name="unit_id"]').val(data['unit']);
+
+                
+            }
+            
+
+            
+        })
+    }
+
+}
+
+// for recieve form
+function listByPart_recieve(item){
+         
+         var box = $(item);
+         var result = $(item).parent().children("#result");
+         var formData = {
+             'product_part_no_recieve' : box.val()
+         };
+         
+         if(formData['product_part_no_recieve'].length >= 1){           
+           // process the form           
+           $.ajax({
+               type        : 'POST',
+               url         : 'ajax-items.php',
+               data        : formData,
+               dataType    : 'json',
+               encode      : true
+           })
+            .done(function(data) {
+                result.html(data).fadeIn();                   
+                result.children('li').click(function() {                     
+                    box.val($(this).text());
+                    fillIssueRecordByPart_recieve(item, $(this).text())
+                    result.fadeOut(500);  
+                    box.blur();
+                })
+            })
+         }
+
+}
+
+function fillIssueRecordByPart_recieve(item, text){
+
+    var formData = {
+        'product_by_part_no_recieve' : text
+    };
+
+    console.log(formData);
+    if(formData['product_by_part_no_recieve'].length >= 1){           
+        // process the form           
+        $.ajax({
+            type        : 'POST',
+            url         : 'ajax-items.php',
+            data        : formData,
+            dataType    : 'json',
+            encode      : true
+        })
+        .done(function(data) {                   
+            
+            console.log(data);
+            // data = data[0];
+            
+            if(data != null){
+                var tr = $(item).parent().parent();
+                tr.children('#item_name').children('input[name="item_name"]').val(data['name']);
+                tr.children('#categorie').children('input[name="categorie"]').val(data['categorie']);
+                tr.children('#unit_id').children('input[name="unit_id"]').val(data['unit']);
+
+                
+            }
+            
+
+            
+        })
+    }
+
+}
+
+
+
+
+function listByname_recieve(item){
+         
+         var box = $(item);
+         var result = $(item).parent().children("#result");
+         var formData = {
+             'product_name_recieve' : box.val()
+         };
+         
+         if(formData['product_name_recieve'].length >= 1){           
+           // process the form           
+           $.ajax({
+               type        : 'POST',
+               url         : 'ajax-items.php',
+               data        : formData,
+               dataType    : 'json',
+               encode      : true
+           })
+            .done(function(data) {
+                result.html(data).fadeIn();                   
+                result.children('li').click(function() {                     
+                    box.val($(this).text());
+                    fillIssueRecordByname_recieve(item, $(this).text())
+                    result.fadeOut(500);  
+                    box.blur();
+                })
+            })
+         }
+
+}
+
+function fillIssueRecordByname_recieve(item, text){
+
+    var formData = {
+        'product_by_name_recieve' : text
+    };
+
+    console.log(formData);
+    if(formData['product_by_name_recieve'].length >= 1){           
+        // process the form           
+        $.ajax({
+            type        : 'POST',
+            url         : 'ajax-items.php',
+            data        : formData,
+            dataType    : 'json',
+            encode      : true
+        })
+        .done(function(data) {                   
+            
+            console.log(data);
+            // data = data[0];
+            
+            if(data != null){
+                var tr = $(item).parent().parent();
+                tr.children('#part_no').children('input[name="part_no"]').val(data['part']);
+                tr.children('#categorie').children('input[name="categorie"]').val(data['categorie']);
                 tr.children('#unit_id').children('input[name="unit_id"]').val(data['unit']);
 
                 
@@ -304,6 +527,94 @@ $(document).ready(function() {
 
     });
 
+    $('#item-recieve-form').submit(function(e){
+        e.preventDefault();
+
+        var recieveObjects = [];
+        var trArray = $(this).find('#items-recieve-table tbody tr');
+
+        trArray.each(function (index, value){
+            var row = {};
+            
+            var part_no = $(value).find('input[name="part_no"]').val()
+            var item_name = $(value).find('input[name="item_name"]').val()
+            var unit_id = $(value).find('input[name="unit_id"]').val()
+            var quantity = $(value).find('input[name="quantity"]').val()
+            var alp_no = $(value).find('input[name="alp_no"]').val()
+            var categorie = $(value).find('input[name="categorie"]').val()
+            var item_issued = $(value).find('input[name="item_issued"]').val()
+            var rate = $(value).find('input[name="rate"]').val()
+            var po_no = $(value).find('input[name="po_no"]').val()
+            var drs_no = $(value).find('input[name="drs_no"]').val()
+            var crv_no = $(value).find('input[name="crv_no"]').val()
+            var firm = $(value).find('input[name="firm"]').val()
+            var remarks = $(value).find('input[name="remarks"]').val()
+            
+
+            
+            row["part_no"] = part_no;
+            row["item_name"] = item_name;
+            row["unit_id"] =unit_id;
+            row["quantity"] = quantity;
+            row["alp_no"] = alp_no;
+            row["categorie"] = categorie;
+            row["item_issued"] = item_issued;
+            row["rate"] = rate;
+            row["po_no"] = po_no;
+             row["drs_no"] = drs_no;
+            row["crv_no"] = crv_no;
+            row["firm"] = firm;
+            row["remarks"] = remarks;
+
+            //console.log(index, value);
+            recieveObjects[index] = row;
+        });
+
+        // full array
+        //console.log(issueObjects);
+
+        //var invoice = $('#header-table td#iv_no').find('input[name="iv_no"]').val()
+        var recieved_by = $('#header-table td#recieved_by').find('input[name="recieved_by"]').val()
+
+        var inObj = {
+            'form' : recieveObjects,
+            'recieved_by' :  recieved_by  };
+
+
+        var formData = {
+            'recieve_form_submit' : inObj  };
+       
+        //console.log(formData);
+       
+        if(inObj['form'].length > 0){           
+            // process the form           
+            $.ajax({
+                type        : 'POST',
+                url         : 'ajax-items.php',
+                data        : formData,
+                //dataType    : 'json',
+                encode      : true
+            })
+            .done(function(data) {                   
+                
+
+                console.log("return Data", data);
+                // data = data[0];
+
+                
+            })
+        }
+
+ 
+
+    });
 
 });
+
+
+
+
+
+
+
 

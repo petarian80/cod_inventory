@@ -51,6 +51,7 @@ if(isset($_POST['edit_mission'])){
        </div>
        <div class="panel-body">
          <form method="post" action="edit_mission.php?id=<?php echo (int)$mission['id'];?>">
+           <strong> Mission Name </strong>
            <div class="form-group">
                <input type="text" class="form-control" name="mission-name" value="<?php echo remove_junk(ucfirst($mission['mission']));?>">
            </div>

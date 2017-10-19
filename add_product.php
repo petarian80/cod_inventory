@@ -8,21 +8,22 @@
 ?>
 <?php
  if(isset($_POST['add_product'])){
-   $req_fields = array('part_no','item_name','unit_id','quantity','categorie_id');
+   $req_fields = array('part_no','item_name','unit_id','quantity','rate','categorie_id');
    validate_fields($req_fields);
    if(empty($errors)){
      $p_no  = remove_junk($db->escape($_POST['part_no']));
      $p_name  = remove_junk($db->escape($_POST['item_name']));
      $p_unit   = remove_junk($db->escape($_POST['unit_id']));
      $p_qty   = remove_junk($db->escape($_POST['quantity']));
+     $p_rate   = remove_junk($db->escape($_POST['rate']));     
      $p_cat  = remove_junk($db->escape($_POST['categorie_id']));
     
      
      $date    = make_date();
      $query  = "INSERT INTO products (";
-     $query .="part_no, item_name ,unit_id, quantity, categorie_id,date";
+     $query .="part_no, item_name,rate,unit_id, quantity, categorie_id,date";
      $query .=") VALUES (";
-     $query .=" '{$p_no}','{$p_name}','{$p_unit}','{$p_qty}','{$p_cat}','{$date}'";
+     $query .=" '{$p_no}','{$p_name}','{$p_rate}','{$p_unit}','{$p_qty}','{$p_cat}','{$date}'";
      $query .=")";
      
      if($db->query($query)){
@@ -99,6 +100,19 @@
                       <i class="glyphicon glyphicon-shopping-cart"></i>
                      </span>
                      <input type="number" class="form-control" name="quantity" placeholder="Product Quantity">
+                  </div>
+                 </div>
+                 </div>
+                 </div>
+
+                 <div class="form-group">
+               <div class="row">
+                 <div class="col-md-4">
+                   <div class="input-group">
+                     <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-shopping-cart"></i>
+                     </span>
+                     <input type="number" class="form-control" name="rate" placeholder="Product Rate">
                   </div>
                  </div>
                  </div>

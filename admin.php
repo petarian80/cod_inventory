@@ -8,6 +8,9 @@
  $c_categorie     = count_by_id('categories');
  $c_product       = count_by_id('products');
  $c_user          = count_by_id('users');
+ $c_mission          = count_by_id('mission');
+ $c_unit          = count_by_id('army_units');
+
 ?>
 
 <?php include_once('layouts/header.php'); ?>
@@ -52,7 +55,37 @@
        </div>
     </div>
     
+  
+  
   <div class="row">
+    <div class="col-md-3">
+       <div class="panel panel-box clearfix">
+         <div class="panel-icon pull-left bg-yellow">
+          <i class="glyphicon glyphicon-user"></i>
+        </div>
+        <div class="panel-value pull-right">
+          <h2 class="margin-top"> <?php  echo $c_mission['total']; ?> </h2>
+          <p class="text-muted">Missions</p>
+        </div>
+       </div>
+    </div>
+
+    
+  <div class="row">
+    <div class="col-md-3">
+       <div class="panel panel-box clearfix">
+         <div class="panel-icon pull-left bg-red">
+          <i class="glyphicon glyphicon-user"></i>
+        </div>
+        <div class="panel-value pull-right">
+          <h2 class="margin-top"> <?php  echo $c_unit['total']; ?> </h2>
+          <p class="text-muted">Units</p>
+        </div>
+       </div>
+    </div>
+
+
+<div class="row">
    <div class="col-md-12">
       <div class="panel">
         <div class="jumbotron text-center">
@@ -62,8 +95,5 @@
       </div>
    </div>
   </div>
-  
-
-
 
 <?php include_once('layouts/footer.php'); ?>

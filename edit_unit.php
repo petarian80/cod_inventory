@@ -54,12 +54,15 @@ if(isset($_POST['edit_unit'])){
        </div>
        <div class="panel-body">
          <form method="post" action="edit_unit.php?id=<?php echo (int)$unit_names['id'];?>">
+           <strong> Unit Name</strong>
            <div class="form-group">
                <input type="text" class="form-control" name="unit-name" value="<?php echo remove_junk(ucfirst($unit_names['unit_name']));?>">
            </div>
+           <strong> Unit Location</strong>
             <div class="form-group">
                <input type="text" class="form-control" name="unit-location" value="<?php echo remove_junk(ucfirst($unit_names['location']));?>">
            </div>
+           <strong> Unit Strength</strong>
             <div class="form-group">
                <input type="number" class="form-control" name="unit-strength" value="<?php echo remove_junk(ucfirst($unit_names['total_strength']));?>">
            </div>

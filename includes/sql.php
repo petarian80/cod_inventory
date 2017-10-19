@@ -187,7 +187,7 @@ function tableExists($table){
    /*--------------------------------------------------------------*/
   function join_product_table(){
      global $db;
-     $sql  =" SELECT p.id,p.part_no,p.item_name,p.quantity,p.date,c.name";
+     $sql  =" SELECT p.id,p.part_no,p.item_name,p.quantity,p.rate,p.date,c.name";
     $sql  .=" AS categorie";
     $sql  .=" FROM products p";
     $sql  .=" LEFT JOIN categories c ON c.id = p.categorie_id";
@@ -207,6 +207,16 @@ function tableExists($table){
      global $db;
      $p_name = remove_junk($db->escape($mission_from_list));
      $sql = "SELECT mission FROM mission WHERE mission like '%$p_name%' LIMIT 5";
+     $result = find_by_sql($sql);
+     return $result;
+   }
+
+
+   // for unit
+   function find_unit($unit_from_list){
+     global $db;
+     $p_name = remove_junk($db->escape($unit_from_list));
+     $sql = "SELECT unit_name FROM army_units WHERE unit_name like '%$p_name%' LIMIT 5";
      $result = find_by_sql($sql);
      return $result;
    }
@@ -262,10 +272,18 @@ function tableExists($table){
      $result = find_by_sql($sql);
      return $result;
    }
+   // for recieve
+   function get_product_categorie_by_id($categorie_id){
+     global $db;
+     $p_name = remove_junk($db->escape($categorie_id));
+     $sql = "SELECT name FROM categories WHERE id = '$p_name' LIMIT 1";
+     $result = find_by_sql($sql);
+     return $result;
+   }
 
 // insert Issue Object in table
    function insert_issued_product($ArrayOfProducts, $invoiceNo, $issuedBy){
-
+ global $db;  
     $sql = "INSERT INTO issue (part_no, item_name, iv_no, unit_id, rate, item_demanded, item_issued, to_fol, mission,unit_name, issued_by,total) VALUES ";
     
 for ($i = 0; $i <count($ArrayOfProducts) ; ++$i)
@@ -287,16 +305,68 @@ for ($i = 0; $i <count($ArrayOfProducts) ; ++$i)
         $total = (int) $row['total'];
 
         $sql.= "('$part_no', '$item_name', '$iv_no', '$unit_id', '$rate', '$item_demanded', '$item_issued', '$to_fol', '$mission', '$unit_name','$issued_by', '$total') ";
+     $pr_qtyArray[$part_no] = $item_issued;
     }
 
-
-
-
-     global $db;    
      $db->query($sql);
+      print_r($pr_qtyArray);
+    
+       foreach ($pr_qtyArray as $key => $val) {
+      $sql1 ="UPDATE products SET quantity = (quantity - $val) where part_no= '$key' ";
+      $db->query($sql1);
+    }
+    
+
+
+    
      return true;
    }
   
+
+// insert recieve Object in table
+   function insert_recieved_product($ArrayOfProducts, $recievedBy){
+
+  global $db;  
+  $pr_qtyArray = array(); 
+    $sql = "INSERT INTO recieved (part_no, item_name, unit_id, quantity, alp_no, categorie_id, po_no,drs_no,crv_no,rate,recieved_by,firm,remarks) VALUES ";
+  
+for ($i = 0; $i <count($ArrayOfProducts) ; ++$i)
+{
+    $row = $ArrayOfProducts[$i];
+    if ($i > 0) $sql .= ", ";
+  
+
+        $part_no = mysql_real_escape_string( $row['part_no'] );
+        $item_name = mysql_real_escape_string( $row['item_name'] );
+        $unit_id = mysql_real_escape_string( $row['unit_id'] );
+        $quantity = (int) $row['quantity'];
+        $alp_no = mysql_real_escape_string( $row['alp_no'] );
+        $categorie_id = mysql_real_escape_string( $row['categorie'] );
+        $po_no = mysql_real_escape_string($row['po_no'] );
+        $drs_no = mysql_real_escape_string($row['drs_no'] );
+        $crv_no = mysql_real_escape_string($row['crv_no'] );
+        $rate = (int) $row['rate'];
+        $recieved_by = mysql_real_escape_string( $recievedBy );
+        $firm = mysql_real_escape_string($row['firm'] );
+        $remarks = mysql_real_escape_string($row['remarks'] );
+        $sql.= "('$part_no', '$item_name', '$unit_id', '$quantity', '$alp_no', '$categorie_id', '$po_no', '$drs_no', '$crv_no', '$rate','$recieved_by', '$firm' ,'$remarks') ";
+      
+        $pr_qtyArray[$part_no] = $quantity;
+        
+
+}
+    $db->query($sql);
+    print_r($pr_qtyArray);
+    
+    foreach ($pr_qtyArray as $key => $val) {
+      $sql1 ="UPDATE products SET quantity = (quantity + $val) where part_no= '$key' ";
+      $db->query($sql1);
+    }
+    
+   return true;
+
+   }
+
 
   /*--------------------------------------------------------------*/
   /* Function for Finding all product info by product title
