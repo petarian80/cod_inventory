@@ -12,7 +12,7 @@ if(empty($errors)){
      $session->login($user_id);
     //Update Sign in time
      updateLastLogIn($user_id);
-     $session->msg("s", "Welcome to UNMSD INVENTORY SYSTEM.");
+     $session->msg("s", "Welcome to unmsd INVENTORY SYSTEM.");
      redirect('home.php',false);
 
   } else {

@@ -12,19 +12,24 @@
     <script src="libs/js/jquery.min.js"></script>
     <link rel="stylesheet" href="libs/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="libs/css/datepicker3.min.css" />
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="libs/css/main.css" />
     <script src="libs/js/custom.js"></script>
   </head>
   <body>
   <?php  if ($session->isUserLoggedIn(true)): ?>
     <header id="header">
-      <div class="logo pull-left"> COD - Inventory </div>
+      <div class="logo pull-left">          <img src="IMG-20171012-WA0000.png" align="left" width="80" height="70">
+ COD - Inventory </div>
       <div class="header-content">
       <div class="header-date pull-left">
         <strong><?php echo date("F j, Y, h:m a");?></strong>
       </div>
+      
       <div class="pull-right clearfix">
+      
         <ul class="info-menu list-inline list-unstyled">
+         
           <li class="profile">
             <a href="#" data-toggle="dropdown" class="toggle" aria-expanded="false">
           

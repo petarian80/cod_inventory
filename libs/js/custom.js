@@ -417,6 +417,11 @@ $(document).ready(function() {
         }
     });
 
+    // $('#edit-product').submit(function(e){
+    //     e.preventDefault();
+        
+    // }
+
     $('#add_product').click(function(e){
         e.preventDefault();        
 

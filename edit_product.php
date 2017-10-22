@@ -5,7 +5,10 @@
    
 ?>
 <?php
-  $product = join_product_table();
+  $products = join_product_table();
+  $product = find_by_id('products',(int)$_GET['id']);
+   $all_units = find_all('units');
+
 $all_categories = find_all('categories');
 if(!$product){
   $session->msg("d","Missing product id.");
@@ -13,7 +16,10 @@ if(!$product){
 }
 ?>
 <?php
- if(isset($_POST['product'])){
+ //print_r((isset($_POST['product'])));
+ print_r($_POST);
+ if(isset($_POST['part_no'])){
+    echo $product;
     $req_fields = array('part_no','item_name','unit_id','quantity', 'rate','categorie_id' );
     validate_fields($req_fields);
 
@@ -24,22 +30,24 @@ if(!$product){
        $quantity   = (int)$_POST['quantity'];
        $rate   = (int)$_POST['rate'];
        $categorie_id   = remove_junk($db->escape($_POST['categorie_id']));
-
-       $query   = "UPDATE products SET";
-       $query  .=" part_no ='{$part_no}', item_name ='{$item_name}',";
-       $query  .=" unit_id ='{$unit_id}', quantity ='{$quantity}', categorie_id ='{$categorie_id}'";
-       $query  .=" WHERE id ='{$product['id']}'";
-       $result = $db->query($query);
-               if($result && $db->affected_rows() === 1){
-                 $session->msg('s',"Product updated ");
-                 redirect('product.php', false);
-               } else {
-                 $session->msg('d',' Sorry failed to updated!');
-                 redirect('edit_product.php?id='.$product['id'], false);
-               }
+       $session->msg("d", $_POST['categorie_id']);
+       
+      //  $query   = "UPDATE products SET";
+      //  $query  .=" part_no ='{$part_no}', item_name ='{$item_name}',";
+      //  $query  .=" unit_id ='{$unit_id}', quantity ='{$quantity}', categorie_id ='{$categorie_id}'";
+      //  $query  .=" WHERE id ='{$product['id']}'";
+      //  $result = $db->query($query);
+      //          if($result && $db->affected_rows() === 1){
+      //            $session->msg('s',"Product updated ");
+      //            redirect('product.php', false);
+      //          } else {
+      //            $session->msg('d',' Sorry failed to updated!');
+      //            redirect('edit_product.php?id='.$product['id'], false);
+      //          }
 
    } else{
        $session->msg("d", $errors);
+       echo $errors;
        redirect('edit_product.php?id='.$product['id'], false);
    }
 
@@ -61,7 +69,7 @@ if(!$product){
         </strong>
        </div>
        <div class="panel-body">
-         <form method="post" action="edit_product.php?id=<?php echo (int)$product['id'];?>">
+         <form method="post" id="edit-product" action="edit_product.php?id=<?php echo (int)$product['id'];?>">
 <strong> PART NUMBER </strong>
           <div class="form-group"> 
                <input type="text" class="form-control" name="part-no" value="<?php echo remove_junk(ucfirst($product['part_no']));?>">
@@ -70,10 +78,12 @@ if(!$product){
            <div class="form-group">
                <input type="text" class="form-control" name="item-name" value="<?php echo remove_junk(ucfirst($product['item_name']));?>">
            </div>
-<strong> UNIT </strong>
+<strong> A/U UNIT </strong>
             <div class="form-group">
+           
                <input type="text" class="form-control" name="unit-id" value="<?php echo remove_junk(ucfirst($product['unit_id']));?>">
-           </div>
+ 
+                               </div>
            <strong> RATE </strong>
             <div class="form-group">
                <input type="number" class="form-control" name="rate" value="<?php echo remove_junk(ucfirst($product['rate']));?>">
@@ -83,9 +93,24 @@ if(!$product){
                <input type="text" class="form-control" name="quantity" value="<?php echo remove_junk(ucfirst($product['quantity']));?>">
            </div>
 <strong> CATEGORIE </strong>    
-            <div class="form-group">
-               <input type="text" class="form-control" name="categorie" value="<?php echo remove_junk(ucfirst($product['categorie_id']));?>">
-           </div>
+             <!-- <div class="form-group">  -->
+               <!-- <input type="text" class="form-control" name="categorie" value="<?php echo remove_junk(ucfirst($product['categorie_id']));?>"> -->
+           <!-- </div> -->
+<div class="form-group">
+                <div class="row">
+                  <div class="col-md-6">
+                    <select class="form-control" name="categorie_id">
+                      <option value="">Select Product Category</option>
+                    <?php  foreach ($all_categories as $cat): ?>
+                      <option value="<?php echo (int)$cat['id'] ?>"
+                         <?php if(((int)$cat['id']) == remove_junk(ucfirst($product['categorie_id']))): ?> selected="selected"<?php endif; ?>
+                      >
+                        <?php echo $cat['name'] ?></option>
+                    <?php endforeach; ?>
+                    </select>
+                  </div>
+                  </div>
+                  </div>
 
            <button type="submit" name="edit_unit" class="btn btn-primary">Update Product</button>
        </form>

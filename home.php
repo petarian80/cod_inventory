@@ -11,8 +11,9 @@
  <div class="col-md-12">
     <div class="panel">
       <div class="jumbotron text-center">
-         <h1>This is your new home page!</h1>
-         
+        <h1>
+“We want to turn our inventory faster than our people.”        
+        </h>
       </div>
     </div>
  </div>

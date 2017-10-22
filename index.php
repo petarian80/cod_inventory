@@ -5,13 +5,16 @@
 ?>
 <?php include_once('layouts/header.php'); ?>
 <div class="login-page">
-    <div class="text-center">
-       <h1>CENTRAL ORDINANCE DEPOT</h1>
-       <p>Sign in to start your session</p>
-     </div>
-     <?php echo display_msg($msg); ?>
-      <form method="post" action="auth.php" class="clearfix">
+    <div class="row">
+    <div class="text-center col-sm-6">
+      <img src="IMG-20171012-WA0000.png" align="centre" width="180" height="150">
+      <p>CENTRAL ORDINANCE DEPOT</p>
+      </div>
+     
+      <form method="post" action="auth.php" class="clearfix col-sm-6">
+        <?php echo display_msg($msg); ?>
         <div class="form-group">
+
               <label for="username" class="control-label">Username</label>
               <input type="name" class="form-control" name="username" placeholder="Username">
         </div>
@@ -23,5 +26,6 @@
                 <button type="submit" class="btn btn-info  pull-right">Login</button>
         </div>
     </form>
+    </div>
 </div>
 <?php include_once('layouts/footer.php'); ?>

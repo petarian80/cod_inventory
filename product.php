@@ -13,8 +13,9 @@
     <div class="col-md-12">
     <div class="panel">
       <div class="jumbotron text-center">
-         <h1>Database of UNMSD</h1>
-        
+         
+         <h1>Database of UNMSD</h1> 
+
       </div>
     </div>
  </div>
