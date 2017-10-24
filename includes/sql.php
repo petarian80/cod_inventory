@@ -211,6 +211,15 @@ function tableExists($table){
      return $result;
    }
 
+// for search product
+   function search_product($search_products){
+     global $db;
+     $p_name = remove_junk($db->escape($search_products));
+     $sql = "SELECT item_name FROM products WHERE item_name like '%$p_name%' LIMIT 5";
+     $result = find_by_sql($sql);
+     return $result;
+   }
+
 
    // for unit
    function find_unit($unit_from_list){

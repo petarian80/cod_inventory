@@ -93,10 +93,10 @@
                     <td class="text-center">
                       <div class="btn-group">
                         <a href="edit_unit.php?id=<?php echo (int)$unit['id'];?>"  class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
-                          <span class="glyphicon glyphicon-edit"></span>
+                 <i class="fa fa-pencil-square" aria-hidden="true"></i>
                         </a>
                         <a href="delete_unit.php?id=<?php echo (int)$unit['id'];?>"  class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
-                          <span class="glyphicon glyphicon-trash"></span>
+                          <i class="fa fa-trash" aria-hidden="true"></i>
                         </a>
                       </div>
                     </td>

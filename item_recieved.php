@@ -73,7 +73,9 @@
 
                   <td class="text-center">
                   <div class="btn-group">
-                    <button onClick="deleteRow(this)" class="btn btn-danger btn-xs">X</button>
+                    <button onClick="deleteRow(this)" class="btn btn-danger btn-xs">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
                   </div>
                 </td>
                 </td>

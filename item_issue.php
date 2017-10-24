@@ -60,7 +60,9 @@
                 
                <td class="text-center">
                   <div class="btn-group">
-                    <button onClick="deleteRow(this)" class="btn btn-danger btn-xs">X</button>
+                    <button onClick="deleteRow(this)" class="btn btn-danger btn-xs">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
                   </div>
                 </td>
 
@@ -75,12 +77,12 @@
                  <td id="unit_id"><input type="text" class="form-control" name="unit_id" disabled ></td>
 
                   <td id="item_demanded">                  
-                    <input type="number" class="form-control" name="item_demanded" class="form-control input-number" onkeyup="to_fol_calculate(this)"  >  
+                    <input type="number" class="form-control" name="item_demanded" class="form-control input-number" onkeyup="calculate(this)"  >  
                      <div id="item_demanded" style="position:absolute" class="list-group"></div>
                 </td>
 
                 <td id="item_issued">
-                  <input type="number" class="form-control" name="item_issued" class="form-control input-number"  onkeyup="to_fol_calculate(this)" >
+                  <input type="number" class="form-control" name="item_issued" class="form-control input-number"  onkeyup="calculate(this)" >
                     <div id="item_issued" style="position:absolute" class="list-group"></div>
             </td>  
 
@@ -88,7 +90,7 @@
                 <div id="to_fol" style="position:absolute" class="list-group"></div>
                 </td>
 
-                 <td id="rate"><input type="number" class="form-control" name="rate" disabled onkeyup="to_fol_calculate(this)" >
+                 <td id="rate"><input type="number" class="form-control" name="rate" disabled onkeyup="calculate(this)" >
                   <div id="rate" style="position:absolute" class="list-group"></div> 
                  </td> 
 

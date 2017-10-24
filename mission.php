@@ -78,10 +78,10 @@
                     <td class="text-center">
                       <div class="btn-group">
                         <a href="edit_mission.php?id=<?php echo (int)$mission['id'];?>"  class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
-                          <span class="glyphicon glyphicon-edit"></span>
+                  <i class="fa fa-pencil-square" aria-hidden="true"></i>                    </a>
                         </a>
                         <a href="delete_mission.php?id=<?php echo (int)$mission['id'];?>"  class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
-                          <span class="glyphicon glyphicon-trash"></span>
+                          <i class="fa fa-trash" aria-hidden="true"></i>
                         </a>
                       </div>
                     </td>

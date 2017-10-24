@@ -1,3 +1,10 @@
+$('#barcode').submit(function() {
+    if ($.trim($("#bar-code").val()) === "" ) {
+        alert('provide barcode value');
+        return false;
+    }
+});
+
 
 function deleteRow(item){
 
@@ -14,7 +21,7 @@ else {
 
 }
 
-function to_fol_calculate(item)
+function calculate(item)
 
   {
        var box = $(item);
@@ -23,11 +30,13 @@ function to_fol_calculate(item)
     var rate = $(result).find('#rate').children('input[name="rate"]').val();
     var item_issued = $(result).find('#item_issued').children('input[name="item_issued"]').val();
     
-    if (item_demanded != "" && item_issued != "")
-     {
+    if ((item_demanded != "" && item_issued != "") && (item_issued <= item_demanded)){
+
          var to_fol = parseInt(item_demanded) - parseInt(item_issued);
-         $(result).find('#to_fol').children('input[name="to_fol"]').val(to_fol);
-     
+         $(result).find('#to_fol').children('input[name="to_fol"]').val(to_fol); 
+    }    
+        else{
+return false;
 
         }
  if (item_issued != "" && rate != "")
@@ -38,20 +47,6 @@ function to_fol_calculate(item)
 
 
   }
-
- // function total_calculate(item)
-  //{
-   //var box = $(item);
-    //     var result = $(item).parent().parent();
-    //var item_issued = $(result).find('#item_issued').children('input[name="item_issued"]').val();
-    //var rate = $(result).find('#rate').children('input[name="rate"]').val();
-
-    //if (item_issued != "" && rate != "")
-    // {
-      //   var total = parseInt(item_issued) * parseInt(rate);
-        // $(result).find('#total').children('input[name="total"]').val(total);
-  //}
-
 
 
 // fill mission input field

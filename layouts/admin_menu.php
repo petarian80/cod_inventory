@@ -5,16 +5,13 @@
       <span>Dashboard</span>
     </a>
   </li>
-  <li>
-    <a href="#" class="submenu-toggle">
-      <i class="glyphicon glyphicon-user"></i>
+<li>
+    <a href="users.php" >
+      <i class="glyphicon glyphicon-indent-left"></i>
       <span>User Management</span>
     </a>
-    <ul class="nav submenu">
-      <li><a href="group.php">Manage Groups</a> </li>
-      <li><a href="users.php">Manage Users</a> </li>
-   </ul>
   </li>
+
   <li>
     <a href="categorie.php" >
       <i class="glyphicon glyphicon-indent-left"></i>
@@ -58,6 +55,12 @@
          <li><a href="item_recieved.php">Recieve Item</a> </li>
      </ul>
   </li>
+<li>
+    <a href="barcode-form.php" >
+      <i class="glyphicon glyphicon-indent-left"></i>
+      <span>Generate Barcode</span>
+    </a>
+  </li>
 
    
   <li>
@@ -70,4 +73,6 @@
         <li><a href="recieve_report.php">Recieve Report</a> </li>
       </ul>
   </li>
+
+   
 </ul>

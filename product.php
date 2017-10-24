@@ -19,6 +19,13 @@
       </div>
     </div>
  </div>
+ <form action="" method="post" >
+   <div align = "right">
+
+<input type="text" name="searchProduct" placeholder="Search Product.." onkeyup="findProduct(this)">
+<input type="submit" name="search" value="Search ">
+</div>
+</form>
         <div class="panel-body">
           <table class="table table-bordered">
             <thead>
@@ -46,11 +53,9 @@
                 <td class="text-center">
                   <div class="btn-group">
                     <a href="edit_product.php?id=<?php echo (int)$product['id'];?>" class="btn btn-info btn-xs"  title="Edit" data-toggle="tooltip">
-                      <span class="glyphicon glyphicon-edit"></span>
-                    </a>
+                  <i class="fa fa-pencil-square" aria-hidden="true"></i>                    </a>
                     <a href="delete_product.php?id=<?php echo (int)$product['id'];?>" class="btn btn-danger btn-xs"  title="Delete" data-toggle="tooltip">
-                      <span class="glyphicon glyphicon-trash"></span>
-                    </a>
+            <i class="fa fa-trash" aria-hidden="true"></i>                    </a>
                   </div>
                 </td>
               </tr>

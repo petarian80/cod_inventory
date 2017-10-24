@@ -67,6 +67,35 @@
    
  ?>
 
+<?php
+ // Auto suggetion for searching product
+    $html = '';
+   if(isset($_POST['search_product']) && strlen($_POST['search_product']))
+   {     
+     $products = search_product($_POST['search_product']);
+     if($products){
+        foreach ($products as $product):
+           $html .= "<li class=\"list-group-item\">";
+           $html .= $product['item_name'];
+           $html .= "</li>";
+         endforeach;
+      } else {
+
+        $html .= '<li onClick=\"fill(\''.addslashes().'\')\" class=\"list-group-item\">';
+        $html .= 'Not found';
+        $html .= "</li>";
+
+      }
+      echo json_encode($html);
+
+
+   }
+   
+ ?>
+
+
+
+
  <?php
  // Auto suggetion for issue form and to fill unit
     $html = '';
