@@ -212,10 +212,23 @@ function tableExists($table){
    }
 
 // for search product
-   function search_product($search_products){
+   function search_product($search_product_list){
      global $db;
-     $p_name = remove_junk($db->escape($search_products));
+     $p_name = remove_junk($db->escape($search_product_list));
      $sql = "SELECT item_name FROM products WHERE item_name like '%$p_name%' LIMIT 5";
+     $result = find_by_sql($sql);
+     return $result;
+   }
+function findProduct($search){
+     global $db;
+     $p_name = remove_junk($db->escape($search));
+    $sql  =" SELECT p.id,p.part_no,p.item_name,p.quantity,p.rate,p.date,c.name";
+     $sql  .=" AS categorie";
+    $sql  .=" FROM products p";
+    $sql  .=" LEFT JOIN categories c ON c.id = p.categorie_id";
+   
+    $sql  .=" where item_name='$p_name'";   
+    
      $result = find_by_sql($sql);
      return $result;
    }
@@ -292,7 +305,8 @@ function tableExists($table){
 
 // insert Issue Object in table
    function insert_issued_product($ArrayOfProducts, $invoiceNo, $issuedBy){
- global $db;  
+ global $db;
+ 
     $sql = "INSERT INTO issue (part_no, item_name, iv_no, unit_id, rate, item_demanded, item_issued, to_fol, mission,unit_name, issued_by,total) VALUES ";
     
 for ($i = 0; $i <count($ArrayOfProducts) ; ++$i)
@@ -312,26 +326,26 @@ for ($i = 0; $i <count($ArrayOfProducts) ; ++$i)
         $unit_name = mysql_real_escape_string( $row['unit_name'] );
         $issued_by = mysql_real_escape_string( $issuedBy );
         $total = (int) $row['total'];
-
+       
+        
         $sql.= "('$part_no', '$item_name', '$iv_no', '$unit_id', '$rate', '$item_demanded', '$item_issued', '$to_fol', '$mission', '$unit_name','$issued_by', '$total') ";
      $pr_qtyArray[$part_no] = $item_issued;
-    }
-
+        
+}
      $db->query($sql);
       print_r($pr_qtyArray);
     
        foreach ($pr_qtyArray as $key => $val) {
       $sql1 ="UPDATE products SET quantity = (quantity - $val) where part_no= '$key' ";
       $db->query($sql1);
-    }
     
+        
 
 
-    
-     return true;
+
    }
   
-
+   }
 // insert recieve Object in table
    function insert_recieved_product($ArrayOfProducts, $recievedBy){
 

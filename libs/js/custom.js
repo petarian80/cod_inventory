@@ -1,3 +1,5 @@
+
+// generate barcode
 $('#barcode').submit(function() {
     if ($.trim($("#bar-code").val()) === "" ) {
         alert('provide barcode value');
@@ -5,13 +7,14 @@ $('#barcode').submit(function() {
     }
 });
 
-
+// function to delete rows 
 function deleteRow(item){
 
     var box = $(item);
     var parent = box.parent().parent().parent()
    if( $(parent).closest('tr').is('tr:only-child') ) {
     alert('cannot delete last row');
+   
 }
 else {
     $(parent).closest('tr').remove();
@@ -21,6 +24,7 @@ else {
 
 }
 
+// to calculate fol and total amaount
 function calculate(item)
 
   {
@@ -35,7 +39,10 @@ function calculate(item)
          var to_fol = parseInt(item_demanded) - parseInt(item_issued);
          $(result).find('#to_fol').children('input[name="to_fol"]').val(to_fol); 
     }    
-        else{
+        else if(item_issued > item_demanded){
+
+            alert("to fol can not b grater than demand");
+            $(item).val(item_demanded);
 return false;
 
         }
@@ -72,6 +79,37 @@ function mission_list(item){
                 result.children('li').click(function() {                     
                     box.val($(this).text());
                    result.fadeOut(500);  
+                    box.blur();
+                })
+            })
+         }
+        }
+
+
+        //fill search product field
+function findProduct(item){
+         
+         var box = $(item);
+         var result = $(box).parent().children("#result");
+         var formData = {
+             'search_product' : box.val()
+         };
+         
+         if(formData['search_product'].length >= 1){           
+           // process the form           
+           $.ajax({
+               type        : 'POST',
+               url         : 'ajax-items.php',
+               data        : formData,
+               dataType    : 'json',
+               encode      : true
+           })
+            .done(function(data) {
+                console.log(data);
+                result.html(data).fadeIn();                   
+                result.children('li').click(function() {                     
+                    box.val($(this).text());
+                    result.fadeOut(500);  
                     box.blur();
                 })
             })
@@ -166,6 +204,7 @@ function fillIssueRecordByPart(item, text){
                 tr.children('#item_name').children('input[name="item_name"]').val(data['name']);
                 tr.children('#rate').children('input[name="rate"]').val(data['rate']);
                 tr.children('#unit_id').children('input[name="unit_id"]').val(data['unit']);
+                tr.children('#quantity').children('input[name="quantity"]').val(data['qty_avaiable']);
 
                 
             }
@@ -515,7 +554,10 @@ $(document).ready(function() {
 
                 console.log("return Data", data);
                 // data = data[0];
-                
+                setTimeout(function() {
+               window.location.reload();
+          },0);
+
                 
                 
 

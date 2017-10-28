@@ -13,8 +13,9 @@
       // query for parent table 
       if(is_array($ArrayOfProducts)){
         $p=insert_issued_product($ArrayOfProducts, $invoiceNo, $issuedBy );
-       
+        
         echo $p;
+        
         }
         
       
@@ -159,6 +160,8 @@
        'name' => $product['item_name'],
        'unit' => $product_unit,
        'rate' =>$product['rate'],
+       'qty_avaiable' =>$product['quantity'],
+
      );
      //print_r($product);     
      echo json_encode($returnArr);

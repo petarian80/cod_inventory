@@ -1,3 +1,10 @@
+<head>
+
+<link rel="stylesheet" href="print.css" type="text/css" media="print"> 
+
+</head>
+
+
 <?php
   $page_title = 'Issue Product';
   require_once('includes/load.php');
@@ -28,15 +35,15 @@
          
         </div>
 
-        <div class="panel-body table-responsive">
-          <form method="post" name="item-issue-form" id="item-issue-form" autocomplete="off" action="item_issue.php">
-          <div class="panel-heading clearfix">
+        <div class="panel-body table-responsive"  >
+          <form method="post" name="item-issue-form" id="item-issue-form" autocomplete="off" action="item_issue.php" class="print">
+          <div class="panel-heading clearfix" >
           <table id="header-table" >
           <td id="iv_no"><input type="text" class="form-control" name="iv_no" placeholder="Invoice Number" ></td>
           <td id="issued_by"><input type="text" class="form-control" name="issued_by" placeholder="Issued By" ></td>
           
           <strong>
-            <button type="submit" name= "item_issue" class="btn btn-info pull-right btn-sm"> Issue Product</button>
+            <button type="submit" name= "item_issue" class="btn btn-info pull-right btn-sm"  ID="item_issue"> Issue Product</button>
          </strong>
         
         </div>
@@ -47,6 +54,7 @@
               <th> Part Number </th>
               <th> Item Name </th>
                <th>A/U Unit </th> 
+               <th>Qty Available </th> 
                <th> Qty Demanded</th>
               <th> Qty Issued</th>
                <th> TO FOL </th>
@@ -61,7 +69,9 @@
                <td class="text-center">
                   <div class="btn-group">
                     <button onClick="deleteRow(this)" class="btn btn-danger btn-xs">
+                    
                     <i class="fa fa-trash" aria-hidden="true"></i>
+                   
                     </button>
                   </div>
                 </td>
@@ -75,7 +85,7 @@
                 </td>
 
                  <td id="unit_id"><input type="text" class="form-control" name="unit_id" disabled ></td>
-
+                 <td id="quantity"><input type="number" class="form-control" name="quantity" disabled ></td>
                   <td id="item_demanded">                  
                     <input type="number" class="form-control" name="item_demanded" class="form-control input-number" onkeyup="calculate(this)"  >  
                      <div id="item_demanded" style="position:absolute" class="list-group"></div>
@@ -115,3 +125,21 @@
         </div>
 
 <?php include_once('layouts/footer.php'); ?>
+
+
+
+<script>
+function print_form() {
+
+    var printButton = document.getElementById("item_issue");
+    var printButton1 = document.getElementById("add_product");
+
+        //Set the print button visibility to 'hidden' 
+        printButton.style.visibility = 'hidden';
+        printButton1.style.visibility = 'hidden';
+   
+    window.print();
+ 
+}
+</script>
+

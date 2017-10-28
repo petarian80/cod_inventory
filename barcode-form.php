@@ -33,7 +33,7 @@
                 <div class="input-group">
                   <span class="input-group-addon">
         <i class="fa fa-barcode" aria-hidden="true"></i>                  </span>
-                  <input type="text" class="form-control" name="generate" placeholder="Bar Code Value" required id = "bar-code">
+                  <input type="text" class="form-control" name="generate" placeholder="Bar Code Value" required  id = "bar-code">
               
               
                </div>

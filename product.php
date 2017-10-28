@@ -19,11 +19,12 @@
       </div>
     </div>
  </div>
- <form action="" method="post" >
-   <div align = "right">
-
-<input type="text" name="searchProduct" placeholder="Search Product.." onkeyup="findProduct(this)">
-<input type="submit" name="search" value="Search ">
+ <form action="search.php" method="post" id="search" >
+   <div>
+<i class="fa fa-search" aria-hidden="true"></i>
+<input type="text" name="searchProduct" placeholder="Search Product.." id="searchProduct" required onkeyup="findProduct(this)" autocomplete="off" >
+ <div id="result" style="position:absolute" class="list-group"></div>
+<input type="submit" name="search" value="Search">
 </div>
 </form>
         <div class="panel-body">
@@ -58,6 +59,7 @@
             <i class="fa fa-trash" aria-hidden="true"></i>                    </a>
                   </div>
                 </td>
+              </tr>
               </tr>
              <?php endforeach; ?>
             </tbody>
