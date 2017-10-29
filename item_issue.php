@@ -85,7 +85,10 @@
                 </td>
 
                  <td id="unit_id"><input type="text" class="form-control" name="unit_id" disabled ></td>
-                 <td id="quantity"><input type="number" class="form-control" name="quantity" disabled ></td>
+                 <td id="quantity">
+                 <input type="number" class="form-control" name="quantity"  disabled  onkeyup="calculate(this)" >
+                 <div id="quantity" style="position:absolute" class="list-group"></div>
+                 </td>
                   <td id="item_demanded">                  
                     <input type="number" class="form-control" name="item_demanded" class="form-control input-number" onkeyup="calculate(this)"  >  
                      <div id="item_demanded" style="position:absolute" class="list-group"></div>

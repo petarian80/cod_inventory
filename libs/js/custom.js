@@ -14,7 +14,7 @@ function deleteRow(item){
     var parent = box.parent().parent().parent()
    if( $(parent).closest('tr').is('tr:only-child') ) {
     alert('cannot delete last row');
-   
+   clear();
 }
 else {
     $(parent).closest('tr').remove();
@@ -33,27 +33,28 @@ function calculate(item)
     var item_demanded = $(result).find('#item_demanded').children('input[name="item_demanded"]').val();
     var rate = $(result).find('#rate').children('input[name="rate"]').val();
     var item_issued = $(result).find('#item_issued').children('input[name="item_issued"]').val();
-    
-    if ((item_demanded != "" && item_issued != "") && (item_issued <= item_demanded)){
+    var qty = $(result).find('#quantity').children('input[name="quantity"]').val();
+ 
+    if ((item_demanded != "" && item_issued != "") && (item_issued <= item_demanded) && (item_issued <= qty)){
 
          var to_fol = parseInt(item_demanded) - parseInt(item_issued);
          $(result).find('#to_fol').children('input[name="to_fol"]').val(to_fol); 
     }    
-        else if(item_issued > item_demanded){
+        else {
 
-            alert("to fol can not b grater than demand");
-            $(item).val(item_demanded);
-return false;
+            alert("Invalid input");
+          //  $(item).val('');
+      
+                }
+     
+        if (item_issued != "" && rate != "")
+            {
+                var total = parseInt(item_issued) * parseInt(rate);
+                $(result).find('#total').children('input[name="total"]').val(total);
+        }
+
 
         }
- if (item_issued != "" && rate != "")
-     {
-         var total = parseInt(item_issued) * parseInt(rate);
-         $(result).find('#total').children('input[name="total"]').val(total);
-  }
-
-
-  }
 
 
 // fill mission input field
