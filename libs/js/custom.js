@@ -14,7 +14,8 @@ function deleteRow(item){
     var parent = box.parent().parent().parent()
    if( $(parent).closest('tr').is('tr:only-child') ) {
     alert('cannot delete last row');
-   clear();
+   
+   
 }
 else {
     $(parent).closest('tr').remove();
@@ -30,31 +31,49 @@ function calculate(item)
   {
        var box = $(item);
          var result = $(item).parent().parent();
-    var item_demanded = $(result).find('#item_demanded').children('input[name="item_demanded"]').val();
-    var rate = $(result).find('#rate').children('input[name="rate"]').val();
-    var item_issued = $(result).find('#item_issued').children('input[name="item_issued"]').val();
-    var qty = $(result).find('#quantity').children('input[name="quantity"]').val();
+    var item_demanded = parseInt($(result).find('#item_demanded').children('input[name="item_demanded"]').val());
+    var rate = parseInt($(result).find('#rate').children('input[name="rate"]').val());
+    var item_issued = parseInt($(result).find('#item_issued').children('input[name="item_issued"]').val());
+    var qty = parseInt($(result).find('#quantity').children('input[name="quantity"]').val());
  
-    if ((item_demanded != "" && item_issued != "") && (item_issued <= item_demanded) && (item_issued <= qty)){
+   if (!isNaN(item_demanded) && !isNaN(item_issued)){
+       if(item_issued > qty){
+       $(result).find('#item_issued').children('input[name="item_issued"]').val(qty);
 
-         var to_fol = parseInt(item_demanded) - parseInt(item_issued);
-         $(result).find('#to_fol').children('input[name="to_fol"]').val(to_fol); 
-    }    
-        else {
+       var to_fol = parseInt(item_demanded) - parseInt(qty);
+            $(result).find('#to_fol').children('input[name="to_fol"]').val(to_fol);
+        if ( rate != null){
+                var total = parseInt(qty) * parseInt(rate);
+                $(result).find('#total').children('input[name="total"]').val(total);
+            }
+       
+        }
 
-            alert("Invalid input");
-          //  $(item).val('');
-      
-                }
-     
-        if (item_issued != "" && rate != "")
-            {
+        if((item_issued <= item_demanded) && (item_issued <= qty)){
+            var to_fol = parseInt(item_demanded) - parseInt(item_issued);
+            $(result).find('#to_fol').children('input[name="to_fol"]').val(to_fol);
+
+            if ( rate != null){
                 var total = parseInt(item_issued) * parseInt(rate);
                 $(result).find('#total').children('input[name="total"]').val(total);
+            }
+        
         }
 
+       
+         
+    } else {
+            $(result).find('#to_fol').children('input[name="to_fol"]').val('');
+            
+            $(result).find('#total').children('input[name="total"]').val('');
+         
+    }
+     
+        
 
-        }
+
+}
+
 
 
 // fill mission input field
@@ -497,30 +516,25 @@ $(document).ready(function() {
             var part = $(value).find('input[name="part_no"]').val()
             var name = $(value).find('input[name="item_name"]').val()
             var fol = $(value).find('input[name="to_fol"]').val()
-            var mission = $(value).find('input[name="mission"]').val()
+           // var mission = $(value).find('input[name="mission"]').val()
             var rate = $(value).find('input[name="rate"]').val()
             var demand = $(value).find('input[name="item_demanded"]').val()
             var issued = $(value).find('input[name="item_issued"]').val()
             var unit = $(value).find('input[name="unit_id"]').val()
             var total = $(value).find('input[name="total"]').val()
-            var unit_name = $(value).find('input[name="unit_name"]').val()
+         //   var unit_name = $(value).find('input[name="unit_name"]').val()
             
 
             
             row["part_no"] = part;
             row["item_name"] = name;
             row["to_fol"] = fol;
-            row["mission"] = mission;
             row["rate"] = rate;
             row["item_demanded"] = demand;
             row["item_issued"] = issued;
             row["unit_id"] = unit;
             row["total"] = total;
-             row["unit_name"] = unit_name;
-         //   row["iv_no"] = invoice;
-           // row["issued_by"] = issued_by;
-
-            //console.log(index, value);
+         
             issueObjects[index] = row;
         });
 
@@ -529,11 +543,16 @@ $(document).ready(function() {
 
         var invoice = $('#header-table td#iv_no').find('input[name="iv_no"]').val()
         var issued_by = $('#header-table td#issued_by').find('input[name="issued_by"]').val()
+        var mission = $('#header-table td#mission').find('input[name="mission"]').val()
+        var unit_name = $('#header-table td#unit_name').find('input[name="unit_name"]').val()
 
         var inObj = {
             'form' : issueObjects,
             'invoice' : invoice,
-            'issued_by' :  issued_by  };
+            'issued_by' :  issued_by,
+            'mission' : mission,
+            'unit_name' : unit_name
+        };
 
 
         var formData = {
@@ -547,7 +566,6 @@ $(document).ready(function() {
                 type        : 'POST',
                 url         : 'ajax-items.php',
                 data        : formData,
-                //dataType    : 'json',
                 encode      : true
             })
             .done(function(data) {                   
@@ -616,7 +634,7 @@ $(document).ready(function() {
         // full array
         //console.log(issueObjects);
 
-        //var invoice = $('#header-table td#iv_no').find('input[name="iv_no"]').val()
+       
         var recieved_by = $('#header-table td#recieved_by').find('input[name="recieved_by"]').val()
 
         var inObj = {
@@ -643,6 +661,9 @@ $(document).ready(function() {
 
                 console.log("return Data", data);
                 // data = data[0];
+               setTimeout(function() {
+               window.location.reload();
+          },0);
 
                 
             })

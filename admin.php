@@ -81,6 +81,60 @@
     </div>
   </div>
 
+<?php
+  global $db;
+
+
+
+  
+
+$query = " SELECT  user_level, sum(id) FROM users group by user_level ";
+$res =$db->query($query);
+
+
+
+?>
+
+
+
+
+
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['id', 'user_level' ],
+         <?php
+		 while($row=$res->fetch_assoc())
+		 {
+		 
+		 echo "['" .$row['user_level']."',".$row['sum(id)']."],";
+		 
+		 }
+		 ?>
+        ]);
+
+        var options = {
+          title: 'User Details'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
+
 
 
 <?php include_once('layouts/footer.php'); ?>

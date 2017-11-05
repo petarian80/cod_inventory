@@ -56,8 +56,8 @@
                     <a href="edit_product.php?id=<?php echo (int)$product['id'];?>" class="btn btn-info btn-xs"  title="Edit" data-toggle="tooltip">
                   <i class="fa fa-pencil-square" aria-hidden="true"></i>                    </a>
                     <a href="delete_product.php?id=<?php echo (int)$product['id'];?>" class="btn btn-danger btn-xs"  title="Delete" data-toggle="tooltip">
-            <i class="fa fa-trash" aria-hidden="true"></i>                    </a>
-                  </div>
+                 <i class="fa fa-trash" aria-hidden="true"></i>                    </a>
+                   </div>
                 </td>
               </tr>
               </tr>

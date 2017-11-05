@@ -10,9 +10,11 @@
       $ArrayOfProducts = $_POST['issue_form_submit']["form"];
       $invoiceNo =  $_POST['issue_form_submit']["invoice"];
       $issuedBy = $_POST['issue_form_submit']["issued_by"];
+      $mission = $_POST['issue_form_submit']["mission"];
+      $unit_name = $_POST['issue_form_submit']["unit_name"];
       // query for parent table 
       if(is_array($ArrayOfProducts)){
-        $p=insert_issued_product($ArrayOfProducts, $invoiceNo, $issuedBy );
+        $p=insert_issued_product($ArrayOfProducts, $invoiceNo, $issuedBy, $mission,$unit_name );
         
         echo $p;
         

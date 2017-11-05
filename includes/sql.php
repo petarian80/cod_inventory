@@ -304,7 +304,7 @@ function findProduct($search){
    }
 
 // insert Issue Object in table
-   function insert_issued_product($ArrayOfProducts, $invoiceNo, $issuedBy){
+   function insert_issued_product($ArrayOfProducts, $invoiceNo, $issuedBy,$mission,$unit_name){
  global $db;
  
     $sql = "INSERT INTO issue (part_no, item_name, iv_no, unit_id, rate, item_demanded, item_issued, to_fol, mission,unit_name, issued_by,total) VALUES ";
@@ -322,8 +322,8 @@ for ($i = 0; $i <count($ArrayOfProducts) ; ++$i)
         $item_demanded = (int) $row['item_demanded'];
         $item_issued = (int) $row['item_issued'];
         $to_fol = (int) $row['to_fol'];
-        $mission = mysql_real_escape_string( $row['mission'] );
-        $unit_name = mysql_real_escape_string( $row['unit_name'] );
+        $mission = mysql_real_escape_string($mission );
+        $unit_name = mysql_real_escape_string( $unit_name );
         $issued_by = mysql_real_escape_string( $issuedBy );
         $total = (int) $row['total'];
        

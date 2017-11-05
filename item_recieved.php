@@ -94,7 +94,7 @@
                 <td id="rate">
                   <input type="number" class="form-control" name="rate" class="form-control input-number">
                 </td>  
-                 <td id="po_no"><input type="text" class="form-control" name="po_no"  ></td>              
+                 <td id="po_no"><input type="text" class="form-control" name="po_no"  required ></td>              
                  <td id="drs_no"><input type="text" class="form-control" name="drs_no" ></td>
                  <td id="crv_no"><input type="text" class="form-control" name="crv_no" ></td>                               
                  <td id="firm"><input type="text" class="form-control" name="firm" ></td>

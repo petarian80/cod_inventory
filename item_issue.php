@@ -41,7 +41,14 @@
           <table id="header-table" >
           <td id="iv_no"><input type="text" class="form-control" name="iv_no" placeholder="Invoice Number" ></td>
           <td id="issued_by"><input type="text" class="form-control" name="issued_by" placeholder="Issued By" ></td>
-          
+           <td id="mission">
+            <input type="text" class="form-control" name="mission" id="mission" placeholder = "Mission" onkeyup="mission_list(this)" >
+            <div id="result" style="position:absolute" class="list-group"></div>
+            </td>
+
+            <td id="unit_name"><input type="text" class="form-control" name="unit_name" placeholder="Unit" onkeyup="unit_list(this)"  >
+            <div id="result" style="position:absolute" class="list-group"></div>
+            </td>
           <strong>
             <button type="submit" name= "item_issue" class="btn btn-info pull-right btn-sm"  ID="item_issue"> Issue Product</button>
          </strong>
@@ -60,8 +67,7 @@
                <th> TO FOL </th>
               <th> Rate </th>                             
               <th> Amount</th>
-               <th> Mission </th>
-                <th> Unit </th>
+
             </thead>
               <tbody>              
               <tr id="item-issue" attr-field="<?php echo count_row_id();?>">
@@ -111,14 +117,7 @@
                   <div id="total" style="position:absolute" class="list-group"></div>
                  </td>                          
 
-                 <td id="mission">
-                  <input type="text" class="form-control" name="mission" onkeyup="mission_list(this)" >
-                  <div id="result" style="position:absolute" class="list-group"></div>
-                 </td>
-
-                 <td id="unit_name"><input type="text" class="form-control" name="unit_name" onkeyup="unit_list(this)"  >
-                  <div id="result" style="position:absolute" class="list-group"></div>
-                  </td>
+                
      
               </tr>                           
             </tbody>
