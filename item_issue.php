@@ -49,6 +49,13 @@
             <td id="unit_name"><input type="text" class="form-control" name="unit_name" placeholder="Unit" onkeyup="unit_list(this)"  >
             <div id="result" style="position:absolute" class="list-group"></div>
             </td>
+
+            <td id="demand_no"><input type="text" class="form-control" name="demand_no" placeholder="Demand No"  >
+            <div id="result" style="position:absolute" class="list-group"></div>
+            </td>
+            <td id="vocab_sec"><input type="text" class="form-control" name="vocab_sec" placeholder="VOCAB-SEC"  >
+            <div id="result" style="position:absolute" class="list-group"></div>
+            </td>
           <strong>
             <button type="submit" name= "item_issue" class="btn btn-info pull-right btn-sm"  ID="item_issue"> Issue Product</button>
          </strong>
@@ -67,6 +74,8 @@
                <th> TO FOL </th>
               <th> Rate </th>                             
               <th> Amount</th>
+              <th> Pac No</th>
+
 
             </thead>
               <tbody>              
@@ -117,7 +126,10 @@
                   <div id="total" style="position:absolute" class="list-group"></div>
                  </td>                          
 
-                
+                <td id="pac_no"><input type="text" class="form-control" name="pac_no"  >
+                  <div id="pac_no" style="position:absolute" class="list-group"></div>
+                 </td>                          
+
      
               </tr>                           
             </tbody>

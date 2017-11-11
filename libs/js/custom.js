@@ -37,9 +37,10 @@ function calculate(item)
     var qty = parseInt($(result).find('#quantity').children('input[name="quantity"]').val());
  
    if (!isNaN(item_demanded) && !isNaN(item_issued)){
+       
        if(item_issued > qty){
        $(result).find('#item_issued').children('input[name="item_issued"]').val(qty);
-
+        
        var to_fol = parseInt(item_demanded) - parseInt(qty);
             $(result).find('#to_fol').children('input[name="to_fol"]').val(to_fol);
         if ( rate != null){
@@ -48,8 +49,11 @@ function calculate(item)
             }
        
         }
-
+        
+       
         if((item_issued <= item_demanded) && (item_issued <= qty)){
+
+            
             var to_fol = parseInt(item_demanded) - parseInt(item_issued);
             $(result).find('#to_fol').children('input[name="to_fol"]').val(to_fol);
 
@@ -59,6 +63,30 @@ function calculate(item)
             }
         
         }
+         if(item_issued > item_demanded){
+
+            $(result).find('#item_issued').children('input[name="item_issued"]').val(item_demanded);
+
+            var to_fol = parseInt(item_demanded) - parseInt(item_demanded);
+            $(result).find('#to_fol').children('input[name="to_fol"]').val(to_fol);
+        if ( rate != null){
+                var total = parseInt(item_demanded) * parseInt(rate);
+                $(result).find('#total').children('input[name="total"]').val(total);
+            }
+        }
+
+        if((item_demanded > qty)&&(item_issued > qty)){
+
+            $(result).find('#item_issued').children('input[name="item_issued"]').val(qty);
+
+            var to_fol = parseInt(item_demanded) - parseInt(qty);
+            $(result).find('#to_fol').children('input[name="to_fol"]').val(to_fol);
+        if ( rate != null){
+                var total = parseInt(qty) * parseInt(rate);
+                $(result).find('#total').children('input[name="total"]').val(total);
+            }
+        }
+
 
        
          
@@ -516,13 +544,12 @@ $(document).ready(function() {
             var part = $(value).find('input[name="part_no"]').val()
             var name = $(value).find('input[name="item_name"]').val()
             var fol = $(value).find('input[name="to_fol"]').val()
-           // var mission = $(value).find('input[name="mission"]').val()
             var rate = $(value).find('input[name="rate"]').val()
             var demand = $(value).find('input[name="item_demanded"]').val()
             var issued = $(value).find('input[name="item_issued"]').val()
             var unit = $(value).find('input[name="unit_id"]').val()
             var total = $(value).find('input[name="total"]').val()
-         //   var unit_name = $(value).find('input[name="unit_name"]').val()
+            var pac_no = $(value).find('input[name="pac_no"]').val()
             
 
             
@@ -534,6 +561,7 @@ $(document).ready(function() {
             row["item_issued"] = issued;
             row["unit_id"] = unit;
             row["total"] = total;
+            row["pac_no"] = pac_no;
          
             issueObjects[index] = row;
         });
@@ -545,13 +573,17 @@ $(document).ready(function() {
         var issued_by = $('#header-table td#issued_by').find('input[name="issued_by"]').val()
         var mission = $('#header-table td#mission').find('input[name="mission"]').val()
         var unit_name = $('#header-table td#unit_name').find('input[name="unit_name"]').val()
+        var demand_no = $('#header-table td#demand_no').find('input[name="demand_no"]').val()
+        var vocab_sec = $('#header-table td#vocab_sec').find('input[name="vocab_sec"]').val()
 
         var inObj = {
             'form' : issueObjects,
             'invoice' : invoice,
             'issued_by' :  issued_by,
             'mission' : mission,
-            'unit_name' : unit_name
+            'unit_name' : unit_name,
+            'demand_no' : demand_no,
+            'vocab_sec' : vocab_sec 
         };
 
 
@@ -574,8 +606,13 @@ $(document).ready(function() {
                 console.log("return Data", data);
                 // data = data[0];
                 setTimeout(function() {
-               window.location.reload();
-          },0);
+                    // window.location.reload();
+                    window.location="http://localhost/unmsd/print_voucher.php"
+
+
+
+
+                },0);
 
                 
                 
@@ -587,6 +624,8 @@ $(document).ready(function() {
  
 
     });
+
+    
 
     $('#item-recieve-form').submit(function(e){
         e.preventDefault();
@@ -605,7 +644,6 @@ $(document).ready(function() {
             var categorie = $(value).find('input[name="categorie"]').val()
             var item_issued = $(value).find('input[name="item_issued"]').val()
             var rate = $(value).find('input[name="rate"]').val()
-            var po_no = $(value).find('input[name="po_no"]').val()
             var drs_no = $(value).find('input[name="drs_no"]').val()
             var crv_no = $(value).find('input[name="crv_no"]').val()
             var firm = $(value).find('input[name="firm"]').val()
@@ -621,7 +659,6 @@ $(document).ready(function() {
             row["categorie"] = categorie;
             row["item_issued"] = item_issued;
             row["rate"] = rate;
-            row["po_no"] = po_no;
              row["drs_no"] = drs_no;
             row["crv_no"] = crv_no;
             row["firm"] = firm;
@@ -636,10 +673,12 @@ $(document).ready(function() {
 
        
         var recieved_by = $('#header-table td#recieved_by').find('input[name="recieved_by"]').val()
-
+        var po_no = $('#header-table td#po_no').find('input[name="po_no"]').val()
         var inObj = {
             'form' : recieveObjects,
-            'recieved_by' :  recieved_by  };
+            'recieved_by' :  recieved_by,
+             'po_no' : po_no
+        };
 
 
         var formData = {

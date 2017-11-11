@@ -304,10 +304,10 @@ function findProduct($search){
    }
 
 // insert Issue Object in table
-   function insert_issued_product($ArrayOfProducts, $invoiceNo, $issuedBy,$mission,$unit_name){
+   function insert_issued_product($ArrayOfProducts, $invoiceNo, $issuedBy, $mission, $unit_name, $demand_no, $vocab_sec){
  global $db;
  
-    $sql = "INSERT INTO issue (part_no, item_name, iv_no, unit_id, rate, item_demanded, item_issued, to_fol, mission,unit_name, issued_by,total) VALUES ";
+    $sql = "INSERT INTO issue (part_no, item_name, iv_no, unit_id, rate, item_demanded, item_issued, to_fol, mission,unit_name, issued_by,total,pac_no,demand_no,vocab_sec) VALUES ";
     
 for ($i = 0; $i <count($ArrayOfProducts) ; ++$i)
 {
@@ -326,9 +326,11 @@ for ($i = 0; $i <count($ArrayOfProducts) ; ++$i)
         $unit_name = mysql_real_escape_string( $unit_name );
         $issued_by = mysql_real_escape_string( $issuedBy );
         $total = (int) $row['total'];
-       
+       $pac_no = mysql_real_escape_string($row['pac_no'] );
+       $demand_no = mysql_real_escape_string( $demand_no );
+       $vocab_sec = mysql_real_escape_string( $vocab_sec );
         
-        $sql.= "('$part_no', '$item_name', '$iv_no', '$unit_id', '$rate', '$item_demanded', '$item_issued', '$to_fol', '$mission', '$unit_name','$issued_by', '$total') ";
+        $sql.= "('$part_no', '$item_name', '$iv_no', '$unit_id', '$rate', '$item_demanded', '$item_issued', '$to_fol', '$mission', '$unit_name','$issued_by', '$total' ,'$pac_no','$demand_no','$vocab_sec') ";
      $pr_qtyArray[$part_no] = $item_issued;
         
 }
@@ -347,7 +349,7 @@ for ($i = 0; $i <count($ArrayOfProducts) ; ++$i)
   
    }
 // insert recieve Object in table
-   function insert_recieved_product($ArrayOfProducts, $recievedBy){
+   function insert_recieved_product($ArrayOfProducts, $recievedBy, $po_no){
 
   global $db;  
   $pr_qtyArray = array(); 
@@ -365,7 +367,7 @@ for ($i = 0; $i <count($ArrayOfProducts) ; ++$i)
         $quantity = (int) $row['quantity'];
         $alp_no = mysql_real_escape_string( $row['alp_no'] );
         $categorie_id = mysql_real_escape_string( $row['categorie'] );
-        $po_no = mysql_real_escape_string($row['po_no'] );
+        $po_no = mysql_real_escape_string($po_no );
         $drs_no = mysql_real_escape_string($row['drs_no'] );
         $crv_no = mysql_real_escape_string($row['crv_no'] );
         $rate = (int) $row['rate'];
@@ -382,7 +384,7 @@ for ($i = 0; $i <count($ArrayOfProducts) ; ++$i)
     print_r($pr_qtyArray);
     
     foreach ($pr_qtyArray as $key => $val) {
-      $sql1 ="UPDATE products SET quantity = (quantity + $val) where part_no= '$key' ";
+      $sql1 ="UPDATE products SET quantity = (quantity + $val), rate = $rate where part_no= '$key' ";
       $db->query($sql1);
     }
     

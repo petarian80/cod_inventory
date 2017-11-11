@@ -67,7 +67,10 @@ if(!$products ){
             </tbody>
           </tabel>
         </div>
+        
       </div>
     </div>
+    
   </div>
+  
   <?php include_once('layouts/footer.php'); ?>

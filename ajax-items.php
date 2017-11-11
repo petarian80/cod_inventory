@@ -12,10 +12,13 @@
       $issuedBy = $_POST['issue_form_submit']["issued_by"];
       $mission = $_POST['issue_form_submit']["mission"];
       $unit_name = $_POST['issue_form_submit']["unit_name"];
+      $demand_no = $_POST['issue_form_submit']["demand_no"];
+      $vocab_sec = $_POST['issue_form_submit']["vocab_sec"];
       // query for parent table 
       if(is_array($ArrayOfProducts)){
-        $p=insert_issued_product($ArrayOfProducts, $invoiceNo, $issuedBy, $mission,$unit_name );
-        
+        $p=insert_issued_product($ArrayOfProducts, $invoiceNo, $issuedBy, $mission, $unit_name, $demand_no, $vocab_sec );
+        session_start();
+        $_SESSION['totalcolumns'] = $_POST['issue_form_submit']; 
         echo $p;
         
         }
@@ -31,9 +34,10 @@
    {     
       $ArrayOfProducts = $_POST['recieve_form_submit']["form"];
       $recievedBy = $_POST['recieve_form_submit']["recieved_by"];
+      $po_no = $_POST['recieve_form_submit']["po_no"];
       // query for parent table 
       if(is_array($ArrayOfProducts)){
-        $p=insert_recieved_product($ArrayOfProducts, $recievedBy );
+        $p=insert_recieved_product($ArrayOfProducts, $recievedBy,$po_no );
         echo $p;
       }
       

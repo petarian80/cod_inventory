@@ -1,4 +1,3 @@
-body {visibility:hidden;
-padding-left: 0%
+.collapse {
+  border-collapse: collapse;
 }
-.print {visibility:visible;} 

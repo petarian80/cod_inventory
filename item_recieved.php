@@ -45,7 +45,7 @@
           <div class="panel-heading clearfix">
           <table id="header-table">
           <td id="recieved_by"><input type="text" class="form-control" name="recieved_by" placeholder="Recieved By" ></td>
-          
+           <td id="po_no"><input type="text" class="form-control" name="po_no" placeholder="PO NUMBER" required ></td>
           <strong>
             <button type="submit" name= "item_recieve" class="btn btn-info pull-right btn-sm"> Recieve Product</button>
          </strong>
@@ -61,8 +61,7 @@
               <th> Qty Recieved </th>
               <th> ALP Number </th>
               <th> Categorie</th>
-              <th> Rate</th>
-               <th> PO Number </th>                     
+              <th> Rate</th>                 
               <th> DRS</th>
               <th> CRV Number</th>
               <th>Firm</th>
@@ -93,8 +92,7 @@
                 </td>
                 <td id="rate">
                   <input type="number" class="form-control" name="rate" class="form-control input-number">
-                </td>  
-                 <td id="po_no"><input type="text" class="form-control" name="po_no"  required ></td>              
+                </td>                
                  <td id="drs_no"><input type="text" class="form-control" name="drs_no" ></td>
                  <td id="crv_no"><input type="text" class="form-control" name="crv_no" ></td>                               
                  <td id="firm"><input type="text" class="form-control" name="firm" ></td>

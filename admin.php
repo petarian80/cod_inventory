@@ -88,7 +88,7 @@
 
   
 
-$query = " SELECT  user_level, sum(id) FROM users group by user_level ";
+$query = "SELECT user_groups.group_name, COUNT(users.id) FROM users inner join user_groups on users.user_level= user_groups.group_level group by user_level ";
 $res =$db->query($query);
 
 
@@ -109,12 +109,12 @@ $res =$db->query($query);
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable([
-          ['id', 'user_level' ],
+          ['id', 'group_name' ],
          <?php
 		 while($row=$res->fetch_assoc())
 		 {
 		 
-		 echo "['" .$row['user_level']."',".$row['sum(id)']."],";
+		 echo "['" .$row['group_name']."',".$row['id']."],";
 		 
 		 }
 		 ?>
