@@ -1,9 +1,4 @@
-<head>
-
-<link rel="stylesheet" href="print.css" type="text/css" media="print"> 
-
-</head>
-
+<link rel="stylesheet" href="libs/css/print.css" />
 <?php
 session_start();
 if(isset($_SESSION['totalcolumns']))
@@ -25,77 +20,58 @@ if(isset($_SESSION['totalcolumns']))
 ?>
 
 
+<body>
+ <?php for($x=1 ;$x<6 ; $x++){ ?>
+    <from class="mainForm">
+        <div>
+        <table >
+                <tr>
+                        <th width="35px" height="50px" > 
+                                <?php 
+                                        echo '<span style="font-size: 32pt">' . $x . '</span>';  ?>  
+                        </th>    
+                        <th width="235px" height="50px" valign="top"> CONSIGNED TO 
+                                <?php echo "</br>";
+                                echo "-------------------------------------------";
+                                echo "</br>";
+                                echo  ( $_SESSION['totalcolumns']["mission"]); 
+                                echo " , ";
+                                echo  ( $_SESSION['totalcolumns']["unit_name"]); ?>
+                        </th>   
+                        <th width="435px"> ISSUE VOUCHER</th>
+                        <th width="125px" valign="top"> VOCAB-SEC
+                                <?php
+                                echo "</br>";
+                                echo "-----------------------";
+                                echo "</br>";
+                                        echo  ( $_SESSION['totalcolumns']["vocab_sec"]); 
+                                        ?>
+                        </th> 
+                </tr>
+        </table>
+        <table border="1" class="collapse">
+                <tr>
+                        <th width="160px" height="50px" valign="top">DEMAND No
+                                <?php
+                                echo "</br>";
+                                echo "------------------------------";
+                                echo "</br>";
+                                        echo  ( $_SESSION['totalcolumns']["demand_no"]); 
+                                        ?>
+                        </th>
+                        <th width="130px" valign="top">DATE
+                        <?php
+                        echo "</br>";
+                        echo "------------------------";
+                        echo "</br>";
 
-    <from>
-<div>
+                        
+                        echo   date("Y/m/d") . "<br>";
+                        
 
-    <table border="1" class="collapse" >
-    
-       
-        <tr>
-    <th width="35px" height="50px" > 
-       <?php 
- for($x=1 ;$x<2 ; $x++){
-
-         echo '<span style="font-size: 32pt">' . $x . '</span>';
- } 
-
-?>  
-   </th>    
- <th width="235px" height="50px" valign="top">
-        CONSIGNED TO
-         <?php
-         echo "</br>";
-         echo "-------------------------------------------";
-         echo "</br>";
-          echo  ( $_SESSION['totalcolumns']["mission"]); 
-                echo " , ";
-                echo  ( $_SESSION['totalcolumns']["unit_name"]); 
-                 ?>
-        </th>
-         
-        <th width="435px"> ISSUE VOUCHER</th>
-        <th width="125px" valign="top"> VOCAB-SEC
-         <?php
-         echo "</br>";
-         echo "-----------------------";
-         echo "</br>";
-                echo  ( $_SESSION['totalcolumns']["vocab_sec"]); 
-                 ?>
-        </th> 
-        </tr>
-
-        <tbody>
-         
-                
-        
-        </tbody>
-  
-        
-</table>
-<table border="1" class="collapse">
-        <tr>
-        <th width="160px" height="50px" valign="top">DEMAND No
-        <?php
-         echo "</br>";
-         echo "------------------------------";
-         echo "</br>";
-                echo  ( $_SESSION['totalcolumns']["demand_no"]); 
-                 ?>
-        </th>
-        <th width="130px" valign="top">DATE
-         <?php
-         echo "</br>";
-         echo "------------------------";
-         echo "</br>";
-
-        
-         echo   date("Y/m/d") . "<br>";
-        
-
-         
-                 ?>
-        </th>
+                        
+                                ?>
+                        </th>
         <th width="125px" valign="top">TYPE
          <?php
          echo "</br>";
@@ -148,29 +124,33 @@ if(isset($_SESSION['totalcolumns']))
 </tr>
  <tbody>
 
- <?php foreach (  $ArrayOfProducts as $product):?>
+ <?php 
+        for ( $i = 0 ; $i < 8 ; $i++){
+ //foreach (  $ArrayOfProducts as $product):?>
               <tr>
                 
-                <td> <center>  <?php echo  ($product['part_no']); 
+                <td> <center>  <?php
+                 //$var = ($var > 2 ? true : false);  
+                 echo  ( isset($ArrayOfProducts[$i]['part_no'] ) ? $ArrayOfProducts[$i]['part_no'] : "" ); 
                 echo "</br>";
                  ?></center>
 
-              <center>  <?php echo  ($product['item_name']); ?> </center>
+               <center>  <?php
+               echo ( isset($ArrayOfProducts[$i]['item_name'] ) ? $ArrayOfProducts[$i]['item_name'] : "" ); ?> </center> 
                 
                 </td>
-                <td> <center>    <?php echo ($product['unit_id']); ?> </center> </td>
-                <td>  <center>  <?php echo ($product['item_demanded']); ?> </center> </td>
-                <td>  <center>  <?php echo ($product['item_issued']); ?> </center> </td>
-                <td>  <center>  <?php echo ($product['to_fol']); ?> </center> </td>   
-                 <td>  <center>  <?php echo ($product['rate']); ?> </center> </td> 
-                <td>  <center>  <?php echo  ($product['total']); ?> </center> </td>  
-                <td>  <center>  <?php echo  ($product['pac_no']); ?> </center> </td>                
+                <td> <center>    <?php echo ( isset($ArrayOfProducts[$i]['unit_id'] ) ? $ArrayOfProducts[$i]['unit_id'] : "" ); ?> </center> </td>
+                <td>  <center>  <?php echo ( isset($ArrayOfProducts[$i]['item_demanded'] ) ? $ArrayOfProducts[$i]['item_demanded'] : "" ); ?> </center> </td>
+                <td>  <center>  <?php echo ( isset($ArrayOfProducts[$i]['item_issued'] ) ? $ArrayOfProducts[$i]['item_issued'] : "" ); ?> </center> </td>
+                <td>  <center>  <?php echo ( isset($ArrayOfProducts[$i]['to_fol'] ) ? $ArrayOfProducts[$i]['to_fol'] : "" ); ?> </center> </td>   
+                 <td>  <center>  <?php echo ( isset($ArrayOfProducts[$i]['rate'] ) ? $ArrayOfProducts[$i]['rate'] : "" ); ?> </center> </td> 
+                <td>  <center>  <?php echo  ( isset($ArrayOfProducts[$i]['total'] ) ? $ArrayOfProducts[$i]['total'] : "" ); ?> </center> </td>  
+                <td>  <center>  <?php echo  ( isset($ArrayOfProducts[$i]['pac_no'] ) ? $ArrayOfProducts[$i]['pac_no'] : "" ); ?> </center> </td>                
                
                   
                 
               </tr>
-              </tr>
-             <?php endforeach; 
+             <?php }; 
              
  
              ?>
@@ -182,4 +162,10 @@ if(isset($_SESSION['totalcolumns']))
 
 </table>
 </form>
+
+<?php 
+ }
+?>
+
+</body>
  
