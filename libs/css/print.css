@@ -1,16 +1,132 @@
-.collapse {
-  border-collapse: collapse;
-}
-
-body{
-  width: 100%;
-  height: 100%;
-}
-
-.mainForm {
-  position: relative;
-  height: 50vh;
-  overflow: hidden;
+.mainForm{
+  position: absolute;
+  margin: 0 auto;
+  height: 500px;
+  width: 70%;
+  background: blue;
   
 }
 
+.mainForm table{
+  width: 95%;
+  border: 1px solid black;
+ 
+}
+tr.header-row{
+  height: 60;
+  border: 1px solid black;
+  
+}
+
+
+
+.header-no{
+   height: 45px;
+   width: 5%;
+   border: 1px solid black;
+   font-size: 35px;
+ 
+}
+.header-cons{
+  height: 45px;
+  width: 20%;
+  vertical-align: top;
+    border: 1px solid black; 
+}
+
+.header-heading{
+ height: 45px;
+ width: 40%;
+ vertical-align: middle; 
+ border: 1px solid black;
+}
+
+.demand-no{
+ height: 45px;
+ width: 25%;
+ vertical-align: top; 
+ border: 1px solid black;
+}
+
+.date{
+ height: 45px;
+ width: 15%;
+ vertical-align: top; 
+ border: 1px solid black;
+}
+
+.type{
+  
+ height: 45px;
+ width: 15%;
+ vertical-align: top; 
+ border: 1px solid black;
+  
+}
+
+.pri{
+  
+   height: 45px;
+ width: 10%;
+ vertical-align: top; 
+ border: 1px solid black;
+
+}
+.invoice{
+ height: 45px;
+ width: 20%;
+ vertical-align: top; 
+ border: 1px solid black;
+
+}
+
+
+
+.part-no{
+  height: 40px;
+ width: 30%;
+ vertical-align: top; 
+ border: 1px solid black;
+  vertical-align: middle; 
+ }
+
+.a-u{
+   height: 40px;
+ width: 10%;
+ vertical-align: top; 
+ border: 1px solid black;
+  vertical-align: middle; 
+ }
+  
+  
+.demand{
+   height: 40px;
+ width: 10%;
+ vertical-align: top; 
+ border: 1px solid black;
+  vertical-align: middle; 
+ }
+  
+.to-fol{
+   height: 40px;
+ width: 10%;
+ vertical-align: top; 
+ border: 1px solid black;
+  vertical-align: middle; 
+ 
+}
+.value{
+   height: 40px;
+ width: 10%;
+ vertical-align: top; 
+ border: 1px solid black;
+  vertical-align: middle; 
+ }
+.table-cells{
+  
+  height: 35px;
+ width: 10%;
+ vertical-align: top; 
+ border: 1px solid black;
+text-align: center; 
+}

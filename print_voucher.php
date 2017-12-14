@@ -23,103 +23,68 @@ if(isset($_SESSION['totalcolumns']))
 <body>
  <?php for($x=1 ;$x<6 ; $x++){ ?>
     <from class="mainForm">
-        <div>
-        <table >
-                <tr>
-                        <th width="35px" height="50px" > 
-                                <?php 
-                                        echo '<span style="font-size: 32pt">' . $x . '</span>';  ?>  
-                        </th>    
-                        <th width="235px" height="50px" valign="top"> CONSIGNED TO 
-                                <?php echo "</br>";
-                                echo "-------------------------------------------";
-                                echo "</br>";
-                                echo  ( $_SESSION['totalcolumns']["mission"]); 
-                                echo " , ";
-                                echo  ( $_SESSION['totalcolumns']["unit_name"]); ?>
+        <table class="main-table">
+                <tr class="header-row">
+                        <th class="header-no">  <?php echo '<span style="font-size: 32pt">' . $x . '</span>';  ?></th>    
+                        <th class="header-cons" >
+                                <span class="cons-top"> CONSIGNED TO </span>
+                                <span class="cons-text"> <?php echo $_SESSION['totalcolumns']["mission"] . " , " . $_SESSION['totalcolumns']["unit_name"]; ?></span>                                
                         </th>   
-                        <th width="435px"> ISSUE VOUCHER</th>
-                        <th width="125px" valign="top"> VOCAB-SEC
-                                <?php
-                                echo "</br>";
-                                echo "-----------------------";
-                                echo "</br>";
-                                        echo  ( $_SESSION['totalcolumns']["vocab_sec"]); 
-                                        ?>
+                        <th class="header-heading"> ISSUE VOUCHER</th>
+                        <th class="header-cons"> 
+                                <span class="cons-top"> VOCAB-SEC </span>
+                                <span class="cons-text"> <?php echo $_SESSION['totalcolumns']["vocab_sec"]; ?></span>                                
                         </th> 
                 </tr>
         </table>
-        <table border="1" class="collapse">
-                <tr>
-                        <th width="160px" height="50px" valign="top">DEMAND No
-                                <?php
-                                echo "</br>";
-                                echo "------------------------------";
-                                echo "</br>";
-                                        echo  ( $_SESSION['totalcolumns']["demand_no"]); 
-                                        ?>
+        <table class="main-table">
+                <tr  class="header-row">
+                        <th class="demand-no">
+                        <span class="demand-heading"> DEMAND No</span>
+                        <span class = "demand-text"><?php echo  ( $_SESSION['totalcolumns']["demand_no"]);?></span>
                         </th>
-                        <th width="130px" valign="top">DATE
-                        <?php
-                        echo "</br>";
-                        echo "------------------------";
-                        echo "</br>";
-
-                        
-                        echo   date("Y/m/d") . "<br>";
-                        
-
-                        
-                                ?>
+         
+         
+                        <th class="date" >
+                        <span class="date-heading"> DATE </span>
+                        <span class="date-text"><?php echo   date("Y/m/d");?> </span>
                         </th>
-        <th width="125px" valign="top">TYPE
-         <?php
-         echo "</br>";
-         echo "-----------------------";
-         echo "</br>";
-          
-                 ?>
-        </th>
-        <th width="121px" valign="top">PRI
-         <?php
-         echo "</br>";
-         echo "----------------------";
-         echo "</br>";
+
         
-                 ?>
+        <th class="type">
+        <span class = "type-heading"> TYPE </span>
+         <span class="type-text"><?php    ?>
         </th>
-        <th width="150px" valign="top">I.V No
-        <?php
-         echo "</br>";
-         echo "----------------------------";
-         echo "</br>";
-          echo  ( $_SESSION['totalcolumns']["invoice"]); 
-                 ?>
+
+        <th class="pri">
+        <span class="pri-heading"> PRI</span>
+         <span class="pri-text"> <?php         ?>
         </th>
-        <th width="130px" valign="top">DATE
-        <?php
-         echo "</br>";
-         echo "------------------------";
-         echo "</br>";
-           echo   date("Y/m/d") . "<br>";
+
+        <th class="invoice">
+        <span class="invoice-heading"> I.V No </span>
+        <span class="invoice-text"><?php  echo  ( $_SESSION['totalcolumns']["invoice"]); ?></span>
+        </th>
         
-                 ?>
+        <th class="date" >
+        <span class="date-heading"> DATE </span>
+        <span class="date-text"><?php echo   date("Y/m/d");?> </span>
         </th>
         
         </tr>
         
 </table>
 
-<table border="1" class="collapse">
+<table class="main-table">
 <tr>
-        <th width="220px" height="30px" valign="top">PART No / DESIGNATION</th>
-        <th width="100px" valign="top">A/U</th>
-        <th width="100px" valign="top">DEMANDED</th>
-        <th width="85px" valign="top">ISSUED</th>
-        <th width="80px" valign="top">TO FOL</th>
-        <th width="80px" valign="top">RATE</th>
-        <th width="70px" valign="top">VALUE </th>
-        <th width="75px" valign="top">PAC No</th>
+        <th class="part-no">PART No / DESIGNATION</th>
+        <th class="a-u" >A/U</th>
+        <th class ="demand" >DEMANDED</th>
+        <th class="demand" >ISSUED</th>
+        <th class ="to-fol">TO FOL</th>
+        <th class="to-fol" >RATE</th>
+        <th class="value" >VALUE </th>
+        <th class="value" >PAC No</th>
 
 </tr>
  <tbody>
@@ -127,25 +92,25 @@ if(isset($_SESSION['totalcolumns']))
  <?php 
         for ( $i = 0 ; $i < 8 ; $i++){
  //foreach (  $ArrayOfProducts as $product):?>
-              <tr>
+              <tr >
                 
-                <td> <center>  <?php
+                <td  class="table-cells">  <?php
                  //$var = ($var > 2 ? true : false);  
                  echo  ( isset($ArrayOfProducts[$i]['part_no'] ) ? $ArrayOfProducts[$i]['part_no'] : "" ); 
                 echo "</br>";
-                 ?></center>
+                 ?>
 
-               <center>  <?php
-               echo ( isset($ArrayOfProducts[$i]['item_name'] ) ? $ArrayOfProducts[$i]['item_name'] : "" ); ?> </center> 
+               <?php
+               echo ( isset($ArrayOfProducts[$i]['item_name'] ) ? $ArrayOfProducts[$i]['item_name'] : "" ); ?> 
                 
                 </td>
-                <td> <center>    <?php echo ( isset($ArrayOfProducts[$i]['unit_id'] ) ? $ArrayOfProducts[$i]['unit_id'] : "" ); ?> </center> </td>
-                <td>  <center>  <?php echo ( isset($ArrayOfProducts[$i]['item_demanded'] ) ? $ArrayOfProducts[$i]['item_demanded'] : "" ); ?> </center> </td>
-                <td>  <center>  <?php echo ( isset($ArrayOfProducts[$i]['item_issued'] ) ? $ArrayOfProducts[$i]['item_issued'] : "" ); ?> </center> </td>
-                <td>  <center>  <?php echo ( isset($ArrayOfProducts[$i]['to_fol'] ) ? $ArrayOfProducts[$i]['to_fol'] : "" ); ?> </center> </td>   
-                 <td>  <center>  <?php echo ( isset($ArrayOfProducts[$i]['rate'] ) ? $ArrayOfProducts[$i]['rate'] : "" ); ?> </center> </td> 
-                <td>  <center>  <?php echo  ( isset($ArrayOfProducts[$i]['total'] ) ? $ArrayOfProducts[$i]['total'] : "" ); ?> </center> </td>  
-                <td>  <center>  <?php echo  ( isset($ArrayOfProducts[$i]['pac_no'] ) ? $ArrayOfProducts[$i]['pac_no'] : "" ); ?> </center> </td>                
+                <td  class="table-cells">    <?php echo ( isset($ArrayOfProducts[$i]['unit_id'] ) ? $ArrayOfProducts[$i]['unit_id'] : "" ); ?> </td>
+                <td  class="table-cells">    <?php echo ( isset($ArrayOfProducts[$i]['item_demanded'] ) ? $ArrayOfProducts[$i]['item_demanded'] : "" ); ?>  </td>
+                <td  class="table-cells">    <?php echo ( isset($ArrayOfProducts[$i]['item_issued'] ) ? $ArrayOfProducts[$i]['item_issued'] : "" ); ?>  </td>
+                <td  class="table-cells">    <?php echo ( isset($ArrayOfProducts[$i]['to_fol'] ) ? $ArrayOfProducts[$i]['to_fol'] : "" ); ?>  </td>   
+                 <td  class="table-cells">    <?php echo ( isset($ArrayOfProducts[$i]['rate'] ) ? $ArrayOfProducts[$i]['rate'] : "" ); ?>  </td> 
+                <td  class="table-cells">   <?php echo  ( isset($ArrayOfProducts[$i]['total'] ) ? $ArrayOfProducts[$i]['total'] : "" ); ?>  </td>  
+                <td  class="table-cells">    <?php echo  ( isset($ArrayOfProducts[$i]['pac_no'] ) ? $ArrayOfProducts[$i]['pac_no'] : "" ); ?>  </td>                
                
                   
                 
