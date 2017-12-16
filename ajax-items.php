@@ -17,9 +17,11 @@
       // query for parent table 
       if(is_array($ArrayOfProducts)){
         $p=insert_issued_product($ArrayOfProducts, $invoiceNo, $issuedBy, $mission, $unit_name, $demand_no, $vocab_sec );
+        $inv= insert_invoice($invoiceNo, $issuedBy);
         session_start();
         $_SESSION['totalcolumns'] = $_POST['issue_form_submit']; 
         echo $p;
+        echo $inv;
         
         }
         
@@ -300,15 +302,76 @@
    }
  ?>
 
+<?php
+ // Auto suggetion for generate report form and to fill by part number
+    $html = '';
+   if(isset($_POST['product_part_no_report']) && strlen($_POST['product_part_no_report']))
+   {     
+     $products = find_product_by_part($_POST['product_part_no_report']);
+     if($products){
+        foreach ($products as $product):
+           $html .= "<li class=\"list-group-item\">";
+           $html .= $product['part_no'];
+           $html .= "</li>";
+         endforeach;
+      } else {
+
+        $html .= '<li onClick=\"fill(\''.addslashes().'\')\" class=\"list-group-item\">';
+        $html .= 'Not found';
+        $html .= "</li>";
+
+      }
+      echo json_encode($html);
+   }
+
+   if(isset($_POST['product_by_part_report']) && strlen($_POST['product_by_part_report']))
+   {     
+     $product = get_product_by_part($_POST['product_by_part_report']);
+     $product = $product[0];
+    
+     $returnArr = array(
+       'name' => $product['item_name'],
+     );
+     //print_r($product);     
+     echo json_encode($returnArr);
+   }
+ ?>
 
 
+<?php
+ // Auto suggetion for report generation form and to fill by name
+    $html = '';
+   if(isset($_POST['product_name_report']) && strlen($_POST['product_name_report']))
+   {     
+     $products = find_product_by_name($_POST['product_name_report']);
+     if($products){
+        foreach ($products as $product):
+           $html .= "<li class=\"list-group-item\">";
+           $html .= $product['item_name'];
+           $html .= "</li>";
+         endforeach;
+      } else {
 
+        $html .= '<li onClick=\"fill(\''.addslashes().'\')\" class=\"list-group-item\">';
+        $html .= 'Not found';
+        $html .= "</li>";
 
+      }
+      echo json_encode($html);
+   }
 
-
-
-
-
+   if(isset($_POST['product_by_name_report']) && strlen($_POST['product_by_name_report']))
+   {     
+     $product = get_product_by_name($_POST['product_by_name_report']);
+     $product = $product[0];
+     
+     $returnArr = array(
+       'part' => $product['part_no'],
+     );
+     //print_r($product);     
+     echo json_encode($returnArr);
+   }
+ ?>
 
 
  <?php

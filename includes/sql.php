@@ -254,7 +254,7 @@ function findProduct($search){
    }
 
    
-// for part numbeer
+// for part number
    function get_product_by_part($product_part_name){
      global $db;
      $p_name = remove_junk($db->escape($product_part_name));
@@ -348,6 +348,32 @@ for ($i = 0; $i <count($ArrayOfProducts) ; ++$i)
    }
   
    }
+// insert invoice number into invoice table
+
+
+
+
+   function insert_invoice($invoiceNo, $issuedBy){
+ global $db;
+ 
+    $sql = "INSERT INTO invoice ( iv_no, issued_by) VALUES ";
+    
+        $iv_no = mysql_real_escape_string( $invoiceNo );
+        $issued_by = mysql_real_escape_string( $issuedBy );
+        $sql.= "('$iv_no','$issued_by') ";
+        
+
+     $db->query($sql);
+    
+        
+
+
+
+   }
+  
+   
+
+
 // insert recieve Object in table
    function insert_recieved_product($ArrayOfProducts, $recievedBy, $po_no){
 

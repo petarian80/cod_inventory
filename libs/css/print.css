@@ -1,19 +1,65 @@
+
+.form-outer{
+  width: 100%;
+  text-align: center;
+  margin: 5% 0;
+}
+
+.header-cons{
+  
+}
+
+.header-cons span:first-child{
+  width: 100%;
+  display: block;
+  height: 50%;
+  border-bottom: 1px solid; 
+}
+
+.header-cons span:last-child{
+  
+}
+
+.demand-no{
+  
+  
+}
+
+.demand-no span:first-child{
+   width: 100%;
+  display: block;
+  height: 50%;
+  border-bottom: 1px solid; 
+}
+.demand-no span:last-child{
+    
+}
+
+.date{
+  
+  
+}
+
+.date span:first-child{
+   width: 100%;
+  display: block;
+  height: 50%;
+  border-bottom: 1px solid; 
+}
 .mainForm{
-  position: absolute;
-  margin: 0 auto;
-  height: 500px;
-  width: 70%;
-  background: blue;
+  display: inline-block;
+  width: 70%
+ 
   
 }
 
 .mainForm table{
   width: 95%;
-  border: 1px solid black;
+  border: 1px solid ;
  
 }
 tr.header-row{
-  height: 60;
+  height: 60px;
   border: 1px solid black;
   
 }
@@ -43,7 +89,7 @@ tr.header-row{
 
 .demand-no{
  height: 45px;
- width: 25%;
+ width: 20%;
  vertical-align: top; 
  border: 1px solid black;
 }
@@ -126,7 +172,7 @@ tr.header-row{
   
   height: 35px;
  width: 10%;
- vertical-align: top; 
+ vertical-align: middle; 
  border: 1px solid black;
 text-align: center; 
 }

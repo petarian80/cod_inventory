@@ -475,6 +475,143 @@ function fillIssueRecordByname_recieve(item, text){
 // end of js for issue form
 
 
+//fill generate report form by part number
+
+function listByPart_report(item){
+         
+         var box = $(item);
+         var result = $(item).parent();
+         var formData = {
+             'product_part_no_report' : box.val()
+         };
+         
+         if(formData['product_part_no_report'].length >= 1){           
+           // process the form           
+           $.ajax({
+               type        : 'POST',
+               url         : 'ajax-items.php',
+               data        : formData,
+               dataType    : 'json',
+               encode      : true
+           })
+            .done(function(data) {
+                result.html(data).fadeIn();                   
+                result.children('li').click(function() {                     
+                    box.val($(this).text());
+                    fillIssueRecordByPart_report(item, $(this).text())
+                    result.fadeOut(500);  
+                    box.blur();
+                })
+            })
+         }
+
+}
+
+function fillIssueRecordByPart_report(item, text){
+
+    var formData = {
+        'product_by_part_report' : text
+    };
+
+    console.log(formData);
+    if(formData['product_by_part_report'].length >= 1){           
+        // process the form           
+        $.ajax({
+            type        : 'POST',
+            url         : 'ajax-items.php',
+            data        : formData,
+            dataType    : 'json',
+            encode      : true
+        })
+        .done(function(data) {                   
+            
+            console.log(data);
+            // data = data[0];
+            
+            if(data != null){
+           //     var tr = $(item).parent().parent();
+          //      tr.children('#item_name').children('input[name="item_name"]').val(data['name']);
+                
+            }
+            
+
+            
+        })
+    }
+
+}
+
+// fill field by product name for report generation
+
+function listByname_report(item){
+         
+         var box = $(item);
+         var result = $(item).parent();
+         var formData = {
+             'product_name_report' : box.val()
+         };
+         
+         if(formData['product_name_report'].length >= 1){           
+           // process the form           
+           $.ajax({
+               type        : 'POST',
+               url         : 'ajax-items.php',
+               data        : formData,
+               dataType    : 'json',
+               encode      : true
+           })
+            .done(function(data) {
+                result.html(data).fadeIn();                   
+                result.children('li').click(function() {                     
+                    box.val($(this).text());
+                    fillIssueRecordByname_report(item, $(this).text())
+                    result.fadeOut(500);  
+                    box.blur();
+                })
+            })
+         }
+
+}
+
+function fillIssueRecordByname_report(item, text){
+
+    var formData = {
+        'product_by_name_report' : text
+    };
+
+    console.log(formData);
+    if(formData['product_by_name_report'].length >= 1){           
+        // process the form           
+        $.ajax({
+            type        : 'POST',
+            url         : 'ajax-items.php',
+            data        : formData,
+            dataType    : 'json',
+            encode      : true
+        })
+        .done(function(data) {                   
+            
+            console.log(data);
+            // data = data[0];
+            
+            if(data != null){
+                var tr = $(item).parent();
+            tr.children('#part_no').children('input[name="part_no"]').val(data['part']);
+                
+            }
+            
+
+            
+        })
+    }
+
+}
+
+
+
+
+
+
 
 
 $(document).ready(function() {
