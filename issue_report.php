@@ -19,13 +19,14 @@
         <div class="panel-heading">
           <strong>
             <span class="glyphicon glyphicon-th"></span>
-            <span>Issue Report </span>
+            <span>Issue Product Report </span>
          </strong>
         </div>
         <div class="panel-body">
           <form method="post"  autocomplete="off" >
             <div class="form-group">
                 <input type="text" class="form-control" id="item_name" name="item_name" placeholder="Product Name" onkeyup="listByname_report(this)">
+                <div id="result" style="position:absolute" class="list-group"></div>
             </div>
              <div class="form-group">
                 <input type="text" class="form-control" id="part_no" name="part_no" placeholder="Product Part Number" onkeyup="listByPart_report(this)">

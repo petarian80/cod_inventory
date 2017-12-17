@@ -39,7 +39,7 @@
           <form method="post" name="item-issue-form" id="item-issue-form" autocomplete="off" action="item_issue.php" class="print">
           <div class="panel-heading clearfix" >
           <table id="header-table" >
-          <td id="iv_no"><input type="text" class="form-control" name="iv_no" placeholder="Invoice Number" ></td>
+          <td id="iv_no"><input type="text" required class="form-control" name="iv_no" placeholder="Invoice Number" ></td>
           <td id="issued_by"><input type="text" class="form-control" name="issued_by" placeholder="Issued By" ></td>
            <td id="mission">
             <input type="text" class="form-control" name="mission" id="mission" placeholder = "Mission" onkeyup="mission_list(this)" >

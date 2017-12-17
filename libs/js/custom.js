@@ -546,7 +546,7 @@ function fillIssueRecordByPart_report(item, text){
 function listByname_report(item){
          
          var box = $(item);
-         var result = $(item).parent();
+         var result = $(item).parent().children('#result');
          var formData = {
              'product_name_report' : box.val()
          };
@@ -561,11 +561,12 @@ function listByname_report(item){
                encode      : true
            })
             .done(function(data) {
+                
                 result.html(data).fadeIn();                   
                 result.children('li').click(function() {                     
                     box.val($(this).text());
                     fillIssueRecordByname_report(item, $(this).text())
-                    result.fadeOut(500);  
+                    result.fadeOut(500);
                     box.blur();
                 })
             })
