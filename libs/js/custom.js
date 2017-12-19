@@ -480,7 +480,7 @@ function fillIssueRecordByname_recieve(item, text){
 function listByPart_report(item){
          
          var box = $(item);
-         var result = $(item).parent();
+         var result = $(item).parent().children('#result');
          var formData = {
              'product_part_no_report' : box.val()
          };
@@ -498,9 +498,7 @@ function listByPart_report(item){
                 result.html(data).fadeIn();                   
                 result.children('li').click(function() {                     
                     box.val($(this).text());
-                    fillIssueRecordByPart_report(item, $(this).text())
-                    result.fadeOut(500);  
-                    box.blur();
+                    
                 })
             })
          }

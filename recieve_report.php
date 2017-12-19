@@ -1,10 +1,10 @@
 <?php
-  $page_title = 'Generate Recieve Product Report';
+  $page_title = 'Generate Recieve Report';
   require_once('includes/load.php');
  
  
   
-  //$all_unit = find_all('army_units')
+  
 ?>
 <?php include_once('layouts/header.php'); ?>
 
@@ -22,26 +22,17 @@
             <span>Recieve Product Report </span>
          </strong>
         </div>
-        <div class="panel-body">
-          <form method="post"  autocomplete="off" >
-            <div class="form-group">
-                <input type="text" class="form-control" id="item_name" name="item_name" placeholder="Product Name" onkeyup="listByname_report(this)">
-            </div>
-             <div class="form-group">
-                <input type="text" class="form-control" id="part_no" name="part_no" placeholder="Product Part Number" onkeyup="listByPart_report(this)">
-            </div>
-             <div class="form-group">
-                <input type="text" class="form-control" name="po_no" placeholder="PO Number">
-            </div>
-          
-             <div class="input-group">
-                  <input type="text" class="datepicker form-control" name="start-date" placeholder="From">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-menu-right"></i></span>
-                  <input type="text" class="datepicker form-control" name="end-date" placeholder="To">
-                </div>
-                
-            <button type="submit" name="generate_report" class="btn btn-primary">Generate Report</button>
-            
-        </form>
+          <div class="panel-heading">
+          <strong>
+            <ul>
+  
+  <span> Generate Recieve Report By </span>
+    
+    <ul>
+      <li><a href="recieve_product_name.php">Product Name</a></li>
+      <li><a href="recieve_part_no.php">Product Part Number</a></li>
+      <li><a href="po.php">Purchase Order Number</a></li>
+      <li><a href="recieve_date.php">Date Range</a></li>
+         </strong>
         </div>
-  <?php include_once('layouts/footer.php'); ?>
+   <?php include_once('layouts/footer.php'); ?>

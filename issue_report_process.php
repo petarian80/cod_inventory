@@ -16,12 +16,12 @@ $results = '';
       $results      = find_issue_by_dates($start_date,$end_date);
     else:
       $session->msg("d", $errors);
-      redirect('issue_report.php', false);
+      redirect('date.php', false);
     endif;
 
   } else {
     $session->msg("d", "Select dates");
-    redirect('issue_report.php', false);
+    redirect('date.php', false);
   }
 ?>
 <!doctype html>
@@ -63,6 +63,7 @@ $results = '';
        border: 1px solid #ededed;
      }table tbody tr td{
        vertical-align: middle;
+        text-align: center;
      }.sale-head,table.table thead tr th,table tbody tr td,table tfoot tr td{
        border: 1px solid #212121;
        white-space: nowrap;
@@ -87,7 +88,7 @@ $results = '';
           <tr>
               <th>Date</th>
               <th>Part Number</th>
-              <th>Product Title</th>
+              <th>Product Name</th>
               <th>Invoice Number</th>
               <th>Item Demanded</th>
               <th>Item Issued</th>
@@ -95,18 +96,24 @@ $results = '';
               
           </tr>
         </thead>
-        <tbody>
+        <tbody >
           <?php foreach($results as $result): ?>
-           <tr>
-              <td class=""><?php echo remove_junk($result['date']);?></td>
+           <tr >
+              <td class="desc"><h5><?php echo remove_junk($result['date']);?></h5></td>
               <td class="desc">
-                <h6><?php echo remove_junk(ucfirst($result['part_no']));?></h6>
+                <h5><?php echo remove_junk(ucfirst($result['part_no']));?></h5>
               </td>
-              <td class=""><?php echo remove_junk($result['item_name']);?></td>
-              <td class=""><?php echo remove_junk($result['iv_no']);?></td>
-              <td class=""><?php echo remove_junk($result['item_demanded']);?></td>
-              <td class=""><?php echo remove_junk($result['item_issued']);?></td>
-              <td class=""><?php echo remove_junk($result['rate']);?></td>
+              <td class="desc">
+              <h5><?php echo remove_junk($result['item_name']);?></h5>
+              </td>
+              <td class="desc">
+              <h5><?php echo remove_junk($result['iv_no']);?></h5>
+              </td>
+              <td class="desc">
+              <h5><?php echo remove_junk($result['item_demanded']);?></h5>
+              </td>
+              <td class="desc"><h5><?php echo remove_junk($result['item_issued']);?></h5></td>
+              <td class="desc"><h5><?php echo remove_junk($result['rate']);?></h5></td>
           </tr>
         <?php endforeach; ?>
         </tbody>
