@@ -503,6 +503,33 @@ function find_issue_by_dates($start_date,$end_date){
   return $db->query($sql);
 }
 
+// generate issue report by name and date range
+function find_issue_by_name($start_date,$end_date,$name){
+  global $db;
+  $name   = remove_junk($db->escape($_POST['item_name'])); 
+  $start_date  = date("Y-m-d", strtotime($start_date));
+  $end_date    = date("Y-m-d", strtotime($end_date+1));
+  $sql  = "SELECT part_no, item_name, iv_no,rate, item_demanded, item_issued,date ";
+  $sql .= " FROM issue  ";
+  $sql .= " WHERE item_name = '$name' AND date BETWEEN '{$start_date}' AND '{$end_date}'";
+ $sql .= " ORDER BY date(date) DESC";
+  return $db->query($sql);
+}
+
+
+
+
+// generate issue report by invoice number
+function find_issue_by_invoice($iv_no){
+  global $db;
+ $iv_no   = remove_junk($db->escape($_POST['iv_no']));  
+  $sql  = "SELECT part_no, item_name, iv_no,rate, item_demanded, item_issued,date ";
+  $sql .= " FROM issue  ";
+  $sql .= " WHERE iv_no='$iv_no'";
+  return $db->query($sql);
+}
+
+
 /*--------------------------------------------------------------*/
 /* Function for Generate recieve report by two dates
 /*--------------------------------------------------------------*/

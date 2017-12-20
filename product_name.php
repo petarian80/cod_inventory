@@ -21,7 +21,7 @@
          </strong>
         </div>
         <div class="panel-body">
-          <form method="post"  autocomplete="off" >
+          <form method="post"  autocomplete="off" action="issue_product_name.php" >
             <div class="form-group">
                 <input type="text" class="form-control" id="item_name" name="item_name" placeholder="Product Name" onkeyup="listByname_report(this)">
                 <div id="result" style="position:absolute" class="list-group"></div>
@@ -33,7 +33,7 @@
                   <input type="text" class="datepicker form-control" name="end-date" placeholder="To">
                 </div>
                 
-            <button type="submit" name="generate_report" class="btn btn-primary">Generate Report</button>
+            <button type="submit" name="submit" class="btn btn-primary">Generate Report</button>
             
         </form>
         </div>

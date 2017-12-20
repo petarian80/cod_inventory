@@ -7,21 +7,22 @@ $results = '';
 ?>
 <?php
   if(isset($_POST['submit'])){
- $req_dates = array('Invoice-Number');
-    validate_fields($req_dates);
-
+    $name = array('item_name');
+    validate_fields($name);
 
     if(empty($errors)):
-      $iv_no   = remove_junk($db->escape($_POST['iv_no']));
-      $results      = find_issue_by_invoice($iv_no);
+      $start_date   = remove_junk($db->escape($_POST['start-date']));
+      $end_date     = remove_junk($db->escape($_POST['end-date']));
+      $name     = remove_junk($db->escape($_POST['item_name']));
+      $results      = find_issue_by_name($start_date,$end_date,$name);
     else:
       $session->msg("d", $errors);
-      redirect('invoice.php', false);
+      redirect('product_name.php', false);
     endif;
 
   } else {
-    $session->msg("d", "Enter Invoice Number");
-    redirect('invoice.php', false);
+    $session->msg("d", "Select dates");
+    redirect('product_name.php', false);
   }
 ?>
 <!doctype html>
@@ -81,16 +82,15 @@ $results = '';
     <div class="page-break">
        <div class="sale-head pull-right">
            <h1>Issue Report</h1>
-           <strong>Invoice Number #  <?php if(isset($iv_no)){ echo  ($iv_no);}?>  </strong>
+           <strong>From <?php if(isset($start_date)){ echo  ($start_date);}?> To <?php if(isset($end_date)){echo $end_date;}?> </strong>
        </div>
-
-       
       <table class="table table-border">
         <thead>
           <tr>
               <th>Date</th>
               <th>Part Number</th>
               <th>Product Name</th>
+              <th>Invoice Number</th>
               <th>Item Demanded</th>
               <th>Item Issued</th>
               <th>Rate</th>
@@ -108,6 +108,9 @@ $results = '';
               <h5><?php echo remove_junk($result['item_name']);?></h5>
               </td>
               <td class="desc">
+              <h5><?php echo remove_junk($result['iv_no']);?></h5>
+              </td>
+              <td class="desc">
               <h5><?php echo remove_junk($result['item_demanded']);?></h5>
               </td>
               <td class="desc"><h5><?php echo remove_junk($result['item_issued']);?></h5></td>
@@ -121,7 +124,7 @@ $results = '';
   <?php
     else:
         $session->msg("d", "Sorry no sales has been found. ");
-        redirect('invoice.php', false);
+        redirect('issue_report.php', false);
      endif;
   ?>
 </body>

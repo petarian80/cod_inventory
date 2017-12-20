@@ -23,7 +23,7 @@
         <div class="panel-body">
           <form method="post"  autocomplete="off" action="invoice_report_process.php" >
             <div class="form-group">
-                <input type="text" class="form-control" id="iv_no" name="iv_no" required placeholder="Invoice Number">
+                <input type="text" class="form-control" id="iv_no" name="iv_no" placeholder="Invoice Number">
                 <div id="result" style="position:absolute" class="list-group"></div>
            </div>
      
