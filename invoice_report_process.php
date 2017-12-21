@@ -7,8 +7,8 @@ $results = '';
 ?>
 <?php
   if(isset($_POST['submit'])){
- $req_dates = array('Invoice-Number');
-    validate_fields($req_dates);
+ $req = array('iv_no');
+    validate_fields($req);
 
 
     if(empty($errors)):

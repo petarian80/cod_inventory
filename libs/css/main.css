@@ -311,3 +311,13 @@ input[type=file]{
   width: 125px;
   height: 125px;
 }
+
+select{
+width : 70%;
+height: 25px;
+padding: 1px;
+font-size: 15px; 
+border: solid grey;
+
+margin: 10px 5px 30px 0;
+}

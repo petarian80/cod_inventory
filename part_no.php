@@ -12,7 +12,7 @@
      </div>
   </div>
    <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-7">
       <div class="panel panel-default">
         <div class="panel-heading">
           <strong>
@@ -27,13 +27,7 @@
                 <div id="result" style="position:absolute" class="list-group"></div>
            </div>
              
-             <div class="input-group">
-                  <input type="text" class="datepicker form-control" name="start-date" placeholder="From">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-menu-right"></i></span>
-                  <input type="text" class="datepicker form-control" name="end-date" placeholder="To">
-                </div>
-               <div > 
-            <button type="submit" name="generate_report" class="btn btn-primary">Generate Report</button>
+             <button type="submit" name="generate_report" class="btn btn-primary">Generate Report</button>
             </div>
         </form>
         </div>

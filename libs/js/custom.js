@@ -475,7 +475,7 @@ function fillIssueRecordByname_recieve(item, text){
 // end of js for issue form
 
 
-//fill generate report form by part number
+// generate report form by part number
 
 function listByPart_report(item){
          
@@ -498,44 +498,11 @@ function listByPart_report(item){
                 result.html(data).fadeIn();                   
                 result.children('li').click(function() {                     
                     box.val($(this).text());
-                    
+                     result.fadeOut(500);
+                    box.blur();
                 })
             })
          }
-
-}
-
-function fillIssueRecordByPart_report(item, text){
-
-    var formData = {
-        'product_by_part_report' : text
-    };
-
-    console.log(formData);
-    if(formData['product_by_part_report'].length >= 1){           
-        // process the form           
-        $.ajax({
-            type        : 'POST',
-            url         : 'ajax-items.php',
-            data        : formData,
-            dataType    : 'json',
-            encode      : true
-        })
-        .done(function(data) {                   
-            
-            console.log(data);
-            // data = data[0];
-            
-            if(data != null){
-           //     var tr = $(item).parent().parent();
-          //      tr.children('#item_name').children('input[name="item_name"]').val(data['name']);
-                
-            }
-            
-
-            
-        })
-    }
 
 }
 
@@ -563,7 +530,6 @@ function listByname_report(item){
                 result.html(data).fadeIn();                   
                 result.children('li').click(function() {                     
                     box.val($(this).text());
-                    fillIssueRecordByname_report(item, $(this).text())
                     result.fadeOut(500);
                     box.blur();
                 })
@@ -571,45 +537,6 @@ function listByname_report(item){
          }
 
 }
-
-function fillIssueRecordByname_report(item, text){
-
-    var formData = {
-        'product_by_name_report' : text
-    };
-
-    console.log(formData);
-    if(formData['product_by_name_report'].length >= 1){           
-        // process the form           
-        $.ajax({
-            type        : 'POST',
-            url         : 'ajax-items.php',
-            data        : formData,
-            dataType    : 'json',
-            encode      : true
-        })
-        .done(function(data) {                   
-            
-            console.log(data);
-            // data = data[0];
-            
-            if(data != null){
-                var tr = $(item).parent();
-            tr.children('#part_no').children('input[name="part_no"]').val(data['part']);
-                
-            }
-            
-
-            
-        })
-    }
-
-}
-
-
-
-
-
 
 
 
@@ -839,6 +766,44 @@ $(document).ready(function() {
                setTimeout(function() {
                window.location.reload();
           },0);
+
+                
+            })
+        }
+
+ 
+
+    });
+
+    $('#product-name-search').submit(function(e){
+        e.preventDefault();
+
+        var name = $(this).find('input[name="item_name"]').val();
+
+
+        var formData = {
+            'product-name-search' : name  
+        };
+       
+        //console.log(formData);
+       
+        if(name.length > 0){           
+            // process the form           
+            $.ajax({
+                type        : 'POST',
+                url         : 'ajax-items.php',
+                data        : formData,
+                encode      : true
+            })
+            .done(function(data) {                   
+                
+
+                console.log("return Data", data);
+                // data = data[0];
+                $('#format-table').html(data);
+
+                
+                
 
                 
             })

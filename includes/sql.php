@@ -283,7 +283,13 @@ function findProduct($search){
    }
 
   
-
+function get_product_by_name_from_issue($product_by_name){
+     global $db;
+     $p_name = remove_junk($db->escape($product_by_name));
+     $sql = "SELECT * FROM issue WHERE item_name = '$p_name'";
+     $result = find_by_sql($sql);
+     return $result;
+   }
   
   
 // for part number & for name
@@ -349,10 +355,6 @@ for ($i = 0; $i <count($ArrayOfProducts) ; ++$i)
   
    }
 // insert invoice number into invoice table
-
-
-
-
    function insert_invoice($invoiceNo, $issuedBy){
  global $db;
  
@@ -364,10 +366,6 @@ for ($i = 0; $i <count($ArrayOfProducts) ; ++$i)
         
 
      $db->query($sql);
-    
-        
-
-
 
    }
   

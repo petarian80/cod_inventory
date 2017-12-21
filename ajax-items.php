@@ -410,4 +410,26 @@
 
     echo json_encode($html);
   }
+
+  // find all product
+  if(isset($_POST['product-name-search']) && strlen($_POST['product-name-search']))
+  {
+    $product_title = remove_junk($db->escape($_POST['product-name-search']));
+    $html = '';
+    if($results = get_product_by_name($product_title)){
+        print_r($results);
+        foreach ($results as $result) {
+           
+           foreach($result as $r){
+              $html .= '<div>' . $r .'</div><br/>';
+           }  
+
+        }
+    } else {
+        $html ='<tr><td>product name not resgister in database</td></tr>';
+    }
+
+    echo json_encode($html);
+  }
+
  ?>

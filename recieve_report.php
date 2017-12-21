@@ -14,7 +14,7 @@
      </div>
   </div>
    <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-7">
       <div class="panel panel-default">
         <div class="panel-heading">
           <strong>
@@ -24,15 +24,18 @@
         </div>
           <div class="panel-heading">
           <strong>
-            <ul>
-  
+   
   <span> Generate Recieve Report By </span>
     
-    <ul>
-      <li><a href="recieve_product_name.php">Product Name</a></li>
-      <li><a href="recieve_part_no.php">Product Part Number</a></li>
-      <li><a href="po.php">Purchase Order Number</a></li>
-      <li><a href="recieve_date.php">Date Range</a></li>
-         </strong>
-        </div>
+   <div>
+    <select class="select" onchange="javascript:location.href = this.value;" name="select">
+            <option selected disabled> Select Type </option>    
+            <option value="recieve_product_name.php" > Product Name </option>
+            <option value ="recieve_part_no.php"> Part Number </option>
+            <option value = "po.php"> Purchase Order Number </option>
+
+                   </strong>
+                      </select>    
+                  </div>
+      </div>
    <?php include_once('layouts/footer.php'); ?>

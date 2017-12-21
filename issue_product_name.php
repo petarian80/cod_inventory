@@ -7,7 +7,7 @@ $results = '';
 ?>
 <?php
   if(isset($_POST['submit'])){
-    $name = array('item_name');
+    $name = array('item_name','start-date','end-date');
     validate_fields($name);
 
     if(empty($errors)):
@@ -82,7 +82,9 @@ $results = '';
     <div class="page-break">
        <div class="sale-head pull-right">
            <h1>Issue Report</h1>
+           <strong> Product Name : <?php if(isset($name)){ echo  ($name);}?>  </strong>
            <strong>From <?php if(isset($start_date)){ echo  ($start_date);}?> To <?php if(isset($end_date)){echo $end_date;}?> </strong>
+
        </div>
       <table class="table table-border">
         <thead>

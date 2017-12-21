@@ -14,7 +14,7 @@
      </div>
   </div>
    <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-7">
       <div class="panel panel-default">
         <div class="panel-heading">
           <strong>
@@ -23,16 +23,17 @@
          </strong>
         </div>
           <div class="panel-heading">
-          <strong>
-            <ul>
-  
-  <span> Generate Issue Report By </span>
-    
-    <ul>
-      <li><a href="product_name.php">Product Name</a></li>
-      <li><a href="part_no.php">Product Part Number</a></li>
-      <li><a href="invoice.php">Invoice Number</a></li>
-      <li><a href="date.php">Date Range</a></li>
-         </strong>
-        </div>
+          <strong> 
+  <span> Generate Issue Report By </span></strong>
+    <div>
+    <select class="select" onchange="javascript:location.href = this.value;" name="select">
+            <option selected disabled> Select Type </option>    
+            <option value="product_name.php" > Product Name </option>
+            <option value ="part_no.php"> Part Number </option>
+            <option value = "invoice.php"> Invoice Number </option>
+
+                   </strong>
+                      </select>    
+                  </div>
+
    <?php include_once('layouts/footer.php'); ?>
