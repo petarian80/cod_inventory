@@ -18,21 +18,25 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <strong>
+<i class="fa fa-file-text" aria-hidden="true"></i>
             <span class="glyphicon glyphicon-th"></span>
             <span>Recieve Product Report </span>
          </strong>
         </div>
           <div class="panel-heading">
           <strong>
-   
-  <span> Generate Recieve Report By </span>
+            <span class="glyphicon glyphicon-th"></span>
+          <span> Generate Recieve Report By </span>
     
    <div>
-    <select class="select" onchange="javascript:location.href = this.value;" name="select">
+            <span class="glyphicon glyphicon-th"></span>
+
+        <select class="select" onchange="javascript:location.href = this.value;" name="select">
             <option selected disabled> Select Type </option>    
             <option value="recieve_product_name.php" > Product Name </option>
             <option value ="recieve_part_no.php"> Part Number </option>
             <option value = "po.php"> Purchase Order Number </option>
+            <option value = "recieve_date.php"> Date Range </option>
 
                    </strong>
                       </select>    

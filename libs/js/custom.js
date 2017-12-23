@@ -109,6 +109,7 @@ function mission_list(item){
          
          var box = $(item);
          var result = $(item).parent().children("#result");
+         result.empty();
          var formData = {
              'mission_list' : box.val()
          };
@@ -139,6 +140,7 @@ function findProduct(item){
          
          var box = $(item);
          var result = $(box).parent().children("#result");
+         result.empty();
          var formData = {
              'search_product' : box.val()
          };
@@ -169,6 +171,7 @@ function unit_list(item){
          
          var box = $(item);
          var result = $(item).parent().children("#result");
+         result.empty();
          var formData = {
              'unit_list' : box.val()
          };
@@ -200,6 +203,7 @@ function listByPart(item){
          
          var box = $(item);
          var result = $(item).parent().children("#result");
+         result.empty();
          var formData = {
              'product_part_no' : box.val()
          };
@@ -271,6 +275,7 @@ function listByname(item){
          
          var box = $(item);
          var result = $(item).parent().children("#result");
+         result.empty();
          var formData = {
              'product_name' : box.val()
          };
@@ -339,6 +344,7 @@ function listByPart_recieve(item){
          
          var box = $(item);
          var result = $(item).parent().children("#result");
+         result.empty();
          var formData = {
              'product_part_no_recieve' : box.val()
          };
@@ -409,6 +415,7 @@ function listByname_recieve(item){
          
          var box = $(item);
          var result = $(item).parent().children("#result");
+         result.empty();
          var formData = {
              'product_name_recieve' : box.val()
          };
@@ -481,6 +488,7 @@ function listByPart_report(item){
          
          var box = $(item);
          var result = $(item).parent().children('#result');
+         result.empty();
          var formData = {
              'product_part_no_report' : box.val()
          };
@@ -512,6 +520,7 @@ function listByname_report(item){
          
          var box = $(item);
          var result = $(item).parent().children('#result');
+         result.empty();
          var formData = {
              'product_name_report' : box.val()
          };
@@ -815,9 +824,98 @@ $(document).ready(function() {
 
 });
 
+function issueFormSelectType(temp){
+  //  $('#item-recieve-form').submit(function(e){
+
+    switch(temp) {
+        case "1":
+       issueFormSelectTypeEnable();
+            break;
+        case "2":
+        issueFormSelectTypeEnable();
+            break;
+        case "3":
+        issueFormSelectTypeEnable();
+            break;
+        case "4":
+        issueFormSelectTypeEnable();
+        break;
+
+        default:
+        issueFormSelectTypeDisable();
+    }
+
+
+}
+
+function issueFormSelectTypeEnable(){
+    $('#issue-report-select').find('input[name="item_name"]').prop( "disabled", false );;
+    $('#issue-report-select').find('button[name="generate_report"]').prop( "disabled", false );;
+}
+
+function issueFormSelectTypeDisable(){
+  $('#issue-report-select').find('input[name="item_name"]').prop( "disabled", true );;
+    $('#issue-report-select').find('button[name="generate_report"]').prop( "disabled", true );;
+}
 
 
 
+function issueFormfetchData(item){
+  //  $('#item-recieve-form').submit(function(e){
+    console.log("hello");
+    var temp = $('#issue-report-select').find("select option:selected").val();
+    var formData = {};
+    var box = $(item);
+    var result = $(item).parent().children('#result');
+    result.empty();
+    switch(temp) {
+        case "1":
+        var formData = {
+            "product_name" : box.val()
+        };
+            break;
+        case "2":
+        var formData = {
+            "product_part_no" : box.val()
+        };
+        
+            break;
+        case "3":
+        name="";
+            break;
+        case "4":
+        
+        break;
+
+        default:
+        
+    }
+
+
+    
+    
+    console.log(formData);
+    if(box.val().length >= 1){           
+    // process the form           
+    $.ajax({
+        type        : 'POST',
+        url         : 'ajax-items.php',
+        data        : formData,
+        dataType    : 'json',
+        encode      : true
+    })
+    .done(function(data) {
+        
+        result.html(data).fadeIn();                   
+        result.children('li').click(function() {                     
+            box.val($(this).text());
+            result.fadeOut(500);
+            box.blur();
+        })
+    })
+    }
+
+}
 
 
 

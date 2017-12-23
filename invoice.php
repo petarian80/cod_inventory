@@ -16,6 +16,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <strong>
+          <i class="fa fa-file-text" aria-hidden="true"></i>
             <span class="glyphicon glyphicon-th"></span>
             <span>Issue Product Report By Invoice Number </span>
          </strong>
@@ -27,7 +28,7 @@
                 <div id="result" style="position:absolute" class="list-group"></div>
            </div>
      
-            <button type="submit" name="submit" class="btn btn-primary">Generate Report</button>
+            <button type="submit" name="submit" class="btn btn-danger">Generate Report</button>
             
         </form>
         </div>

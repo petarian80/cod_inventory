@@ -39,19 +39,19 @@
             <ul class="dropdown-menu">
               <li>
                   <a href="profile.php?id=<?php echo (int)$user['id'];?>">
-                      <i class="glyphicon glyphicon-user"></i>
+<i class="fa fa-user" aria-hidden="true"></i>
                       Profile
                   </a>
               </li>
              <li>
                  <a href="edit_account.php" title="edit account">
-                     <i class="glyphicon glyphicon-cog"></i>
+<i class="fa fa-wrench" aria-hidden="true"></i>
                      Settings
                  </a>
              </li>
              <li class="last">
                  <a href="logout.php">
-                     <i class="glyphicon glyphicon-off"></i>
+<i class="fa fa-sign-out" aria-hidden="true"></i>
                      Logout
                  </a>
              </li>
