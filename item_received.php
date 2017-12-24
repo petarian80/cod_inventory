@@ -1,5 +1,5 @@
 <?php
-  $page_title = 'Product Recieved';
+  $page_title = 'Product received';
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
  
@@ -17,7 +17,7 @@
 
    
      //$session->msg("d", $errors);
-     //redirect('item_recieved.php',false);
+     //redirect('item_received.php',false);
    }
 
  
@@ -41,10 +41,10 @@
         </div>
 
         <div class="panel-body table-responsive">
-          <form method="post" name="item-recieve-form" id="item-recieve-form" autocomplete="off" action="item_recieved.php">
+          <form method="post" name="item-recieve-form" id="item-recieve-form" autocomplete="off" action="item_received.php">
           <div class="panel-heading clearfix">
           <table id="header-table">
-          <td id="recieved_by"><input type="text" class="form-control" name="recieved_by" placeholder="Recieved By" ></td>
+          <td id="received_by"><input type="text" class="form-control" name="received_by" placeholder="received By" ></td>
            <td id="po_no"><input type="text" class="form-control" name="po_no" placeholder="PO NUMBER" required ></td>
           <strong>
             <button type="submit" name= "item_recieve" class="btn btn-info pull-right btn-sm"> Recieve Product</button>
@@ -58,7 +58,7 @@
               <th> Part Number </th>
               <th> Item Name </th>
                <th> Unit </th>
-              <th> Qty Recieved </th>
+              <th> Qty received </th>
               <th> ALP Number </th>
               <th> Categorie</th>
               <th> Rate</th>                 

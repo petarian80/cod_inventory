@@ -243,6 +243,15 @@ function findProduct($search){
      return $result;
    }
 
+   // for invoice number
+   function find_invoice($invoice_from_list){
+     global $db;
+     $p_name = remove_junk($db->escape($invoice_from_list));
+     $sql = "SELECT iv_no FROM invoice WHERE iv_no like '%$p_name%' LIMIT 5";
+     $result = find_by_sql($sql);
+     return $result;
+   }
+
    
 // for part number
    function find_product_by_part($product_part_name){
@@ -373,11 +382,11 @@ for ($i = 0; $i <count($ArrayOfProducts) ; ++$i)
 
 
 // insert recieve Object in table
-   function insert_recieved_product($ArrayOfProducts, $recievedBy, $po_no){
+   function insert_received_product($ArrayOfProducts, $receivedBy, $po_no){
 
   global $db;  
   $pr_qtyArray = array(); 
-    $sql = "INSERT INTO recieved (part_no, item_name, unit_id, quantity, alp_no, categorie_id, po_no,drs_no,crv_no,rate,recieved_by,firm,remarks) VALUES ";
+    $sql = "INSERT INTO received (part_no, item_name, unit_id, quantity, alp_no, categorie_id, po_no,drs_no,crv_no,rate,received_by,firm,remarks) VALUES ";
   
 for ($i = 0; $i <count($ArrayOfProducts) ; ++$i)
 {
@@ -395,10 +404,10 @@ for ($i = 0; $i <count($ArrayOfProducts) ; ++$i)
         $drs_no = mysql_real_escape_string($row['drs_no'] );
         $crv_no = mysql_real_escape_string($row['crv_no'] );
         $rate = (int) $row['rate'];
-        $recieved_by = mysql_real_escape_string( $recievedBy );
+        $received_by = mysql_real_escape_string( $receivedBy );
         $firm = mysql_real_escape_string($row['firm'] );
         $remarks = mysql_real_escape_string($row['remarks'] );
-        $sql.= "('$part_no', '$item_name', '$unit_id', '$quantity', '$alp_no', '$categorie_id', '$po_no', '$drs_no', '$crv_no', '$rate','$recieved_by', '$firm' ,'$remarks') ";
+        $sql.= "('$part_no', '$item_name', '$unit_id', '$quantity', '$alp_no', '$categorie_id', '$po_no', '$drs_no', '$crv_no', '$rate','$received_by', '$firm' ,'$remarks') ";
       
         $pr_qtyArray[$part_no] = $quantity;
         
@@ -501,7 +510,7 @@ function find_issue_by_dates($start_date,$end_date){
   return $db->query($sql);
 }
 
-// generate issue report by invoice number
+// generate issue report by product name
 function find_issue_by_item_name($item_name){
   global $db;
  $item_name   = remove_junk($db->escape($item_name));  
@@ -511,6 +520,16 @@ function find_issue_by_item_name($item_name){
   return find_by_sql($sql);
 }
 
+
+// generate recieve report by product name
+function find_recieve_by_item_name($item_name){
+  global $db;
+ $item_name   = remove_junk($db->escape($item_name));  
+  $sql  = "SELECT part_no,item_name, quantity,po_no,rate,received_by, date ";
+  $sql .= " FROM received ";
+  $sql .= " WHERE item_name='$item_name'";
+  return find_by_sql($sql);
+}
 // generate issue report by part number
 
 function find_issue_by_part_no($item_name){
@@ -522,6 +541,16 @@ function find_issue_by_part_no($item_name){
   return find_by_sql($sql);
 }
 
+
+// generate recieve report by part number
+function find_recieve_by_part_no($item_name){
+  global $db;
+ $item_name   = remove_junk($db->escape($item_name));  
+  $sql  = "SELECT part_no,item_name, quantity,po_no,rate,received_by, date ";
+  $sql .= " FROM received ";
+  $sql .= " WHERE part_no='$item_name'";
+  return find_by_sql($sql);
+}
 // generate issue report by invoice number
 
 function find_issue_by_invoice_no($item_name){
@@ -542,7 +571,7 @@ function find_recieve_by_dates($start_date,$end_date){
   $start_date  = date("Y-m-d", strtotime($start_date));
   $end_date    = date("Y-m-d", strtotime($end_date+1));
   $sql  = "SELECT part_no, item_name,quantity,date,rate ";
-  $sql .= " FROM recieved  ";
+  $sql .= " FROM received  ";
   $sql .= " WHERE date BETWEEN '{$start_date}' AND '{$end_date}'";
  $sql .= " ORDER BY date(date) DESC";
   return $db->query($sql);

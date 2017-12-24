@@ -198,6 +198,40 @@ function unit_list(item){
 }
 
 
+// invoice number list
+
+
+function invoice_list(item){
+         
+         var box = $(item);
+         var result = $(item).parent().children("#result");
+         result.empty();
+         var formData = {
+             'invoice_list' : box.val()
+         };
+         
+         if(formData['invoice_list'].length >= 1){           
+           // process the form           
+           $.ajax({
+               type        : 'POST',
+               url         : 'ajax-items.php',
+               data        : formData,
+               dataType    : 'json',
+               encode      : true
+           })
+            .done(function(data) {
+                result.html(data).fadeIn();                   
+                result.children('li').click(function() {                     
+                    box.val($(this).text());
+                   result.fadeOut(500);  
+                    box.blur();
+                })
+            })
+         }
+
+}
+
+
 
 function listByPart(item){
          
@@ -629,6 +663,45 @@ console.log(inObj);
     })
 
     
+    // recieve report  (get data from database)
+$('#recieve-report-select').submit(function(e){
+        e.preventDefault();        
+
+        var input_value = $(this).find('input[name="item_name"]').val();
+        console.log(input_value);
+         var select_input = $('#recieve-report-select').find("select option:selected").val();
+            console.log(select_input);
+       
+            var inObj = {
+            'input_value' : input_value,
+            'selected_type' : select_input
+             };
+
+console.log(inObj);
+        var formData = {
+            'recieve_report_submit' : inObj  
+        };
+             console.log(formData);
+
+
+        if(inObj['input_value'].length > 0){           
+            // process the form           
+            $.ajax({
+                type        : 'POST',
+                url         : 'ajax-items.php',
+                data        : formData,
+                encode      : true
+            })
+        
+        .done(function(data) {
+                
+             console.log("return Data", data);
+            
+                })
+        }
+
+    })
+
        
        
 
@@ -788,11 +861,11 @@ console.log(inObj);
         //console.log(issueObjects);
 
        
-        var recieved_by = $('#header-table td#recieved_by').find('input[name="recieved_by"]').val()
+        var received_by = $('#header-table td#received_by').find('input[name="received_by"]').val()
         var po_no = $('#header-table td#po_no').find('input[name="po_no"]').val()
         var inObj = {
             'form' : recieveObjects,
-            'recieved_by' :  recieved_by,
+            'received_by' :  received_by,
              'po_no' : po_no
         };
 
@@ -894,16 +967,25 @@ function issueFormSelectType(temp){
 }
 
 function issueFormSelectTypeEnable(){
+    // for issue report
     $('#issue-report-select').find('input[name="item_name"]').prop( "disabled", false );;
     $('#issue-report-select').find('button[name="generate_report"]').prop( "disabled", false );;
+   
+   //for recieve report 
+    $('#recieve-report-select').find('input[name="item_name"]').prop( "disabled", false );;
+    $('#recieve-report-select').find('button[name="generate_report"]').prop( "disabled", false );;
 }
 
 function issueFormSelectTypeDisable(){
-  $('#issue-report-select').find('input[name="item_name"]').prop( "disabled", true );;
+  // for issue report
+    $('#issue-report-select').find('input[name="item_name"]').prop( "disabled", true );;
+    $('#issue-report-select').find('button[name="generate_report"]').prop( "disabled", true );;
+    // for recieve report
+    $('#issue-report-select').find('input[name="item_name"]').prop( "disabled", true );;
     $('#issue-report-select').find('button[name="generate_report"]').prop( "disabled", true );;
 }
 
-// auto sugestion
+// auto sugestion for issUE report
 
 function issueFormfetchData(item){
   //  $('#item-recieve-form').submit(function(e){
@@ -926,7 +1008,9 @@ function issueFormfetchData(item){
         
             break;
         case "3":
-        name="";
+      var formData = {
+            "invoice_list" : box.val()
+        };
             break;
         case "4":
         
@@ -935,9 +1019,64 @@ function issueFormfetchData(item){
         default:
         
     }
-
-
     
+    console.log(formData);
+    if(box.val().length >= 1){           
+    // process the form           
+    $.ajax({
+        type        : 'POST',
+        url         : 'ajax-items.php',
+        data        : formData,
+        dataType    : 'json',
+        encode      : true
+    })
+    .done(function(data) {
+        
+        result.html(data).fadeIn();                   
+        result.children('li').click(function() {                     
+            box.val($(this).text());
+            result.fadeOut(500);
+            box.blur();
+        })
+    })
+    }
+
+}
+
+
+
+// auto sugestion for recieve report
+
+function recieveFormfetchData(item){
+  //  $('#item-recieve-form').submit(function(e){
+    console.log("hello");
+    var temp = $('#recieve-report-select').find("select option:selected").val();
+    var formData = {};
+    var box = $(item);
+    var result = $(item).parent().children('#result');
+    result.empty();
+    switch(temp) {
+        case "1":
+        var formData = {
+            "product_name" : box.val()
+        };
+            break;
+        case "2":
+        var formData = {
+            "product_part_no" : box.val()
+        };
+        
+            break;
+        case "3":
+
+            break;
+        case "4":
+        
+        break;
+
+        default:
+        
+    }
     
     console.log(formData);
     if(box.val().length >= 1){           

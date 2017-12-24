@@ -52,7 +52,7 @@
       </a>
       <ul class="nav submenu">
          <li><a href="item_issue.php"> Issue Item</a> </li>
-         <li><a href="item_recieved.php">Recieve Item</a> </li>
+         <li><a href="item_received.php">Recieve Item</a> </li>
      </ul>
   </li>
 <li>

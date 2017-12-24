@@ -54,6 +54,49 @@
  ?>
 
 
+<?php
+ // recieve report form 
+   if(isset($_POST['recieve_report_submit']))
+   {     
+      $ArrayOfProducts = $_POST['recieve_report_submit']['input_value'];
+      $Array = $_POST['recieve_report_submit']['selected_type'];
+
+      switch($Array) {
+        case "1":
+        
+        $p=find_recieve_by_item_name($ArrayOfProducts);
+        print_r($p);
+        echo $p;
+        
+         break;
+       
+       
+        case "2":
+
+        $p = find_recieve_by_part_no($ArrayOfProducts);
+        print_r($p);
+        echo $p;
+
+            break;
+        
+        
+        case "3":
+       
+        $p=find_issue_by_invoice_no($ArrayOfProducts);
+        print_r($p);
+        echo $p;
+      
+          break;
+      
+        case "4":
+        
+        break;
+
+         }  
+      }
+      
+ ?>
+
 
 
 
@@ -89,11 +132,11 @@
    if(isset($_POST['recieve_form_submit']))
    {     
       $ArrayOfProducts = $_POST['recieve_form_submit']["form"];
-      $recievedBy = $_POST['recieve_form_submit']["recieved_by"];
+      $receivedBy = $_POST['recieve_form_submit']["received_by"];
       $po_no = $_POST['recieve_form_submit']["po_no"];
       // query for parent table 
       if(is_array($ArrayOfProducts)){
-        $p=insert_recieved_product($ArrayOfProducts, $recievedBy,$po_no );
+        $p=insert_received_product($ArrayOfProducts, $receivedBy,$po_no );
         echo $p;
       }
       
@@ -169,6 +212,33 @@
         foreach ($unit as $unt):
            $html .= "<li class=\"list-group-item\">";
            $html .= $unt['unit_name'];
+           $html .= "</li>";
+         endforeach;
+      } else {
+
+        $html .= '<li onClick=\"fill(\''.addslashes().'\')\" class=\"list-group-item\">';
+        $html .= 'Not found';
+        $html .= "</li>";
+
+      }
+      echo json_encode($html);
+
+
+   }
+   
+ ?>
+
+
+<?php
+ // Auto suggetion for invoice number form invoice table
+    $html = '';
+   if(isset($_POST['invoice_list']) && strlen($_POST['invoice_list']))
+   {     
+     $invoice = find_invoice($_POST['invoice_list']);
+     if($invoice){
+        foreach ($invoice as $inv):
+           $html .= "<li class=\"list-group-item\">";
+           $html .= $inv['iv_no'];
            $html .= "</li>";
          endforeach;
       } else {
@@ -382,7 +452,7 @@
           $html  .= "<input type=\"date\" class=\"form-control datePicker\" name=\"date\" data-date data-date-format=\"yyyy-mm-dd\">";
           $html  .= "</td>";
           $html  .= "<td>";
-          $html  .= "<button type=\"submit\" name=\"item_recieved\" class=\"btn btn-primary\">Add sale</button>";
+          $html  .= "<button type=\"submit\" name=\"item_received\" class=\"btn btn-primary\">Add sale</button>";
           $html  .= "</td>";
           $html  .= "</tr>";
 

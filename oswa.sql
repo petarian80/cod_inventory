@@ -1267,10 +1267,10 @@ INSERT INTO `products` (`id`, `part_no`, `item_name`, `rate`, `unit_id`, `quanti
 -- --------------------------------------------------------
 
 --
--- Table structure for table `recieved`
+-- Table structure for table `received`
 --
 
-CREATE TABLE `recieved` (
+CREATE TABLE `received` (
   `part_no` varchar(150) NOT NULL,
   `item_name` varchar(150) NOT NULL,
   `unit_id` varchar(150) NOT NULL,
@@ -1281,17 +1281,17 @@ CREATE TABLE `recieved` (
   `drs_no` varchar(150) NOT NULL,
   `crv_no` varchar(150) NOT NULL,
   `rate` int(11) NOT NULL,
-  `recieved_by` varchar(250) NOT NULL,
+  `received_by` varchar(250) NOT NULL,
   `firm` varchar(150) NOT NULL,
   `remarks` varchar(300) NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `recieved`
+-- Dumping data for table `received`
 --
 
-INSERT INTO `recieved` (`part_no`, `item_name`, `unit_id`, `quantity`, `alp_no`, `categorie_id`, `po_no`, `drs_no`, `crv_no`, `rate`, `recieved_by`, `firm`, `remarks`, `date`) VALUES
+INSERT INTO `received` (`part_no`, `item_name`, `unit_id`, `quantity`, `alp_no`, `categorie_id`, `po_no`, `drs_no`, `crv_no`, `rate`, `received_by`, `firm`, `remarks`, `date`) VALUES
 ('NIV-ENGR-0014', 'Washing Machine with Dryer ', 'Nos', 5, '5', 'NONE', '5', '5', '5', 5, 'sarmad', '5', '5', '2017-10-17 14:51:27'),
 ('NIV-ENGR-0014', 'Washing Machine with Dryer ', 'Nos', 5, '5', 'NONE', '5', '5', '5', 5, 'sarmad', '5', '5', '2017-10-17 14:52:22'),
 ('P30005130NIV-GS-691413', 'Iron Table Folding', 'Nos', 10, '10', 'ENGR', '10', '10', '10', 10, 'sarmad', '10', '10', '2017-10-17 14:52:22'),

@@ -29,7 +29,7 @@
           <span> Generate Recieve Product Report By </span>
     
    <div>
-         <form action="" id="issue-report-select" autocomplete="off">
+         <form action="" id="recieve-report-select" autocomplete="off">
       <select class="select" onchange=" issueFormSelectType(this.value)" name="select">
          <option selected disabled value="0"> Select Type </option>
          <option value="1" > Product Name </option>
@@ -37,7 +37,7 @@
          <option value = "3"> Purchase Order Number </option>
          <option value = "4"> Date Range </option>
       </select>
-       <input type="text" disabled class="form-control" id="item_name" name="item_name"  >
+       <input type="text" disabled class="form-control" id="item_name" name="item_name" onkeyup="recieveFormfetchData(this)"  >
            <div id="result" style="position:absolute" class="list-group"></div>
 
             <button disabled type="submit" name="generate_report" class="btn btn-danger">Generate Report</button>
