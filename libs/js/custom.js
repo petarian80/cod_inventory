@@ -578,7 +578,6 @@ $(document).ready(function() {
 
     $('#add_product').click(function(e){
         e.preventDefault();        
-
         var $tableBody = $('#items-issue-table').find("tbody"),
             $trLast = $tableBody.find("tr:last"),
             $trNew = $trLast.clone();
@@ -589,6 +588,51 @@ $(document).ready(function() {
     })
 
 
+
+// issue report  (get data from database)
+$('#issue-report-select').submit(function(e){
+        e.preventDefault();        
+
+        var input_value = $(this).find('input[name="item_name"]').val();
+        console.log(input_value);
+         var select_input = $('#issue-report-select').find("select option:selected").val();
+            console.log(select_input);
+       
+            var inObj = {
+            'input_value' : input_value,
+            'selected_type' : select_input
+             };
+
+console.log(inObj);
+        var formData = {
+            'issue_report_submit' : inObj  
+        };
+             console.log(formData);
+
+
+        if(inObj['input_value'].length > 0){           
+            // process the form           
+            $.ajax({
+                type        : 'POST',
+                url         : 'ajax-items.php',
+                data        : formData,
+                encode      : true
+            })
+        
+        .done(function(data) {
+                
+             console.log("return Data", data);
+            
+                })
+        }
+
+    })
+
+    
+       
+       
+
+       
  $('#add_product').click(function(e){
         e.preventDefault();        
 
@@ -784,6 +828,7 @@ $(document).ready(function() {
 
     });
 
+    // show product list
     $('#product-name-search').submit(function(e){
         e.preventDefault();
 
@@ -858,7 +903,7 @@ function issueFormSelectTypeDisable(){
     $('#issue-report-select').find('button[name="generate_report"]').prop( "disabled", true );;
 }
 
-
+// auto sugestion
 
 function issueFormfetchData(item){
   //  $('#item-recieve-form').submit(function(e){

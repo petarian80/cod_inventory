@@ -3,6 +3,60 @@
   if (!$session->isUserLoggedIn(true)) { redirect('index.php', false);}
 ?>
 
+
+<?php
+ // issue report form 
+   if(isset($_POST['issue_report_submit']))
+   {     
+      $ArrayOfProducts = $_POST['issue_report_submit']['input_value'];
+      $Array = $_POST['issue_report_submit']['selected_type'];
+
+      switch($Array) {
+        case "1":
+        
+        $p=find_issue_by_item_name($ArrayOfProducts);
+        print_r($p);
+        echo $p;
+        
+         break;
+       
+       
+        case "2":
+
+        $p = find_issue_by_part_no($ArrayOfProducts);
+        print_r($p);
+        echo $p;
+
+            break;
+        
+        
+        case "3":
+       
+        $p=find_issue_by_invoice_no($ArrayOfProducts);
+        print_r($p);
+        echo $p;
+      
+          break;
+      
+        case "4":
+        
+        break;
+
+         }
+
+
+      
+        
+      }
+      
+
+
+ ?>
+
+
+
+
+
 <?php
  // Issue Form Post 
    if(isset($_POST['issue_form_submit']))
@@ -296,77 +350,6 @@
        'part' => $product['part_no'],
        'unit' => $product_unit,
        'categorie' =>$product_categorie,
-     );
-     //print_r($product);     
-     echo json_encode($returnArr);
-   }
- ?>
-
-<?php
- // Auto suggetion for generate report form and to fill by part number
-    $html = '';
-   if(isset($_POST['product_part_no_report']) && strlen($_POST['product_part_no_report']))
-   {     
-     $products = find_product_by_part($_POST['product_part_no_report']);
-     if($products){
-        foreach ($products as $product):
-           $html .= "<li class=\"list-group-item\">";
-           $html .= $product['part_no'];
-           $html .= "</li>";
-         endforeach;
-      } else {
-
-        $html .= '<li onClick=\"fill(\''.addslashes().'\')\" class=\"list-group-item\">';
-        $html .= 'Not found';
-        $html .= "</li>";
-
-      }
-      echo json_encode($html);
-   }
-
-   if(isset($_POST['product_by_part_report']) && strlen($_POST['product_by_part_report']))
-   {     
-     $product = get_product_by_part($_POST['product_by_part_report']);
-     $product = $product[0];
-    
-     $returnArr = array(
-       'name' => $product['item_name'],
-     );
-     //print_r($product);     
-     echo json_encode($returnArr);
-   }
- ?>
-
-
-<?php
- // Auto suggetion for report generation form and to fill by name
-    $html = '';
-   if(isset($_POST['product_name_report']) && strlen($_POST['product_name_report']))
-   {     
-     $products = find_product_by_name($_POST['product_name_report']);
-     if($products){
-        foreach ($products as $product):
-           $html .= "<li class=\"list-group-item\">";
-           $html .= $product['item_name'];
-           $html .= "</li>";
-         endforeach;
-      } else {
-
-        $html .= '<li onClick=\"fill(\''.addslashes().'\')\" class=\"list-group-item\">';
-        $html .= 'Not found';
-        $html .= "</li>";
-
-      }
-      echo json_encode($html);
-   }
-
-   if(isset($_POST['product_by_name_report']) && strlen($_POST['product_by_name_report']))
-   {     
-     $product = get_product_by_name($_POST['product_by_name_report']);
-     $product = $product[0];
-     
-     $returnArr = array(
-       'part' => $product['part_no'],
      );
      //print_r($product);     
      echo json_encode($returnArr);

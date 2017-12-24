@@ -26,20 +26,22 @@
           <div class="panel-heading">
           <strong>
             <span class="glyphicon glyphicon-th"></span>
-          <span> Generate Recieve Report By </span>
+          <span> Generate Recieve Product Report By </span>
     
    <div>
-            <span class="glyphicon glyphicon-th"></span>
+         <form action="" id="issue-report-select" autocomplete="off">
+      <select class="select" onchange=" issueFormSelectType(this.value)" name="select">
+         <option selected disabled value="0"> Select Type </option>
+         <option value="1" > Product Name </option>
+         <option value ="2"> Part Number </option>
+         <option value = "3"> Purchase Order Number </option>
+         <option value = "4"> Date Range </option>
+      </select>
+       <input type="text" disabled class="form-control" id="item_name" name="item_name"  >
+           <div id="result" style="position:absolute" class="list-group"></div>
 
-        <select class="select" onchange="javascript:location.href = this.value;" name="select">
-            <option selected disabled> Select Type </option>    
-            <option value="recieve_product_name.php" > Product Name </option>
-            <option value ="recieve_part_no.php"> Part Number </option>
-            <option value = "po.php"> Purchase Order Number </option>
-            <option value = "recieve_date.php"> Date Range </option>
+            <button disabled type="submit" name="generate_report" class="btn btn-danger">Generate Report</button>
 
-                   </strong>
-                      </select>    
-                  </div>
-      </div>
+   </form>
+    </div>
    <?php include_once('layouts/footer.php'); ?>

@@ -1,13 +1,16 @@
 <?php
-  $page_title = 'user Home Page';
+  $page_title = ' Home Page';
   require_once('includes/load.php');
-  // Checkin What level user has permission to view this page
   
+ 
 ?>
 <?php
  $c_categorie     = count_by_id('categories');
  $c_product       = count_by_id('products');
  $c_user          = count_by_id('users');
+ $c_mission          = count_by_id('mission');
+ $c_unit          = count_by_id('army_units');
+
 ?>
 
 <?php include_once('layouts/header.php'); ?>
@@ -18,10 +21,10 @@
    </div>
 </div>
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-4">
        <div class="panel panel-box clearfix">
          <div class="panel-icon pull-left bg-green">
-          <i class="glyphicon glyphicon-user"></i>
+          <i class="fa fa-user" aria-hidden="true"></i>
         </div>
         <div class="panel-value pull-right">
           <h2 class="margin-top"> <?php  echo $c_user['total']; ?> </h2>
@@ -29,10 +32,10 @@
         </div>
        </div>
     </div>
-    <div class="col-md-3" >
+    <div class="col-md-4" >
        <div class="panel panel-box clearfix">
          <div class="panel-icon pull-left bg-red">
-          <i class="glyphicon glyphicon-list"></i>
+      <i class="fa fa-tasks" aria-hidden="true"></i>
         </div>
         <div class="panel-value pull-right">
           <h2 class="margin-top"> <?php  echo $c_categorie['total']; ?> </h2>
@@ -40,10 +43,10 @@
         </div>
        </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
        <div class="panel panel-box clearfix">
          <div class="panel-icon pull-left bg-blue">
-          <i class="glyphicon glyphicon-shopping-cart"></i>
+    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
         </div>
         <div class="panel-value pull-right">
           <h2 class="margin-top"> <?php  echo $c_product['total']; ?> </h2>
@@ -51,18 +54,32 @@
         </div>
        </div>
     </div>
-    
-  <div class="row">
-   <div class="col-md-12">
-      <div class="panel">
-        <div class="jumbotron text-center">
-           <h1>Thank You! for your support and love.</h1>
-           
-        </div>
-      </div>
-   </div>
   </div>
   
+  
+  <div class="row">
+    <div class="col-md-4">
+       <div class="panel panel-box clearfix">
+         <div class="panel-icon pull-left bg-yellow">
+        <i class="fa fa-globe" aria-hidden="true"></i>
+        </div>
+        <div class="panel-value pull-right">
+          <h2 class="margin-top"> <?php  echo $c_mission['total']; ?> </h2>
+          <p class="text-muted">Missions</p>
+        </div>
+       </div>
+    </div>
+    <div class="col-md-4">
+       <div class="panel panel-box clearfix">
+         <div class="panel-icon pull-left bg-red">
+<i class="fa fa-university" aria-hidden="true"></i>        </div>
+        <div class="panel-value pull-right">
+          <h2 class="margin-top"> <?php  echo $c_unit['total']; ?> </h2>
+          <p class="text-muted">Units</p>
+        </div>
+       </div>
+    </div>
+  </div>
 
 
 

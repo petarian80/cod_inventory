@@ -36,6 +36,13 @@
      </ul>
   </li>
 
+<li>
+    <a href="barcode-form.php" >
+<i class="fa fa-barcode" aria-hidden="true"></i>
+      <span>Generate Barcode</span>
+    </a>
+  </li>
+
    
   <li>
     <a href="#" class="submenu-toggle">

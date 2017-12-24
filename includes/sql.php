@@ -85,7 +85,7 @@ function tableExists($table){
     global $db;
     $username = $db->escape($username);
     $password = $db->escape($password);
-    $sql  = sprintf("SELECT id,username,password,user_level FROM users WHERE username ='%s' LIMIT 1", $username);
+    $sql  = sprintf("SELECT id,username,password,user_level,status FROM users WHERE username ='%s' LIMIT 1", $username);
     $result = $db->query($sql);
     if($db->num_rows($result)){
       $user = $db->fetch_assoc($result);
@@ -501,30 +501,36 @@ function find_issue_by_dates($start_date,$end_date){
   return $db->query($sql);
 }
 
-// generate issue report by name and date range
-function find_issue_by_name($start_date,$end_date,$name){
+// generate issue report by invoice number
+function find_issue_by_item_name($item_name){
   global $db;
-  $name   = remove_junk($db->escape($_POST['item_name'])); 
-  $start_date  = date("Y-m-d", strtotime($start_date));
-  $end_date    = date("Y-m-d", strtotime($end_date+1));
-  $sql  = "SELECT part_no, item_name, iv_no,rate, item_demanded, item_issued,date ";
+ $item_name   = remove_junk($db->escape($item_name));  
+  $sql  = "SELECT part_no, iv_no,rate, item_demanded, item_issued,date ";
   $sql .= " FROM issue  ";
-  $sql .= " WHERE item_name = '$name' AND date BETWEEN '{$start_date}' AND '{$end_date}'";
- $sql .= " ORDER BY date(date) DESC";
-  return $db->query($sql);
+  $sql .= " WHERE item_name='$item_name'";
+  return find_by_sql($sql);
 }
 
+// generate issue report by part number
 
-
+function find_issue_by_part_no($item_name){
+  global $db;
+ $item_name   = remove_junk($db->escape($item_name));  
+  $sql  = "SELECT item_name, iv_no,rate, item_demanded, item_issued,date ";
+  $sql .= " FROM issue  ";
+  $sql .= " WHERE part_no='$item_name'";
+  return find_by_sql($sql);
+}
 
 // generate issue report by invoice number
-function find_issue_by_invoice($iv_no){
+
+function find_issue_by_invoice_no($item_name){
   global $db;
- $iv_no   = remove_junk($db->escape($_POST['iv_no']));  
-  $sql  = "SELECT part_no, item_name, iv_no,rate, item_demanded, item_issued,date ";
+ $item_name = remove_junk($db->escape($item_name));  
+  $sql  = "SELECT part_no, item_name,rate, item_demanded, item_issued,date ";
   $sql .= " FROM issue  ";
-  $sql .= " WHERE iv_no='$iv_no'";
-  return $db->query($sql);
+  $sql .= " WHERE iv_no='$item_name'";
+  return find_by_sql($sql);
 }
 
 
