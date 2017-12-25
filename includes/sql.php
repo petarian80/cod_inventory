@@ -253,6 +253,16 @@ function findProduct($search){
    }
 
    
+   // for purchase order number
+   function find_po($invoice_from_list){
+     global $db;
+     $p_name = remove_junk($db->escape($invoice_from_list));
+     $sql = "SELECT po_no FROM purchase_order_no WHERE po_no like '%$p_name%' LIMIT 5";
+     $result = find_by_sql($sql);
+     return $result;
+   }
+
+   
 // for part number
    function find_product_by_part($product_part_name){
      global $db;
@@ -380,6 +390,20 @@ for ($i = 0; $i <count($ArrayOfProducts) ; ++$i)
   
    
 
+// insert purchase order  umber into purchase order table 
+   function insert_po_no($po_no, $receivedBy){
+ global $db;
+ 
+    $sql = "INSERT INTO purchase_order_no ( po_no, received_by) VALUES ";
+    
+        $iv_no = mysql_real_escape_string( $po_no );
+        $receivedBy = mysql_real_escape_string( $receivedBy );
+        $sql.= "('$po_no','$receivedBy') ";
+        
+
+     $db->query($sql);
+
+   }
 
 // insert recieve Object in table
    function insert_received_product($ArrayOfProducts, $receivedBy, $po_no){
@@ -514,7 +538,7 @@ function find_issue_by_dates($start_date,$end_date){
 function find_issue_by_item_name($item_name){
   global $db;
  $item_name   = remove_junk($db->escape($item_name));  
-  $sql  = "SELECT part_no, iv_no,rate, item_demanded, item_issued,date ";
+  $sql  = "SELECT part_no,item_name, iv_no,rate, item_demanded, item_issued,date ";
   $sql .= " FROM issue  ";
   $sql .= " WHERE item_name='$item_name'";
   return find_by_sql($sql);
@@ -549,6 +573,16 @@ function find_recieve_by_part_no($item_name){
   $sql  = "SELECT part_no,item_name, quantity,po_no,rate,received_by, date ";
   $sql .= " FROM received ";
   $sql .= " WHERE part_no='$item_name'";
+  return find_by_sql($sql);
+}
+
+// generate recieve report by part number
+function find_recieve_by_po_no($item_name){
+  global $db;
+ $item_name   = remove_junk($db->escape($item_name));  
+  $sql  = "SELECT part_no,item_name, quantity,po_no,rate,received_by, date ";
+  $sql .= " FROM received ";
+  $sql .= " WHERE po_no='$item_name'";
   return find_by_sql($sql);
 }
 // generate issue report by invoice number

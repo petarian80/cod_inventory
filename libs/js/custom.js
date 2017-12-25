@@ -199,8 +199,6 @@ function unit_list(item){
 
 
 // invoice number list
-
-
 function invoice_list(item){
          
          var box = $(item);
@@ -211,6 +209,39 @@ function invoice_list(item){
          };
          
          if(formData['invoice_list'].length >= 1){           
+           // process the form           
+           $.ajax({
+               type        : 'POST',
+               url         : 'ajax-items.php',
+               data        : formData,
+               dataType    : 'json',
+               encode      : true
+           })
+            .done(function(data) {
+                result.html(data).fadeIn();                   
+                result.children('li').click(function() {                     
+                    box.val($(this).text());
+                   result.fadeOut(500);  
+                    box.blur();
+                })
+            })
+         }
+
+}
+
+
+
+// purchase order number list
+function po_list(item){
+         
+         var box = $(item);
+         var result = $(item).parent().children("#result");
+         result.empty();
+         var formData = {
+             'po_list' : box.val()
+         };
+         
+         if(formData['po_list'].length >= 1){           
            // process the form           
            $.ajax({
                type        : 'POST',
@@ -362,6 +393,7 @@ function fillIssueRecordByname(item, text){
                 tr.children('#part_no').children('input[name="part_no"]').val(data['part']);
                 tr.children('#rate').children('input[name="rate"]').val(data['rate']);
                 tr.children('#unit_id').children('input[name="unit_id"]').val(data['unit']);
+                tr.children('#quantity').children('input[name="quantity"]').val(data['quantity']);
 
                 
             }
@@ -655,8 +687,8 @@ console.log(inObj);
         
         .done(function(data) {
                 
-             console.log("return Data", data);
-            
+             // console.log("return Data", data);
+             $('#issue-table-result').html(data);
                 })
         }
 
@@ -696,7 +728,7 @@ console.log(inObj);
         .done(function(data) {
                 
              console.log("return Data", data);
-            
+             $('#receive-table-result').html(data);
                 })
         }
 
@@ -1014,6 +1046,7 @@ function issueFormfetchData(item){
             break;
         case "4":
         
+        
         break;
 
         default:
@@ -1068,7 +1101,9 @@ function recieveFormfetchData(item){
         
             break;
         case "3":
-
+        var formData = {
+            "po_list" : box.val()
+        };
             break;
         case "4":
         
@@ -1085,11 +1120,11 @@ function recieveFormfetchData(item){
         type        : 'POST',
         url         : 'ajax-items.php',
         data        : formData,
-        dataType    : 'json',
+        //dataType    : 'json',
         encode      : true
     })
     .done(function(data) {
-        
+        console.log(data);
         result.html(data).fadeIn();                   
         result.children('li').click(function() {                     
             box.val($(this).text());

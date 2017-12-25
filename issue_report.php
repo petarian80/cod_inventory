@@ -40,4 +40,6 @@
 
    </form>
 </div>
+
 <?php include_once('layouts/footer.php'); ?>
+<div id="issue-table-result"></div>

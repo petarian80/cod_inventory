@@ -51,7 +51,7 @@
       </a>
       <ul class="nav submenu">
         <li><a href="issue_report.php">Issue Report </a></li>
-        <li><a href="daily_recieve.php">Recieve Report</a> </li>
+        <li><a href="recieve_report.php">Recieve Report</a> </li>
       </ul>
   </li>
 </ul>

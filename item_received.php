@@ -78,20 +78,20 @@
                   </div>
                 </td>
                 </td>
-                <td id="part_no"><input type="text" class="form-control" name="part_no" onkeyup="listByPart_recieve(this)" >
+                <td id="part_no"><input type="text" class="form-control" required name="part_no" onkeyup="listByPart_recieve(this)" >
                 <div id="result" style="position:absolute" class="list-group"></div>
                 </td>
-                <td id="item_name"><input type="text" class="form-control" name="item_name" onkeyup="listByname_recieve(this)" >
+                <td id="item_name"><input type="text" required class="form-control" name="item_name" onkeyup="listByname_recieve(this)" >
                  <div id="result" style="position:absolute" class="list-group"></div>
                 </td>
                 <td id="unit_id"><input type="text" class="form-control" name="unit_id" disabled ></td>
-                 <td id="quantity"><input type="text" class="form-control" name="quantity" ></td>
+                 <td id="quantity"><input type="text" required class="form-control" name="quantity" ></td>
                  <td id="alp_no"><input type="text" class="form-control" name="alp_no" ></td>
                 <td id="categorie">                  
                     <input type="text" class="form-control" name="categorie" class="form-control input-number" disabled>                
                 </td>
                 <td id="rate">
-                  <input type="number" class="form-control" name="rate" class="form-control input-number">
+                  <input type="number" class="form-control" required name="rate" class="form-control input-number">
                 </td>                
                  <td id="drs_no"><input type="text" class="form-control" name="drs_no" ></td>
                  <td id="crv_no"><input type="text" class="form-control" name="crv_no" ></td>                               

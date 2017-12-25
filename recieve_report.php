@@ -45,3 +45,4 @@
    </form>
     </div>
    <?php include_once('layouts/footer.php'); ?>
+<div id="receive-table-result"></div>

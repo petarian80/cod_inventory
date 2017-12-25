@@ -16,8 +16,41 @@
         
         $p=find_issue_by_item_name($ArrayOfProducts);
         print_r($p);
-        echo $p;
-        
+        //echo $p;
+
+       
+         $html = '';
+
+        $html .='<div class="panel-body">';
+        $html .='<table class="table table-bordered">';
+        $html.= ' <thead>';
+        $html.= '<tr>';
+        $html.= '<th class="text-center" >S.No</th>';
+        $html.= '<th class="text-center" style="width: 25%;">Part Number</th>';
+        $html.= '<th class="text-center" style="width: 25%;">Product Name</th>';
+        $html.= '<th class="text-center"  style="width: 15%;"> Invoice Number </th>';
+        $html.= '<th class="text-center" style="width: 10%;"> Rate </th>';
+        $html.= '<th class="text-center" style="width: 20%;"> Item demanded </th>';
+        $html.= '<th class="text-center" style="width: 10%;"> Item issued </th>';
+        $html.= '</tr>';
+        $html.= '</thead>';
+        $html.= '<tbody>';
+        foreach ($p as $product):
+        $html.= '<tr>';
+        $html .='<td class="text-center">'.  count_id() . '</td>';
+        $html .='<td class="text-center">' .  remove_junk($product["part_no"]) . '</td>';
+        $html .='<td class="text-center">' .  remove_junk($product["item_name"]) . '</td>';
+        $html .='<td> '                     .  remove_junk($product["iv_no"]). '</td>';
+        $html .='<td class="text-center">'  .  remove_junk($product["rate"]). '</td>';
+        $html .='<td class="text-center">' . remove_junk($product["item_demanded"]).'</td>';
+        $html .='<td class="text-center">' .  remove_junk($product["item_issued"]).'</td>';                
+        $html .='</tr>';
+        $html .=' </tr>';
+              endforeach; 
+         $html .='</tbody>';
+        $html .='</tabel>';
+        $html .='</div>';
+         echo $html;
          break;
        
        
@@ -25,7 +58,38 @@
 
         $p = find_issue_by_part_no($ArrayOfProducts);
         print_r($p);
-        echo $p;
+        //echo $p;
+
+         $html = '';
+
+        $html .='<div class="panel-body">';
+        $html .='<table class="table table-bordered">';
+        $html.= ' <thead>';
+        $html.= '<tr>';
+        $html.= '<th class="text-center" style="width: 50px;">S.No</th>';
+        $html.= '<th class="text-center" style="width: 15%;">Part Number</th>';
+        $html.= '<th class="text-center">    Invoice Number </th>';
+        $html.= '<th class="text-center" style="width: 10%;"> Rate </th>';
+        $html.= '<th class="text-center" style="width: 10%;"> Item demanded </th>';
+        $html.= '<th class="text-center" style="width: 10%;"> Item issued </th>';
+        $html.= '</tr>';
+        $html.= '</thead>';
+        $html.= '<tbody>';
+        foreach ($p as $product):
+        $html.= '<tr>';
+        $html .='<td class="text-center">'.  count_id() . '</td>';
+        $html .='<td class="text-center">' .  remove_junk($product["part_no"]) . '</td>';
+        $html .='<td> '                     .  remove_junk($product["iv_no"]). '</td>';
+        $html .='<td class="text-center">'  .  remove_junk($product["rate"]). '</td>';
+        $html .='<td class="text-center">' . remove_junk($product["item_demanded"]).'</td>';
+        $html .='<td class="text-center">' .  remove_junk($product["item_issued"]).'</td>';                
+        $html .='</tr>';
+        $html .=' </tr>';
+              endforeach; 
+         $html .='</tbody>';
+        $html .='</tabel>';
+        $html .='</div>';
+         echo $html;
 
             break;
         
@@ -34,8 +98,38 @@
        
         $p=find_issue_by_invoice_no($ArrayOfProducts);
         print_r($p);
-        echo $p;
+        //echo $p;
       
+       $html = '';
+
+        $html .='<div class="panel-body">';
+        $html .='<table class="table table-bordered">';
+        $html.= ' <thead>';
+        $html.= '<tr>';
+        $html.= '<th class="text-center" style="width: 50px;">S.No</th>';
+        $html.= '<th class="text-center" style="width: 15%;">Part Number</th>';
+        $html.= '<th class="text-center">    Invoice Number </th>';
+        $html.= '<th class="text-center" style="width: 10%;"> Rate </th>';
+        $html.= '<th class="text-center" style="width: 10%;"> Item demanded </th>';
+        $html.= '<th class="text-center" style="width: 10%;"> Item issued </th>';
+        $html.= '</tr>';
+        $html.= '</thead>';
+        $html.= '<tbody>';
+        foreach ($p as $product):
+        $html.= '<tr>';
+        $html .='<td class="text-center">'.  count_id() . '</td>';
+        $html .='<td class="text-center">' .  remove_junk($product["part_no"]) . '</td>';
+       // $html .='<td> '                     .  remove_junk($product["iv_no"]). '</td>';
+        $html .='<td class="text-center">'  .  remove_junk($product["rate"]). '</td>';
+        $html .='<td class="text-center">' . remove_junk($product["item_demanded"]).'</td>';
+        $html .='<td class="text-center">' .  remove_junk($product["item_issued"]).'</td>';                
+        $html .='</tr>';
+        $html .=' </tr>';
+              endforeach; 
+         $html .='</tbody>';
+        $html .='</tabel>';
+        $html .='</div>';
+         echo $html;
           break;
       
         case "4":
@@ -66,8 +160,40 @@
         
         $p=find_recieve_by_item_name($ArrayOfProducts);
         print_r($p);
-        echo $p;
-        
+        // echo $p;
+        $html = '';
+
+        $html .='<div class="panel-body">';
+        $html .='<table class="table table-bordered">';
+        $html.= ' <thead>';
+        $html.= '<tr>';
+        $html.= '<th class="text-center" style="width: 50px;">S.No</th>';
+        $html.= '<th class="text-center" style="width: 15%;">Part Number</th>';
+        $html.= '<th class="text-center">    Invoice Number </th>';
+        $html.= '<th class="text-center" style="width: 10%;"> Rate </th>';
+        $html.= '<th class="text-center" style="width: 10%;"> Item demanded </th>';
+        $html.= '<th class="text-center" style="width: 10%;"> Item issued </th>';
+        $html.= '</tr>';
+        $html.= '</thead>';
+        $html.= '<tbody>';
+        foreach ($p as $product):
+        $html.= '<tr>';
+        $html .='<td class="text-center">'.  count_id() . '</td>';
+        $html .='<td class="text-center">' .  remove_junk($product["part_no"]) . '</td>';
+        $html .='<td> '                     .  remove_junk($product["item_name"]). '</td>';
+        $html .='<td class="text-center">'  .  remove_junk($product["rate"]). '</td>';
+        $html .='<td class="text-center">' . remove_junk($product["po_no"]).'</td>';
+        $html .='<td class="text-center">' .  remove_junk($product["quantity"]).'</td>';                
+        $html .='</tr>';
+        $html .=' </tr>';
+              endforeach; 
+         $html .='</tbody>';
+        $html .='</tabel>';
+        $html .='</div>';
+         echo $html;
+
+
+       
          break;
        
        
@@ -82,7 +208,7 @@
         
         case "3":
        
-        $p=find_issue_by_invoice_no($ArrayOfProducts);
+        $p=find_recieve_by_po_no($ArrayOfProducts);
         print_r($p);
         echo $p;
       
@@ -137,7 +263,9 @@
       // query for parent table 
       if(is_array($ArrayOfProducts)){
         $p=insert_received_product($ArrayOfProducts, $receivedBy,$po_no );
+        $d = insert_po_no($po_no,$receivedBy);
         echo $p;
+        echo $d;
       }
       
 
@@ -256,6 +384,34 @@
  ?>
 
 
+ <?php
+ // Auto suggetion for po number form purchase order table
+    $html = '';
+   if(isset($_POST['po_list']) && strlen($_POST['po_list']))
+   {     
+     $invoice = find_po($_POST['po_list']);
+     if($invoice){
+        foreach ($invoice as $inv):
+           $html .= "<li class=\"list-group-item\">";
+           $html .= $inv['po_no'];
+           $html .= "</li>";
+         endforeach;
+      } else {
+
+        $html .= '<li onClick=\"fill(\''.addslashes().'\')\" class=\"list-group-item\">';
+        $html .= 'Not found';
+        $html .= "</li>";
+
+      }
+      echo json_encode($html);
+
+
+   }
+   
+ ?>
+
+
+
 
 
 
@@ -334,6 +490,7 @@
        'part' => $product['part_no'],
        'unit' => $product_unit,
        'rate' => $product['rate'],
+       'quantity' => $product['quantity'],
      );
      //print_r($product);     
      echo json_encode($returnArr);
