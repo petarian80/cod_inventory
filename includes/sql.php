@@ -227,7 +227,7 @@ function findProduct($search){
     $sql  .=" FROM products p";
     $sql  .=" LEFT JOIN categories c ON c.id = p.categorie_id";
    
-    $sql  .=" where item_name='$p_name'";   
+    $sql  .=" where item_name='$p_name' OR part_no='$p_name'";   
     
      $result = find_by_sql($sql);
      return $result;
@@ -538,7 +538,7 @@ function find_issue_by_dates($start_date,$end_date){
 function find_issue_by_item_name($item_name){
   global $db;
  $item_name   = remove_junk($db->escape($item_name));  
-  $sql  = "SELECT part_no,item_name, iv_no,rate, item_demanded, item_issued,date ";
+  $sql  = "SELECT part_no,item_name, iv_no,rate, item_demanded, item_issued,mission,unit_name,issued_by,date ";
   $sql .= " FROM issue  ";
   $sql .= " WHERE item_name='$item_name'";
   return find_by_sql($sql);
@@ -549,7 +549,7 @@ function find_issue_by_item_name($item_name){
 function find_recieve_by_item_name($item_name){
   global $db;
  $item_name   = remove_junk($db->escape($item_name));  
-  $sql  = "SELECT part_no,item_name, quantity,po_no,rate,received_by, date ";
+  $sql  = "SELECT part_no,item_name, quantity,unit_id,po_no,rate,received_by, date ";
   $sql .= " FROM received ";
   $sql .= " WHERE item_name='$item_name'";
   return find_by_sql($sql);
@@ -559,7 +559,7 @@ function find_recieve_by_item_name($item_name){
 function find_issue_by_part_no($item_name){
   global $db;
  $item_name   = remove_junk($db->escape($item_name));  
-  $sql  = "SELECT item_name, iv_no,rate, item_demanded, item_issued,date ";
+  $sql  = "SELECT part_no,item_name, iv_no,rate, item_demanded, item_issued,mission,unit_name,issued_by,date ";
   $sql .= " FROM issue  ";
   $sql .= " WHERE part_no='$item_name'";
   return find_by_sql($sql);
@@ -570,7 +570,7 @@ function find_issue_by_part_no($item_name){
 function find_recieve_by_part_no($item_name){
   global $db;
  $item_name   = remove_junk($db->escape($item_name));  
-  $sql  = "SELECT part_no,item_name, quantity,po_no,rate,received_by, date ";
+  $sql  = "SELECT part_no,item_name, quantity,unit_id,po_no,rate,received_by, date ";
   $sql .= " FROM received ";
   $sql .= " WHERE part_no='$item_name'";
   return find_by_sql($sql);
@@ -580,7 +580,7 @@ function find_recieve_by_part_no($item_name){
 function find_recieve_by_po_no($item_name){
   global $db;
  $item_name   = remove_junk($db->escape($item_name));  
-  $sql  = "SELECT part_no,item_name, quantity,po_no,rate,received_by, date ";
+  $sql  = "SELECT part_no,item_name, quantity,unit_id,po_no,rate,received_by, date ";
   $sql .= " FROM received ";
   $sql .= " WHERE po_no='$item_name'";
   return find_by_sql($sql);
@@ -590,7 +590,7 @@ function find_recieve_by_po_no($item_name){
 function find_issue_by_invoice_no($item_name){
   global $db;
  $item_name = remove_junk($db->escape($item_name));  
-  $sql  = "SELECT part_no, item_name,rate, item_demanded, item_issued,date ";
+  $sql  = "SELECT part_no,item_name, iv_no,rate, item_demanded, item_issued,mission,unit_name,issued_by,date ";
   $sql .= " FROM issue  ";
   $sql .= " WHERE iv_no='$item_name'";
   return find_by_sql($sql);

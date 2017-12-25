@@ -135,38 +135,6 @@ function mission_list(item){
         }
 
 
-        //fill search product field
-function findProduct(item){
-         
-         var box = $(item);
-         var result = $(box).parent().children("#result");
-         result.empty();
-         var formData = {
-             'search_product' : box.val()
-         };
-         
-         if(formData['search_product'].length >= 1){           
-           // process the form           
-           $.ajax({
-               type        : 'POST',
-               url         : 'ajax-items.php',
-               data        : formData,
-               dataType    : 'json',
-               encode      : true
-           })
-            .done(function(data) {
-                console.log(data);
-                result.html(data).fadeIn();                   
-                result.children('li').click(function() {                     
-                    box.val($(this).text());
-                    result.fadeOut(500);  
-                    box.blur();
-                })
-            })
-         }
-        }
-
-
 function unit_list(item){
          
          var box = $(item);
@@ -1081,8 +1049,7 @@ function issueFormfetchData(item){
 // auto sugestion for recieve report
 
 function recieveFormfetchData(item){
-  //  $('#item-recieve-form').submit(function(e){
-    console.log("hello");
+  //  $('#item-recieve-form').submit(function(e)
     var temp = $('#recieve-report-select').find("select option:selected").val();
     var formData = {};
     var box = $(item);

@@ -53,7 +53,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <strong>
-            <span class="glyphicon glyphicon-th"></span>
+            
             <span>ADD NEW PRODUCT</span>
          </strong>
         </div>
@@ -61,24 +61,15 @@
          <div class="col-md-12">
           <form method="post" action="add_product.php" class="clearfix">
               <div class="form-group">
-                <div class="input-group">
-                  <span class="input-group-addon">
-                   <i class="glyphicon glyphicon-th-large"></i>
-                  </span>
+                  
                   <input type="text" class="form-control" name="part_no" placeholder="Part Number">
-               </div>
               </div>
 
               <div class="form-group">
-                <div class="input-group">
-                  <span class="input-group-addon">
-                   <i class="glyphicon glyphicon-th-large"></i>
-                  </span>
+                 
                   <input type="text" class="form-control" name="item_name" placeholder="Item Name">
-               </div>
               </div>
 
-                <div class="form-group">
                 <div class="row">
                   <div class="col-md-6">
                     <select class="form-control" name="unit_id">
@@ -90,15 +81,12 @@
                     </select>
                   </div>
                   </div>
-                  </div>
 
                 <div class="form-group">
                <div class="row">
                  <div class="col-md-4">
                    <div class="input-group">
-                     <span class="input-group-addon">
-                      <i class="glyphicon glyphicon-shopping-cart"></i>
-                     </span>
+                   
                      <input type="number" class="form-control" name="quantity" placeholder="Product Quantity">
                   </div>
                  </div>
@@ -109,9 +97,7 @@
                <div class="row">
                  <div class="col-md-4">
                    <div class="input-group">
-                     <span class="input-group-addon">
-                      <i class="glyphicon glyphicon-shopping-cart"></i>
-                     </span>
+                     
                      <input type="number" class="form-control" name="rate" placeholder="Product Rate">
                   </div>
                  </div>

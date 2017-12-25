@@ -26,12 +26,17 @@
         $html.= ' <thead>';
         $html.= '<tr>';
         $html.= '<th class="text-center" >S.No</th>';
-        $html.= '<th class="text-center" style="width: 25%;">Part Number</th>';
-        $html.= '<th class="text-center" style="width: 25%;">Product Name</th>';
-        $html.= '<th class="text-center"  style="width: 15%;"> Invoice Number </th>';
-        $html.= '<th class="text-center" style="width: 10%;"> Rate </th>';
-        $html.= '<th class="text-center" style="width: 20%;"> Item demanded </th>';
-        $html.= '<th class="text-center" style="width: 10%;"> Item issued </th>';
+        $html.= '<th class="text-center" >Part Number</th>';
+        $html.= '<th class="text-center" >Product Name</th>';
+        $html.= '<th class="text-center" > Invoice Number </th>';
+        $html.= '<th class="text-center" > Rate </th>';
+        $html.= '<th class="text-center" > Item demanded </th>';
+        $html.= '<th class="text-center" > Item issued </th>';
+         $html.= '<th class="text-center" > Mission </th>';
+        $html.= '<th class="text-center" > Unit </th>';
+       $html.= '<th class="text-center" >Issued By </th>';
+        $html.= '<th class="text-center" > Date </th>';
+
         $html.= '</tr>';
         $html.= '</thead>';
         $html.= '<tbody>';
@@ -40,10 +45,15 @@
         $html .='<td class="text-center">'.  count_id() . '</td>';
         $html .='<td class="text-center">' .  remove_junk($product["part_no"]) . '</td>';
         $html .='<td class="text-center">' .  remove_junk($product["item_name"]) . '</td>';
-        $html .='<td> '                     .  remove_junk($product["iv_no"]). '</td>';
+        $html .='<td class="text-center"> ' .  remove_junk($product["iv_no"]). '</td>';
         $html .='<td class="text-center">'  .  remove_junk($product["rate"]). '</td>';
         $html .='<td class="text-center">' . remove_junk($product["item_demanded"]).'</td>';
         $html .='<td class="text-center">' .  remove_junk($product["item_issued"]).'</td>';                
+        $html .='<td class="text-center">' .  remove_junk($product["mission"]).'</td>';                
+        $html .='<td class="text-center">' .  remove_junk($product["unit_name"]).'</td>';   
+        $html .='<td class="text-center">' .  remove_junk($product["issued_by"]).'</td>';                             
+        $html .='<td class="text-center">' .  read_date($product['date']).'</td>';                
+
         $html .='</tr>';
         $html .=' </tr>';
               endforeach; 
@@ -66,12 +76,18 @@
         $html .='<table class="table table-bordered">';
         $html.= ' <thead>';
         $html.= '<tr>';
-        $html.= '<th class="text-center" style="width: 50px;">S.No</th>';
-        $html.= '<th class="text-center" style="width: 15%;">Part Number</th>';
-        $html.= '<th class="text-center">    Invoice Number </th>';
-        $html.= '<th class="text-center" style="width: 10%;"> Rate </th>';
-        $html.= '<th class="text-center" style="width: 10%;"> Item demanded </th>';
-        $html.= '<th class="text-center" style="width: 10%;"> Item issued </th>';
+        $html.= '<th class="text-center" >S.No</th>';
+        $html.= '<th class="text-center" >Part Number</th>';
+        $html.= '<th class="text-center" >Product Name</th>';
+        $html.= '<th class="text-center" > Invoice Number </th>';
+        $html.= '<th class="text-center" > Rate </th>';
+        $html.= '<th class="text-center" > Item demanded </th>';
+        $html.= '<th class="text-center" > Item issued </th>';
+         $html.= '<th class="text-center" > Mission </th>';
+        $html.= '<th class="text-center" > Unit </th>';
+       $html.= '<th class="text-center" >Issued By </th>';
+        $html.= '<th class="text-center" > Date </th>';
+
         $html.= '</tr>';
         $html.= '</thead>';
         $html.= '<tbody>';
@@ -79,10 +95,16 @@
         $html.= '<tr>';
         $html .='<td class="text-center">'.  count_id() . '</td>';
         $html .='<td class="text-center">' .  remove_junk($product["part_no"]) . '</td>';
-        $html .='<td> '                     .  remove_junk($product["iv_no"]). '</td>';
+        $html .='<td class="text-center">' .  remove_junk($product["item_name"]) . '</td>';
+        $html .='<td class="text-center"> '.  remove_junk($product["iv_no"]). '</td>';
         $html .='<td class="text-center">'  .  remove_junk($product["rate"]). '</td>';
         $html .='<td class="text-center">' . remove_junk($product["item_demanded"]).'</td>';
         $html .='<td class="text-center">' .  remove_junk($product["item_issued"]).'</td>';                
+        $html .='<td class="text-center">' .  remove_junk($product["mission"]).'</td>';                
+        $html .='<td class="text-center">' .  remove_junk($product["unit_name"]).'</td>';   
+        $html .='<td class="text-center">' .  remove_junk($product["issued_by"]).'</td>';                             
+        $html .='<td class="text-center">' .  read_date($product['date']).'</td>';                
+
         $html .='</tr>';
         $html .=' </tr>';
               endforeach; 
@@ -90,7 +112,6 @@
         $html .='</tabel>';
         $html .='</div>';
          echo $html;
-
             break;
         
         
@@ -106,12 +127,18 @@
         $html .='<table class="table table-bordered">';
         $html.= ' <thead>';
         $html.= '<tr>';
-        $html.= '<th class="text-center" style="width: 50px;">S.No</th>';
-        $html.= '<th class="text-center" style="width: 15%;">Part Number</th>';
-        $html.= '<th class="text-center">    Invoice Number </th>';
-        $html.= '<th class="text-center" style="width: 10%;"> Rate </th>';
-        $html.= '<th class="text-center" style="width: 10%;"> Item demanded </th>';
-        $html.= '<th class="text-center" style="width: 10%;"> Item issued </th>';
+        $html.= '<th class="text-center" >S.No</th>';
+        $html.= '<th class="text-center" >Part Number</th>';
+        $html.= '<th class="text-center" >Product Name</th>';
+        $html.= '<th class="text-center" > Invoice Number </th>';
+        $html.= '<th class="text-center" > Rate </th>';
+        $html.= '<th class="text-center" > Item demanded </th>';
+        $html.= '<th class="text-center" > Item issued </th>';
+         $html.= '<th class="text-center" > Mission </th>';
+        $html.= '<th class="text-center" > Unit </th>';
+       $html.= '<th class="text-center" >Issued By </th>';
+        $html.= '<th class="text-center" > Date </th>';
+
         $html.= '</tr>';
         $html.= '</thead>';
         $html.= '<tbody>';
@@ -119,10 +146,16 @@
         $html.= '<tr>';
         $html .='<td class="text-center">'.  count_id() . '</td>';
         $html .='<td class="text-center">' .  remove_junk($product["part_no"]) . '</td>';
-       // $html .='<td> '                     .  remove_junk($product["iv_no"]). '</td>';
+        $html .='<td class="text-center">' .  remove_junk($product["item_name"]) . '</td>';
+        $html .='<td class="text-center"> '.  remove_junk($product["iv_no"]). '</td>';
         $html .='<td class="text-center">'  .  remove_junk($product["rate"]). '</td>';
         $html .='<td class="text-center">' . remove_junk($product["item_demanded"]).'</td>';
         $html .='<td class="text-center">' .  remove_junk($product["item_issued"]).'</td>';                
+        $html .='<td class="text-center">' .  remove_junk($product["mission"]).'</td>';                
+        $html .='<td class="text-center">' .  remove_junk($product["unit_name"]).'</td>';   
+        $html .='<td class="text-center">' .  remove_junk($product["issued_by"]).'</td>';                             
+        $html .='<td class="text-center">' .  read_date($product['date']).'</td>';                
+
         $html .='</tr>';
         $html .=' </tr>';
               endforeach; 
@@ -167,12 +200,16 @@
         $html .='<table class="table table-bordered">';
         $html.= ' <thead>';
         $html.= '<tr>';
-        $html.= '<th class="text-center" style="width: 50px;">S.No</th>';
-        $html.= '<th class="text-center" style="width: 15%;">Part Number</th>';
-        $html.= '<th class="text-center">    Invoice Number </th>';
-        $html.= '<th class="text-center" style="width: 10%;"> Rate </th>';
-        $html.= '<th class="text-center" style="width: 10%;"> Item demanded </th>';
-        $html.= '<th class="text-center" style="width: 10%;"> Item issued </th>';
+        $html.= '<th class="text-center" >S.No</th>';
+        $html.= '<th class="text-center" >Part Number</th>';
+        $html.= '<th class="text-center" >Product Name</th>';
+        $html.= '<th class="text-center" > Purchase Order Number </th>';
+        $html.= '<th class="text-center" > Rate </th>';
+        $html.= '<th class="text-center" > Quantity Recieved </th>';
+        $html.= '<th class="text-center" > A/U </th>';
+        $html.= '<th class="text-center" > Received By </th>';
+         $html.= '<th class="text-center" > Date </th>';
+        
         $html.= '</tr>';
         $html.= '</thead>';
         $html.= '<tbody>';
@@ -180,10 +217,14 @@
         $html.= '<tr>';
         $html .='<td class="text-center">'.  count_id() . '</td>';
         $html .='<td class="text-center">' .  remove_junk($product["part_no"]) . '</td>';
-        $html .='<td> '                     .  remove_junk($product["item_name"]). '</td>';
+        $html .='<td class="text-center">' .  remove_junk($product["item_name"]) . '</td>';
+        $html .='<td class="text-center"> '.  remove_junk($product["po_no"]). '</td>';
         $html .='<td class="text-center">'  .  remove_junk($product["rate"]). '</td>';
-        $html .='<td class="text-center">' . remove_junk($product["po_no"]).'</td>';
-        $html .='<td class="text-center">' .  remove_junk($product["quantity"]).'</td>';                
+        $html .='<td class="text-center">' . remove_junk($product["quantity"]).'</td>';
+        $html .='<td class="text-center">' .  remove_junk($product["unit_id"]).'</td>';                
+        $html .='<td class="text-center">' .  remove_junk($product["received_by"]).'</td>';                             
+        $html .='<td class="text-center">' .  read_date($product['date']).'</td>';                
+
         $html .='</tr>';
         $html .=' </tr>';
               endforeach; 
@@ -191,7 +232,6 @@
         $html .='</tabel>';
         $html .='</div>';
          echo $html;
-
 
        
          break;
@@ -201,7 +241,46 @@
 
         $p = find_recieve_by_part_no($ArrayOfProducts);
         print_r($p);
-        echo $p;
+       // echo $p;
+
+$html = '';
+
+        $html .='<div class="panel-body">';
+        $html .='<table class="table table-bordered">';
+        $html.= ' <thead>';
+        $html.= '<tr>';
+        $html.= '<th class="text-center" >S.No</th>';
+        $html.= '<th class="text-center" >Part Number</th>';
+        $html.= '<th class="text-center" >Product Name</th>';
+        $html.= '<th class="text-center" > Purchase Order Number </th>';
+        $html.= '<th class="text-center" > Rate </th>';
+        $html.= '<th class="text-center" > Quantity Recieved </th>';
+        $html.= '<th class="text-center" > A/U </th>';
+        $html.= '<th class="text-center" > Received By </th>';
+         $html.= '<th class="text-center" > Date </th>';
+        
+        $html.= '</tr>';
+        $html.= '</thead>';
+        $html.= '<tbody>';
+        foreach ($p as $product):
+        $html.= '<tr>';
+        $html .='<td class="text-center">'.  count_id() . '</td>';
+        $html .='<td class="text-center">' .  remove_junk($product["part_no"]) . '</td>';
+        $html .='<td class="text-center">' .  remove_junk($product["item_name"]) . '</td>';
+        $html .='<td class="text-center"> '.  remove_junk($product["po_no"]). '</td>';
+        $html .='<td class="text-center">'  .  remove_junk($product["rate"]). '</td>';
+        $html .='<td class="text-center">' . remove_junk($product["quantity"]).'</td>';
+        $html .='<td class="text-center">' .  remove_junk($product["unit_id"]).'</td>';                
+        $html .='<td class="text-center">' .  remove_junk($product["received_by"]).'</td>';                             
+        $html .='<td class="text-center">' .  read_date($product['date']).'</td>';                
+
+        $html .='</tr>';
+        $html .=' </tr>';
+              endforeach; 
+         $html .='</tbody>';
+        $html .='</tabel>';
+        $html .='</div>';
+         echo $html;
 
             break;
         
@@ -210,8 +289,48 @@
        
         $p=find_recieve_by_po_no($ArrayOfProducts);
         print_r($p);
-        echo $p;
-      
+//        echo $p;
+
+
+  $html = '';
+
+        $html .='<div class="panel-body">';
+        $html .='<table class="table table-bordered">';
+        $html.= ' <thead>';
+        $html.= '<tr>';
+        $html.= '<th class="text-center" >S.No</th>';
+        $html.= '<th class="text-center" >Part Number</th>';
+        $html.= '<th class="text-center" >Product Name</th>';
+        $html.= '<th class="text-center" > Purchase Order Number </th>';
+        $html.= '<th class="text-center" > Rate </th>';
+        $html.= '<th class="text-center" > Quantity Recieved </th>';
+        $html.= '<th class="text-center" > A/U </th>';
+        $html.= '<th class="text-center" > Received By </th>';
+         $html.= '<th class="text-center" > Date </th>';
+        
+        $html.= '</tr>';
+        $html.= '</thead>';
+        $html.= '<tbody>';
+        foreach ($p as $product):
+        $html.= '<tr>';
+        $html .='<td class="text-center">'.  count_id() . '</td>';
+        $html .='<td class="text-center">' .  remove_junk($product["part_no"]) . '</td>';
+        $html .='<td class="text-center">' .  remove_junk($product["item_name"]) . '</td>';
+        $html .='<td class="text-center"> '.  remove_junk($product["po_no"]). '</td>';
+        $html .='<td class="text-center">'  .  remove_junk($product["rate"]). '</td>';
+        $html .='<td class="text-center">' . remove_junk($product["quantity"]).'</td>';
+        $html .='<td class="text-center">' .  remove_junk($product["unit_id"]).'</td>';                
+        $html .='<td class="text-center">' .  remove_junk($product["received_by"]).'</td>';                             
+        $html .='<td class="text-center">' .  read_date($product['date']).'</td>';                
+
+        $html .='</tr>';
+        $html .=' </tr>';
+              endforeach; 
+         $html .='</tbody>';
+        $html .='</tabel>';
+        $html .='</div>';
+         echo $html;
+    
           break;
       
         case "4":

@@ -71,7 +71,7 @@ if(isset($_POST['update-pass'])) {
      <div class="panel panel-default">
        <div class="panel-heading">
         <strong>
-          <span class="glyphicon glyphicon-th"></span>
+          
           Update <?php echo remove_junk(ucwords($e_user['name'])); ?> Account
         </strong>
        </div>
@@ -112,7 +112,7 @@ if(isset($_POST['update-pass'])) {
     <div class="panel panel-default">
       <div class="panel-heading">
         <strong>
-          <span class="glyphicon glyphicon-th"></span>
+          
           Change <?php echo remove_junk(ucwords($e_user['name'])); ?> password
         </strong>
       </div>

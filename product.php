@@ -8,25 +8,33 @@
 <?php include_once('layouts/header.php'); ?>
   <div class="row">
      <div class="col-md-12">
-       <?php echo display_msg($msg); ?>
-     </div>
-    <div class="col-md-12">
-    <div class="panel">
-      <div class="jumbotron text-center">
-         
-         <h1>Database of UNMSD</h1> 
+             
 
-      </div>
-    </div>
- </div>
- <form action="search.php" method="post" id="search" >
-   <div>
+       <?php echo display_msg($msg); ?>
+    
+     
+    <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading clearfix">
+
+<div class="panel-body table-responsive"  >
+     <form action="search.php" method="post" id="search" >
+   <div class="pull-right">
 <i class="fa fa-search" aria-hidden="true"></i>
-<input type="text" name="searchProduct" placeholder="Search Product.." id="searchProduct" required onkeyup="findProduct(this)" autocomplete="off" >
+<input type="text" name="searchProduct"  placeholder="Search Product.." id="searchProduct" required  autocomplete="off" >
  <div id="result" style="position:absolute" class="list-group"></div>
 <input type="submit" name="search" value="Search">
 </div>
 </form>
+ </div>
+
+        <strong>
+       <h1 class="text-center">PRODUCT DETAILS</h1>
+       </strong>
+         <a href="add_product.php" class="btn btn-info pull-right">Add New Product</a>
+      </div>
+    </div>
+ </div>
         <div class="panel-body">
           <table class="table table-bordered">
             <thead>
@@ -46,7 +54,7 @@
               <tr>
                 <td class="text-center"><?php echo count_id();?></td>
                 <td class="text-center"> <?php echo remove_junk($product['part_no']); ?></td>
-                <td>                      <?php echo remove_junk($product['item_name']); ?></td>
+                <td class="text-center">                      <?php echo remove_junk($product['item_name']); ?></td>
                 <td class="text-center"> <?php echo remove_junk($product['categorie']); ?></td>
                 <td class="text-center"> <?php echo remove_junk($product['quantity']); ?></td>
                 <td class="text-center"> <?php echo remove_junk($product['rate']); ?></td>                
@@ -67,5 +75,6 @@
         </div>
       </div>
     </div>
+</div>
   </div>
   <?php include_once('layouts/footer.php'); ?>

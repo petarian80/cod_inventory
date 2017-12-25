@@ -48,7 +48,7 @@ if(isset($_POST['edit_unit'])){
      <div class="panel panel-default">
        <div class="panel-heading">
          <strong>
-           <span class="glyphicon glyphicon-th"></span>
+           
            <span>Editing <?php echo remove_junk(ucfirst($unit_names['unit_name']));?></span>
         </strong>
        </div>

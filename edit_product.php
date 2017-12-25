@@ -61,7 +61,7 @@ $all_categories = find_all('categories');
      <div class="panel panel-default">
        <div class="panel-heading">
          <strong>
-           <span class="glyphicon glyphicon-th"></span>
+           
            <span>Editing :  <?php echo remove_junk(ucfirst($product['item_name']));?></span>
         </strong>
        </div>

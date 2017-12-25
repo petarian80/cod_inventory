@@ -33,14 +33,11 @@
   </li>
 
   <li>
-    <a href="#" class="submenu-toggle">
+    <a href="product.php" class="submenu-toggle">
     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
        <span>Products</span>
     </a>
-    <ul class="nav submenu">
-       <li><a href="product.php">view products</a> </li>
-       <li><a href="add_product.php">Add product</a> </li>
-   </ul>
+    
   </li>
   
   

@@ -45,7 +45,7 @@ if(isset($_POST['edit_mission'])){
      <div class="panel panel-default">
        <div class="panel-heading">
          <strong>
-           <span class="glyphicon glyphicon-th"></span>
+           
            <span>Editing <?php echo remove_junk(ucfirst($mission['mission']));?></span>
         </strong>
        </div>

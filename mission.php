@@ -39,7 +39,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <strong>
-            <span class="glyphicon glyphicon-th"></span>
+            
             <span>Add New Mission</span>
          </strong>
         </div>
@@ -57,7 +57,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <strong>
-          <span class="glyphicon glyphicon-th"></span>
+          
           <span>All Missions</span>
        </strong>
       </div>

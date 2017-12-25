@@ -20,11 +20,11 @@ if(!$products ){
      </div>
     
   <div class="col-md-12">
-    <div class="panel">
-      <div class="jumbotron text-center">
-         
-         <h1>Product Details</h1> 
-
+    <div class="panel panel-default">
+      <div class="panel-heading clearfix">
+        <strong>
+       <h1 class="text-center">PRODUCT DETAILS</h1>
+       </strong>
       </div>
     </div>
  </div>
@@ -48,7 +48,7 @@ if(!$products ){
               <tr>
                 
                 <td class="text-center"> <?php echo remove_junk($product['part_no']); ?></td>
-                <td>                      <?php echo remove_junk($product['item_name']); ?></td>
+                <td class="text-center">                      <?php echo remove_junk($product['item_name']); ?></td>
                 <td class="text-center"> <?php echo remove_junk($product['categorie']); ?></td>
                 <td class="text-center"> <?php echo remove_junk($product['quantity']); ?></td>
                 <td class="text-center"> <?php echo remove_junk($product['rate']); ?></td>                

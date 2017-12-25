@@ -16,7 +16,7 @@
 <div class="panel-heading">
    <strong>
    <i class="fa fa-file-text" aria-hidden="true"></i>
-   <span class="glyphicon glyphicon-th"></span>
+   
    <span>Issue Product Report  By Name </span>
    </strong>
 </div>

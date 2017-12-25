@@ -45,7 +45,7 @@ if(isset($_POST['edit_cat'])){
      <div class="panel panel-default">
        <div class="panel-heading">
          <strong>
-           <span class="glyphicon glyphicon-th"></span>
+           
            <span>Editing <?php echo remove_junk(ucfirst($categorie['name']));?></span>
         </strong>
        </div>

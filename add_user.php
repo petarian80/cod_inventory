@@ -25,7 +25,7 @@
         if($db->query($query)){
           //sucess
           $session->msg('s',"User account has been creted! ");
-          redirect('add_user.php', false);
+          redirect('users.php', false);
         } else {
           //failed
           $session->msg('d',' Sorry failed to create account!');
@@ -43,7 +43,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <strong>
-          <span class="glyphicon glyphicon-th"></span>
+          
           <span>Add New User</span>
        </strong>
       </div>

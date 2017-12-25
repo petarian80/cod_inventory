@@ -16,7 +16,7 @@
     <div class="panel panel-default">
     <div class="panel-heading clearfix">
       <strong>
-        <span class="glyphicon glyphicon-th"></span>
+        
         <span>Groups</span>
      </strong>
        <a href="add_group.php" class="btn btn-info pull-right btn-sm"> Add New Group</a>

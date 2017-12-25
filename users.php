@@ -19,8 +19,9 @@
     <div class="panel panel-default">
       <div class="panel-heading clearfix">
         <strong>
-          <span class="glyphicon glyphicon-th"></span>
-          <span>Users</span>
+                    <i class="fa fa-user" aria-hidden="true"></i>
+
+          <span>Users Information</span>
        </strong>
          <a href="add_user.php" class="btn btn-info pull-right">Add New User</a>
       </div>

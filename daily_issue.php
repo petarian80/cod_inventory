@@ -21,7 +21,7 @@
       <div class="panel panel-default">
         <div class="panel-heading clearfix">
           <strong>
-            <span class="glyphicon glyphicon-th"></span>
+            
             <span>Daily Sales</span>
           </strong>
         </div>

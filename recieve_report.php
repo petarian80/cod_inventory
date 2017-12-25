@@ -19,15 +19,15 @@
         <div class="panel-heading">
           <strong>
 <i class="fa fa-file-text" aria-hidden="true"></i>
-            <span class="glyphicon glyphicon-th"></span>
+          
             <span>Recieve Product Report </span>
          </strong>
         </div>
           <div class="panel-heading">
           <strong>
-            <span class="glyphicon glyphicon-th"></span>
+            
           <span> Generate Recieve Product Report By </span>
-    
+    </strong>
    <div>
          <form action="" id="recieve-report-select" autocomplete="off">
       <select class="select" onchange=" issueFormSelectType(this.value)" name="select">
