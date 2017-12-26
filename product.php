@@ -14,8 +14,8 @@
     
      
     <div class="col-md-12">
-    <div class="panel panel-default">
-      <div class="panel-heading clearfix">
+    
+      
 
 <div class="panel-body table-responsive"  >
      <form action="search.php" method="post" id="search" >
@@ -29,7 +29,7 @@
  </div>
 
         <strong>
-       <h1 class="text-center">PRODUCT DETAILS</h1>
+       <h1 class="text-center"><u>PRODUCT DETAILS</u></h1>
        </strong>
          <a href="add_product.php" class="btn btn-info pull-right">Add New Product</a>
       </div>
@@ -73,8 +73,7 @@
             </tbody>
           </tabel>
         </div>
-      </div>
-    </div>
+     
 </div>
   </div>
   <?php include_once('layouts/footer.php'); ?>

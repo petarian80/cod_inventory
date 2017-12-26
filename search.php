@@ -20,10 +20,9 @@ if(!$products ){
      </div>
     
   <div class="col-md-12">
-    <div class="panel panel-default">
-      <div class="panel-heading clearfix">
+ 
         <strong>
-       <h1 class="text-center">PRODUCT DETAILS</h1>
+       <h1 class="text-center"> <u>PRODUCT DETAILS</u></h1>
        </strong>
       </div>
     </div>

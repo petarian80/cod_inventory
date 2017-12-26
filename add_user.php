@@ -49,7 +49,7 @@
       </div>
       <div class="panel-body">
         <div class="col-md-6">
-          <form method="post" action="add_user.php">
+          <form method="post" action="add_user.php" autocomplete="off">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" name="full-name" placeholder="Full Name">

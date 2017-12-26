@@ -10,14 +10,13 @@
    {     
       $ArrayOfProducts = $_POST['issue_report_submit']['input_value'];
       $Array = $_POST['issue_report_submit']['selected_type'];
+      $start = $_POST['issue_report_submit']['start'];
+      $end = $_POST['issue_report_submit']['end'];
 
       switch($Array) {
         case "1":
         
-        $p=find_issue_by_item_name($ArrayOfProducts);
-        print_r($p);
-        //echo $p;
-
+        $p=find_issue_by_item_name_date($ArrayOfProducts, $start, $end);
        
          $html = '';
 
@@ -27,7 +26,7 @@
         $html.= '<tr>';
         $html.= '<th class="text-center" >S.No</th>';
         $html.= '<th class="text-center" >Part Number</th>';
-        $html.= '<th class="text-center" >Product Name</th>';
+        $html.= '<th class="text-center"  width="400px">Product Name</th>';
         $html.= '<th class="text-center" > Invoice Number </th>';
         $html.= '<th class="text-center" > Rate </th>';
         $html.= '<th class="text-center" > Item demanded </th>';
@@ -66,8 +65,8 @@
        
         case "2":
 
-        $p = find_issue_by_part_no($ArrayOfProducts);
-        print_r($p);
+        $p=find_issue_by_part_no_date($ArrayOfProducts, $start, $end);
+       // print_r($p);
         //echo $p;
 
          $html = '';
@@ -118,7 +117,7 @@
         case "3":
        
         $p=find_issue_by_invoice_no($ArrayOfProducts);
-        print_r($p);
+       // print_r($p);
         //echo $p;
       
        $html = '';
@@ -187,12 +186,14 @@
    {     
       $ArrayOfProducts = $_POST['recieve_report_submit']['input_value'];
       $Array = $_POST['recieve_report_submit']['selected_type'];
+      $start = $_POST['recieve_report_submit']['start'];
+      $end = $_POST['recieve_report_submit']['end'];
 
       switch($Array) {
         case "1":
         
-        $p=find_recieve_by_item_name($ArrayOfProducts);
-        print_r($p);
+        $p=find_recieve_by_item_name_date($ArrayOfProducts, $start, $end);
+       // print_r($p);
         // echo $p;
         $html = '';
 
@@ -239,11 +240,9 @@
        
         case "2":
 
-        $p = find_recieve_by_part_no($ArrayOfProducts);
-        print_r($p);
-       // echo $p;
-
-$html = '';
+      $p=find_recieve_by_part_no_date($ArrayOfProducts, $start, $end);
+ 
+        $html = '';
 
         $html .='<div class="panel-body">';
         $html .='<table class="table table-bordered">';
@@ -282,13 +281,14 @@ $html = '';
         $html .='</div>';
          echo $html;
 
+
             break;
         
         
         case "3":
        
         $p=find_recieve_by_po_no($ArrayOfProducts);
-        print_r($p);
+       // print_r($p);
 //        echo $p;
 
 
@@ -574,6 +574,64 @@ $html = '';
      echo json_encode($returnArr);
    }
  ?>
+
+
+ <?php
+ //receive report by date range
+  if(isset($_POST['receive_report_date'])){
+    //$req_dates = array('start-date','end-date');
+    //validate_fields($req_dates);
+
+    //if(empty($errors)):
+      $start_date   = remove_junk($db->escape($_POST['receive_report_date']['start']));
+      $end_date     = remove_junk($db->escape($_POST['receive_report_date']['end']));
+      $results      = find_recieve_by_dates($start_date,$end_date);
+      //print_r($results);
+      //echo $results;
+    //endif;
+
+$html = '';
+
+        $html .='<div class="panel-body">';
+        $html .='<table class="table table-bordered">';
+        $html.= ' <thead>';
+        $html.= '<tr>';
+        $html.= '<th class="text-center" >S.No</th>';
+        $html.= '<th class="text-center" >Part Number</th>';
+        $html.= '<th class="text-center" >Product Name</th>';
+        $html.= '<th class="text-center" > Purchase Order Number </th>';
+        $html.= '<th class="text-center" > Rate </th>';
+        $html.= '<th class="text-center" > Quantity Recieved </th>';
+        $html.= '<th class="text-center" > A/U </th>';
+        $html.= '<th class="text-center" > Received By </th>';
+         $html.= '<th class="text-center" > Date </th>';
+        
+        $html.= '</tr>';
+        $html.= '</thead>';
+        $html.= '<tbody>';
+        foreach ($results as $product):
+        $html.= '<tr>';
+        $html .='<td class="text-center">'.  count_id() . '</td>';
+        $html .='<td class="text-center">' .  remove_junk($product["part_no"]) . '</td>';
+        $html .='<td class="text-center">' .  remove_junk($product["item_name"]) . '</td>';
+        $html .='<td class="text-center"> '.  remove_junk($product["po_no"]). '</td>';
+        $html .='<td class="text-center">'  .  remove_junk($product["rate"]). '</td>';
+        $html .='<td class="text-center">' . remove_junk($product["quantity"]).'</td>';
+        $html .='<td class="text-center">' .  remove_junk($product["unit_id"]).'</td>';                
+        $html .='<td class="text-center">' .  remove_junk($product["received_by"]).'</td>';                             
+        $html .='<td class="text-center">' .  read_date($product['date']).'</td>';                
+
+        $html .='</tr>';
+        $html .=' </tr>';
+              endforeach; 
+         $html .='</tbody>';
+        $html .='</tabel>';
+        $html .='</div>';
+         echo $html;
+
+
+}
+?>
 
 
 <?php

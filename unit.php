@@ -48,7 +48,7 @@
          </strong>
         </div>
         <div class="panel-body">
-          <form method="post" action="unit.php">
+          <form method="post" action="unit.php" autocomplete="off">
             <div class="form-group">
                 <input type="text" class="form-control" name="unit-name" placeholder="Unit Name">
             </div>

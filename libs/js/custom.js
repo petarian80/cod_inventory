@@ -662,7 +662,48 @@ console.log(inObj);
 
     })
 
+// recieve report  (get data from database by date)
+$('#receive_date').submit(function(e){
+        e.preventDefault();        
+
+        var start_date = $(this).find('input[name="start-date"]').val();
+        console.log(start_date);
+        var end_date = $(this).find('input[name="end-date"]').val();
+            console.log(end_date);
+       
+            var inObj = {
+            'start' : start_date,
+            'end' : end_date
+             };
+
+console.log(inObj);
+        var formData = {
+            'receive_report_date' : inObj  
+        };
+             console.log(formData);
+
+
+        if(start_date.length > 0 && end_date.length > 0 ){           
+            // process the form           
+            $.ajax({
+                type        : 'POST',
+                url         : 'ajax-items.php',
+                data        : formData,
+                encode      : true
+            })
+        .done(function(data) {
+                
+             console.log("return Data", data);
+             $('#receive-table-result').html(data);
+            })
+        }
+
+    })
+
+
     
+
+
     // recieve report  (get data from database)
 $('#recieve-report-select').submit(function(e){
         e.preventDefault();        
@@ -671,10 +712,19 @@ $('#recieve-report-select').submit(function(e){
         console.log(input_value);
          var select_input = $('#recieve-report-select').find("select option:selected").val();
             console.log(select_input);
+        var start_date = $(this).find('input[name="start-date"]').val();
+        console.log(start_date);
+        var end_date = $(this).find('input[name="end-date"]').val();
+            console.log(end_date);
+
+
+
        
             var inObj = {
             'input_value' : input_value,
-            'selected_type' : select_input
+            'selected_type' : select_input,
+            'start' : start_date,
+            'end' : end_date
              };
 
 console.log(inObj);
@@ -697,6 +747,56 @@ console.log(inObj);
                 
              console.log("return Data", data);
              $('#receive-table-result').html(data);
+                })
+        }
+
+    })
+
+
+    
+    // issue report  (get data from database)
+$('#issue-report-select').submit(function(e){
+        e.preventDefault();        
+
+        var input_value = $(this).find('input[name="item_name"]').val();
+        console.log(input_value);
+         var select_input = $('#issue-report-select').find("select option:selected").val();
+            console.log(select_input);
+        var start_date = $(this).find('input[name="start-date"]').val();
+        console.log(start_date);
+        var end_date = $(this).find('input[name="end-date"]').val();
+            console.log(end_date);
+
+
+
+       
+            var inObj = {
+            'input_value' : input_value,
+            'selected_type' : select_input,
+            'start' : start_date,
+            'end' : end_date
+             };
+
+console.log(inObj);
+        var formData = {
+            'issue_report_submit' : inObj  
+        };
+             console.log(formData);
+
+
+        if(inObj['input_value'].length > 0){           
+            // process the form           
+            $.ajax({
+                type        : 'POST',
+                url         : 'ajax-items.php',
+                data        : formData,
+                encode      : true
+            })
+        
+        .done(function(data) {
+                
+             console.log("return Data", data);
+             $('#issue-table-result').html(data);
                 })
         }
 
@@ -970,9 +1070,12 @@ function issueFormSelectTypeEnable(){
     // for issue report
     $('#issue-report-select').find('input[name="item_name"]').prop( "disabled", false );;
     $('#issue-report-select').find('button[name="generate_report"]').prop( "disabled", false );;
-   
+    $('#issue-report-select').find('input[name="start-date"]').prop( "disabled", false );;
+    $('#issue-report-select').find('input[name="end-date"]').prop( "disabled", false );; 
    //for recieve report 
     $('#recieve-report-select').find('input[name="item_name"]').prop( "disabled", false );;
+    $('#recieve-report-select').find('input[name="start-date"]').prop( "disabled", false );;
+    $('#recieve-report-select').find('input[name="end-date"]').prop( "disabled", false );;
     $('#recieve-report-select').find('button[name="generate_report"]').prop( "disabled", false );;
 }
 
@@ -980,8 +1083,12 @@ function issueFormSelectTypeDisable(){
   // for issue report
     $('#issue-report-select').find('input[name="item_name"]').prop( "disabled", true );;
     $('#issue-report-select').find('button[name="generate_report"]').prop( "disabled", true );;
+     $('#issue-report-select').find('input[name="start-date"]').prop( "disabled", true );;
+    $('#issue-report-select').find('input[name="end-date"]').prop( "disabled", true );; 
     // for recieve report
     $('#issue-report-select').find('input[name="item_name"]').prop( "disabled", true );;
+     $('#recieve-report-select').find('input[name="start-date"]').prop( "disabled", true );;
+    $('#recieve-report-select').find('input[name="end-date"]').prop( "disabled", true );;
     $('#issue-report-select').find('button[name="generate_report"]').prop( "disabled", true );;
 }
 
@@ -1072,10 +1179,7 @@ function recieveFormfetchData(item){
             "po_list" : box.val()
         };
             break;
-        case "4":
-        
-        break;
-
+       
         default:
         
     }
@@ -1087,7 +1191,7 @@ function recieveFormfetchData(item){
         type        : 'POST',
         url         : 'ajax-items.php',
         data        : formData,
-        //dataType    : 'json',
+        dataType    : 'json',
         encode      : true
     })
     .done(function(data) {

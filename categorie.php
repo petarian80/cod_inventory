@@ -44,7 +44,7 @@
          </strong>
         </div>
         <div class="panel-body">
-          <form method="post" action="categorie.php">
+          <form method="post" action="categorie.php" autocomplete="off">
             <div class="form-group">
                 <input type="text" class="form-control" name="categorie-name" placeholder="Categorie Name">
             </div>

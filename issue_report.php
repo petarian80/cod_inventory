@@ -34,10 +34,20 @@
          <option value = "3"> Invoice Number </option>
          <option value = "4"> Date Range </option>
       </select>
-       <input  disabled class="form-control" id="item_name" name="item_name" onkeyup="issueFormfetchData(this)" >
-           <div id="result" style="position:absolute" class="list-group"></div>
-            <button disabled type="submit" name="generate_report" class="btn btn-danger">Generate Report</button>
+        
+        <div class="form-group">
+            <input  disabled class="form-control" id="item_name" name="item_name" onkeyup="issueFormfetchData(this)" >
+            <div id="result" style="position:absolute" class="list-group"></div>
+        </div>    
+<div class="input-group">
+                  <input type="text"  disabled class="datepicker form-control" name="start-date" placeholder="From" onkeyup="recieveFormfetchData(this)">
+                  <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                  <input type="text"  disabled class="datepicker form-control" name="end-date" placeholder="To" onkeyup="recieveFormfetchData(this)">
+                </div>
 
+        <div class="form-group">    
+            <button disabled type="submit" name="generate_report" class="btn btn-danger">Generate Report</button>
+        </div>
    </form>
 </div>
 

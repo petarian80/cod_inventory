@@ -554,6 +554,74 @@ function find_recieve_by_item_name($item_name){
   $sql .= " WHERE item_name='$item_name'";
   return find_by_sql($sql);
 }
+
+// generate recieve report by product name
+function find_recieve_by_item_name_date($item_name, $start, $end){
+  global $db;
+  print_r($item_name);
+ $item_name   = remove_junk($db->escape($item_name));  
+  $start_date  = date("Y-m-d", strtotime($start));
+  $end_date    = date("Y-m-d", strtotime($end+1));
+  $sql  = "SELECT part_no,item_name, quantity,unit_id,po_no,rate,received_by, date ";
+  $sql .= " FROM received ";
+  $sql .= " WHERE date BETWEEN '{$start_date}' AND '{$end_date}'";
+  $sql .= "AND item_name='$item_name' ";
+   $sql .= " ORDER BY date(date) DESC";
+
+  return find_by_sql($sql);
+}
+
+
+// generate issue report by product name
+function find_issue_by_item_name_date($item_name, $start, $end){
+  global $db;
+  print_r($item_name);
+ $item_name   = remove_junk($db->escape($item_name));  
+  $start_date  = date("Y-m-d", strtotime($start));
+  $end_date    = date("Y-m-d", strtotime($end+1));
+  $sql  = "SELECT part_no,item_name, iv_no,rate, item_demanded, item_issued,mission,unit_name,issued_by,date ";
+  $sql .= " FROM issue ";
+  $sql .= " WHERE date BETWEEN '{$start_date}' AND '{$end_date}'";
+  $sql .= "AND item_name='$item_name' ";
+   $sql .= " ORDER BY date(date) DESC";
+
+  return find_by_sql($sql);
+}
+
+// generate issue report by part number
+function find_issue_by_part_no_date($item_name, $start, $end){
+  global $db;
+  print_r($item_name);
+ $item_name   = remove_junk($db->escape($item_name));  
+  $start_date  = date("Y-m-d", strtotime($start));
+  $end_date    = date("Y-m-d", strtotime($end+1));
+  $sql  = "SELECT part_no,item_name, iv_no,rate, item_demanded, item_issued,mission,unit_name,issued_by,date ";
+  $sql .= " FROM issue ";
+  $sql .= " WHERE date BETWEEN '{$start_date}' AND '{$end_date}'";
+  $sql .= "AND part_no='$item_name' ";
+   $sql .= " ORDER BY date(date) DESC";
+
+  return find_by_sql($sql);
+}
+
+
+
+// generate recieve report by part number
+function find_recieve_by_part_no_date($item_name, $start, $end){
+  global $db;
+  print_r($item_name);
+ $item_name   = remove_junk($db->escape($item_name));  
+  $start_date  = date("Y-m-d", strtotime($start));
+  $end_date    = date("Y-m-d", strtotime($end+1));
+  $sql  = "SELECT part_no,item_name, quantity,unit_id,po_no,rate,received_by, date ";
+  $sql .= " FROM received ";
+  $sql .= " WHERE date BETWEEN '{$start_date}' AND '{$end_date}'";
+  $sql .= "AND part_no='$item_name' ";
+   $sql .= " ORDER BY date(date) DESC";
+
+  return find_by_sql($sql);
+}
+
 // generate issue report by part number
 
 function find_issue_by_part_no($item_name){
@@ -604,11 +672,11 @@ function find_recieve_by_dates($start_date,$end_date){
   global $db;
   $start_date  = date("Y-m-d", strtotime($start_date));
   $end_date    = date("Y-m-d", strtotime($end_date+1));
-  $sql  = "SELECT part_no, item_name,quantity,date,rate ";
+  $sql  = "SELECT part_no,item_name, quantity,unit_id,po_no,rate,received_by, date ";
   $sql .= " FROM received  ";
   $sql .= " WHERE date BETWEEN '{$start_date}' AND '{$end_date}'";
  $sql .= " ORDER BY date(date) DESC";
-  return $db->query($sql);
+  return find_by_sql($sql);
 }
 
 /*--------------------------------------------------------------*/

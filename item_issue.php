@@ -42,11 +42,11 @@
           <td id="iv_no"><input type="text" required class="form-control" name="iv_no" placeholder="Invoice Number" ></td>
           <td id="issued_by"><input type="text" class="form-control" name="issued_by" placeholder="Issued By" ></td>
            <td id="mission">
-            <input type="text" class="form-control" name="mission" id="mission" placeholder = "Mission" onkeyup="mission_list(this)" >
+            <input type="text" required  class="form-control" name="mission" id="mission" placeholder = "Mission" onkeyup="mission_list(this)" >
             <div id="result" style="position:absolute" class="list-group"></div>
             </td>
 
-            <td id="unit_name"><input type="text" class="form-control" name="unit_name" placeholder="Unit" onkeyup="unit_list(this)"  >
+            <td id="unit_name"><input type="text" required  class="form-control" name="unit_name" placeholder="Unit" onkeyup="unit_list(this)"  >
             <div id="result" style="position:absolute" class="list-group"></div>
             </td>
 
@@ -91,11 +91,11 @@
                   </div>
                 </td>
 
-                <td id="part_no"><input type="text" class="form-control" name="part_no" onkeyup="listByPart(this)" >
+                <td id="part_no"><input type="text" required class="form-control" name="part_no" onkeyup="listByPart(this)" >
                 <div id="result" style="position:absolute" class="list-group"></div>
                 </td>
 
-                <td id="item_name"><input type="text" class="form-control" name="item_name" onkeyup="listByname(this)" >
+                <td id="item_name"><input type="text" required  class="form-control" name="item_name" onkeyup="listByname(this)" >
                  <div id="result" style="position:absolute" class="list-group"></div>
                 </td>
 
@@ -105,12 +105,12 @@
                  <div id="quantity" style="position:absolute" class="list-group"></div>
                  </td>
                   <td id="item_demanded">                  
-                    <input type="number" class="form-control" name="item_demanded" class="form-control input-number" onkeyup="calculate(this)"  >  
+                    <input type="number" required  class="form-control" name="item_demanded" class="form-control input-number" onkeyup="calculate(this)"  >  
                      <div id="item_demanded" style="position:absolute" class="list-group"></div>
                 </td>
 
                 <td id="item_issued">
-                  <input type="number" class="form-control" name="item_issued" class="form-control input-number"  onkeyup="calculate(this)" >
+                  <input type="number" required  class="form-control" name="item_issued" class="form-control input-number"  onkeyup="calculate(this)" >
                     <div id="item_issued" style="position:absolute" class="list-group"></div>
             </td>  
 
