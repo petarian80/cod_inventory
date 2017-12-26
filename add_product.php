@@ -28,7 +28,7 @@
      
      if($db->query($query)){
        $session->msg('s',"Product added ");
-       redirect('add_product.php', false);
+       redirect('product.php', false);
      } else {
        $session->msg('d',' Sorry failed to added!');
        redirect('product.php', false);
@@ -59,7 +59,7 @@
         </div>
         <div class="panel-body">
          <div class="col-md-12">
-          <form method="post" action="add_product.php" class="clearfix">
+          <form method="post" action="add_product.php"  autocomplete ="off" class="clearfix">
               <div class="form-group">
                   
                   <input type="text" class="form-control" name="part_no" placeholder="Part Number">
